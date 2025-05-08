@@ -14,7 +14,7 @@ export default function About() {
   };
 
   return (
-    <section id="about" className="py-24 bg-gray-800 border-t border-gray-700 shadow-[0_-8px_32px_0_rgba(0,0,0,0.10)]">
+    <section id="about" className="py-24 bg-gray-100 dark:bg-black border-t border-gray-800 dark:border-gray-900 shadow-[0_-8px_32px_0_rgba(0,0,0,0.10)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="lg:text-center mb-16">
           <motion.h2
@@ -48,7 +48,7 @@ export default function About() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-gray-800 rounded-2xl shadow-xl p-8 border border-gray-700"
+                className="bg-white dark:bg-sky-950 rounded-2xl shadow-xl p-8 border border-accent"
               >
                 <h4 className="text-accent mb-4">{skillGroup.category}</h4>
                 <ul className="space-y-2">
@@ -73,7 +73,7 @@ export default function About() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-gray-800 rounded-2xl shadow-xl p-8 border border-gray-700"
+                className="bg-white dark:bg-sky-950 rounded-2xl shadow-xl p-8 border border-accent"
               >
                 <div className="flex items-center">
                   <div className="flex-shrink-0">

@@ -16,6 +16,8 @@
     "test:e2e": "start-server-and-test dev http://localhost:3000 cypress:run"
   },
   "dependencies": {
+    "@fontsource/inter": "^5.2.5",
+    "@fontsource/montserrat": "^5.2.5",
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "^2.1.1",
     "@types/nodemailer": "^6.4.17",

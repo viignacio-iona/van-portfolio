@@ -20,24 +20,24 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-black tracking-tight text-white;
+    @apply font-heading font-extrabold tracking-tight text-center text-white;
   }
 
   h1 {
-    @apply text-5xl sm:text-6xl mb-4;
+    @apply text-6xl mb-8;
   }
   h2 {
-    @apply text-4xl sm:text-5xl mb-3;
+    @apply text-6xl mb-8;
   }
   h3 {
-    @apply text-3xl sm:text-4xl mb-2;
+    @apply text-4xl mb-4;
   }
   h4 {
     @apply text-2xl mb-2;
   }
 
   a {
-    @apply text-accent hover:text-accent-dark transition-colors underline-offset-2;
+    @apply text-accent hover:text-accent-secondary transition-colors underline-offset-2;
   }
 
   /* Base button styles */
@@ -47,11 +47,11 @@
 
   /* Solid accent button */
   .btn {
-    @apply font-bold rounded-lg px-6 py-3 transition-all duration-150 bg-accent text-white hover:bg-accent-dark hover:text-white;
+    @apply font-bold rounded-lg px-6 py-3 transition-all duration-150 bg-accent text-white hover:bg-accent-dark hover:text-white focus:ring-2 focus:ring-accent-secondary focus:ring-offset-2;
   }
 
-  /* Outlined/white button */
+  /* Outlined/secondary button */
   .btn-outline {
-    @apply font-bold rounded-lg px-6 py-3 transition-all duration-150 bg-white text-accent border border-accent hover:bg-gray-100 hover:text-accent-dark;
+    @apply font-bold rounded-lg px-6 py-3 transition-all duration-150 bg-white text-accent-secondary border border-accent-secondary hover:bg-accent-secondary hover:text-white focus:ring-2 focus:ring-accent focus:ring-offset-2;
   }
 }

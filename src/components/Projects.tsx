@@ -14,7 +14,7 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="py-24 bg-gray-900 border-t border-gray-800 shadow-[0_-8px_32px_0_rgba(0,0,0,0.10)]">
+    <section id="projects" className="py-24 bg-gray-100 dark:bg-black border-t border-gray-800 dark:border-gray-900 shadow-[0_-8px_32px_0_rgba(0,0,0,0.10)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center mb-16">
           <span className="mb-4 inline-block bg-yellow-400 text-yellow-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">WIP</span>
@@ -47,7 +47,7 @@ export default function Projects() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="bg-gray-800 rounded-2xl shadow-xl overflow-hidden border border-gray-700 flex flex-col"
+              className="bg-white dark:bg-sky-950 rounded-2xl shadow-xl overflow-hidden border border-accent flex flex-col"
             >
               <div className="relative h-48">
                 {!imageErrors[project.id] ? (

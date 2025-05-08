@@ -10,7 +10,7 @@ export default function Hero() {
   const [imageError, setImageError] = useState(false);
 
   return (
-    <section className="relative bg-white dark:bg-gray-900 overflow-hidden">
+    <section className="relative bg-gray-100 dark:bg-black overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 flex flex-col lg:flex-row items-center justify-between gap-12">
         <div className="flex-1 flex flex-col items-start justify-center">
           <motion.h1

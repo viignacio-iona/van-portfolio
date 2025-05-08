@@ -90,107 +90,38 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-gray-900 border-t border-gray-800 shadow-[0_-8px_32px_0_rgba(0,0,0,0.10)]">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <motion.h2
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-            viewport={{ once: true }}
-          >Contact</motion.h2>
-          <motion.p
-            className="mt-2 text-2xl text-gray-300 font-semibold"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
-            viewport={{ once: true }}
-          >Let&apos;s Connect!</motion.p>
-          <motion.p
-            className="mt-4 text-lg text-gray-400"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
-            viewport={{ once: true }}
-          >Feel free to reach out for collaboration, consulting, or just to say hi!</motion.p>
-        </div>
-        <div className="bg-gray-700 rounded-2xl shadow-xl p-12 border border-gray-700">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+    <section id="contact" className="py-24 bg-gray-100 dark:bg-black border-t border-gray-800 dark:border-gray-900 shadow-[0_-8px_32px_0_rgba(0,0,0,0.10)]">
+      <div className="max-w-6xl mx-auto px-4 sm:px-12 lg:px-20">
+        <motion.h2
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          viewport={{ once: true }}
+          className="text-6xl font-extrabold text-white mb-8 text-center"
+        >Contact</motion.h2>
+        <div className="bg-white dark:bg-sky-950 rounded-2xl shadow-xl p-12 border border-accent">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
+              <motion.p
+                className="text-xl text-gray-300 font-semibold"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
+                viewport={{ once: true }}
+              >Let&apos;s Connect!</motion.p>
+              <motion.p
+                className="mt-4 text-lg text-gray-400"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+                viewport={{ once: true }}
+              >Feel free to reach out for collaboration, consulting, or just to say hi!</motion.p>
+            </div>
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: 0 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
-              className="bg-gray-800 rounded-lg shadow-lg p-8"
-            >
-              <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-6">
-                Contact Information
-              </h3>
-              <div className="flex flex-col gap-6">
-                <div className="flex flex-col gap-4">
-                  <div className="flex items-center">
-                    <FiMail className="w-5 h-5 text-accent" />
-                    <a
-                      href={`mailto:${profile.email}`}
-                      className="ml-3 text-gray-600 dark:text-gray-300 hover:text-accent"
-                    >
-                      {profile.email}
-                    </a>
-                  </div>
-                  <div className="flex items-center">
-                    <FiPhone className="w-5 h-5 text-accent" />
-                    <span className="ml-3 text-gray-600 dark:text-gray-300">
-                      {profile.phone}
-                    </span>
-                  </div>
-                  <div className="flex items-center">
-                    <FiMapPin className="w-5 h-5 text-accent" />
-                    <span className="ml-3 text-gray-600 dark:text-gray-300">
-                      {profile.location}
-                    </span>
-                  </div>
-                </div>
-                <div className="pt-2 border-t border-gray-700">
-                  <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-3 mt-2">
-                    Connect with Me
-                  </h4>
-                  <div className="flex space-x-6 mt-2">
-                    <a
-                      href={profile.social.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200"
-                      aria-label="LinkedIn"
-                    >
-                      <FaLinkedin className="h-8 w-8" />
-                    </a>
-                    <a
-                      href={profile.social.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200"
-                      aria-label="GitHub"
-                    >
-                      <FaGithub className="h-8 w-8" />
-                    </a>
-                    <a
-                      href={profile.social.facebook}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200"
-                      aria-label="Facebook"
-                    >
-                      <FaFacebook className="h-8 w-8" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              className="bg-gray-800 rounded-lg shadow-lg p-8"
+              className="bg-white dark:bg-sky-950 rounded-lg shadow-lg p-8 w-full max-w-xl border border-accent"
             >
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Toast message */}

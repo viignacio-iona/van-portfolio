@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import '@fontsource/inter';
+import '@fontsource/montserrat';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -23,7 +25,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" type="image/png" href="/images/logo.png" sizes="32x32" />
       </head>
-      <body className={`${inter.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} font-sans antialiased bg-white dark:bg-black`}>
         {children}
       </body>
     </html>
