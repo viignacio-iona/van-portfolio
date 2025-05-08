@@ -1,26 +1,57 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    font-family: 'Inter', 'Poppins', 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 500;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 0 0% 100%;
+  }
+
+  body {
+    @apply bg-gray-900 text-white font-sans font-medium antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-black tracking-tight text-white;
+  }
+
+  h1 {
+    @apply text-5xl sm:text-6xl mb-4;
+  }
+  h2 {
+    @apply text-4xl sm:text-5xl mb-3;
+  }
+  h3 {
+    @apply text-3xl sm:text-4xl mb-2;
+  }
+  h4 {
+    @apply text-2xl mb-2;
+  }
+
+  a {
+    @apply text-accent hover:text-accent-dark transition-colors underline-offset-2;
+  }
+
+  /* Base button styles */
+  button, .btn {
+    @apply font-bold rounded-lg px-6 py-3 transition-all duration-150;
+  }
+
+  /* Solid accent button */
+  .btn {
+    @apply font-bold rounded-lg px-6 py-3 transition-all duration-150 bg-accent text-white hover:bg-accent-dark hover:text-white;
+  }
+
+  /* Outlined/white button */
+  .btn-outline {
+    @apply font-bold rounded-lg px-6 py-3 transition-all duration-150 bg-white text-accent border border-accent hover:bg-gray-100 hover:text-accent-dark;
+  }
 }

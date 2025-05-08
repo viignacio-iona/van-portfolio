@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# QA Automation Engineer Portfolio
+
+A modern, responsive portfolio website showcasing QA automation expertise, built with Next.js, TypeScript, and Tailwind CSS.
+
+## Features
+
+- 🎨 Modern, responsive design with dark/light mode
+- 📱 Mobile-first approach
+- 🚀 Fast page loads with Next.js
+- 🎯 SEO optimized
+- 📝 Blog section for sharing testing insights
+- 🔍 Automated testing with Jest and Cypress
+- 🐳 Docker support
+- 🔄 CI/CD with GitHub Actions
+
+## Prerequisites
+
+- Node.js 18.x or later
+- npm 9.x or later
+- Git
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/qa-portfolio.git
+   cd qa-portfolio
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Testing
+
+Run the test suite:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Unit tests
+npm test
+
+# E2E tests
+npm run cypress:open
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Building for Production
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Docker
 
-## Learn More
+Build and run with Docker:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# Build the image
+docker build -t qa-portfolio .
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Run the container
+docker run -p 3000:3000 qa-portfolio
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment
 
-## Deploy on Vercel
+The site is configured to deploy automatically to GitHub Pages when pushing to the main branch. The deployment process is handled by GitHub Actions.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Fork this repository
+2. Enable GitHub Pages in your repository settings
+3. Push to main branch to trigger deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Customization
+
+1. Update content in `src/data/` directory
+2. Modify styles in `src/styles/`
+3. Add your own components in `src/components/`
+
+## License
+
+MIT
+
+## Contact
+
+Your Name - [@yourtwitter](https://twitter.com/yourtwitter) - email@example.com
+
+Project Link: [https://github.com/yourusername/qa-portfolio](https://github.com/yourusername/qa-portfolio)
