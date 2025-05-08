@@ -8,7 +8,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "QA Automation Engineer Portfolio",
+  title: "Van Ian Ignacio | QA Portfolio",
   description: "Professional portfolio showcasing QA automation expertise and projects",
 };
 
@@ -19,6 +19,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/png" href="/images/logo.png" sizes="32x32" />
+      </head>
       <body className={`${inter.variable} font-sans antialiased`}>
         {children}
       </body>
