@@ -23,7 +23,6 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" type="image/png" href="/images/logo.png" sizes="32x32" />
       </head>
       <body className={`${inter.variable} font-sans antialiased bg-white dark:bg-black`}>
         {children}

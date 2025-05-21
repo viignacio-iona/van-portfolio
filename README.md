@@ -89,6 +89,6 @@ MIT
 
 ## Contact
 
-Your Name - [@yourtwitter](https://twitter.com/yourtwitter) - email@example.com
+Van Ian Ignacio - [linkedin](https://www.linkedin.com/in/viignacio-ctfl/) - van.ignacio@ionacommerce.com
 
-Project Link: [https://github.com/yourusername/qa-portfolio](https://github.com/yourusername/qa-portfolio)
+Project Link: [https://github.com/viignacio-iona/van-portfolio](https://github.com/viignacio-iona/van-portfolio)
