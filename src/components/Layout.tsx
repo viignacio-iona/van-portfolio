@@ -68,6 +68,7 @@ export default function Layout({ children }: LayoutProps) {
     { name: 'Home', path: '/', section: 'hero' },
     { name: 'About', path: '/#about', section: 'about' },
     { name: 'Projects', path: '/#projects', section: 'projects' },
+    { name: 'Commendations', path: '/#commendations', section: 'commendations' },
     { name: 'Contact', path: '/#contact', section: 'contact' },
     { name: 'Blog (WIP)', path: '/blog', section: '' },
   ];
@@ -84,7 +85,6 @@ export default function Layout({ children }: LayoutProps) {
       const id = path.replace('/#', '');
       const el = document.getElementById(id);
       if (el) {
-        setActiveSection(id);
         closeMobileMenu();
         const isMobile = window.innerWidth < 640;
         const yOffset = isMobile ? 64 : -16;
@@ -114,30 +114,33 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <div className="min-h-screen bg-white dark:bg-black transition-colors duration-200">
       {/* Floating Navbar for Desktop (render only on sm: and up) */}
-      <nav className="hidden sm:flex fixed top-6 left-1/2 transform -translate-x-1/2 z-50 max-w-3xl w-[90vw] rounded-2xl bg-gray-50/90 dark:bg-gray-950/90 shadow-2xl border border-gray-200 dark:border-gray-800 items-center justify-between px-8 py-3 backdrop-blur-md">
-        <div className="flex items-center">
-          <a href="#" className="flex items-center" onClick={handleLogoClick} aria-label="Scroll to top">
-            <Image src="/images/logo.png" alt="Portfolio Logo" width={40} height={40} className="h-8 w-8 sm:h-10 sm:w-10 object-contain" />
-          </a>
-        </div>
-        <div className="flex space-x-2 lg:space-x-8 items-center">
-          {navItems.map((item) => (
-            <Link
-              key={item.path}
-              href={item.path}
-              onClick={e => handleNavClick(e, item.path, item.section)}
-              className={`relative px-3 py-2 rounded-md font-medium transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2
-                ${
-                  isNavItemActive(item)
-                    ? 'text-accent after:absolute after:left-0 after:bottom-0 after:w-full after:h-0.5 after:bg-accent after:rounded-full after:transition-all after:duration-300'
-                    : 'text-gray-500 dark:text-gray-300 hover:text-accent hover:bg-gray-100 dark:hover:bg-gray-800 after:absolute after:left-1/2 after:bottom-0 after:w-0 after:h-0.5 after:bg-accent after:rounded-full after:transition-all after:duration-300 hover:after:left-0 hover:after:w-full'
-                }
-              `}
-              aria-current={isNavItemActive(item) ? 'page' : undefined}
-            >
-              {item.name}
-            </Link>
-          ))}
+      <nav className="hidden sm:flex fixed top-6 left-1/2 transform -translate-x-1/2 z-50 max-w-7xl w-[99vw] rounded-2xl bg-gray-50/90 dark:bg-gray-950/90 shadow-2xl border border-gray-200 dark:border-gray-800 items-center px-8 py-3 backdrop-blur-md">
+        <div className="flex-1 flex justify-center">
+          <div className="flex space-x-2 lg:space-x-8 items-center">
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                href={item.path}
+                onClick={e => {
+                  if (item.section === 'hero') {
+                    handleNavClick(e, '/#hero', 'hero');
+                  } else {
+                    handleNavClick(e, item.path, item.section);
+                  }
+                }}
+                className={`relative px-3 py-2 rounded-md font-medium transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2
+                  ${
+                    isNavItemActive(item)
+                      ? 'text-accent after:absolute after:left-0 after:bottom-0 after:w-full after:h-0.5 after:bg-accent after:rounded-full after:transition-all after:duration-300'
+                      : 'text-gray-500 dark:text-gray-300 hover:text-accent hover:bg-gray-100 dark:hover:bg-gray-800'
+                  }
+                `}
+                aria-current={isNavItemActive(item) ? 'page' : undefined}
+              >
+                {item.name}
+              </Link>
+            ))}
+          </div>
         </div>
         <div className="flex items-center ml-2">
           <button

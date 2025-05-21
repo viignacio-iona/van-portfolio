@@ -23,7 +23,7 @@ export default function Testimonials() {
   };
 
   return (
-    <section className="py-24 bg-gray-100 dark:bg-black border-t border-gray-800 dark:border-gray-900 shadow-[0_-8px_32px_0_rgba(0,0,0,0.10)]">
+    <section id="commendations" className="py-24 min-h-[600px] bg-gray-100 dark:bg-black border-t border-gray-800 dark:border-gray-900 shadow-[0_-8px_32px_0_rgba(0,0,0,0.10)]">
       <div className="max-w-6xl mx-auto px-4 sm:px-12 lg:px-20">
         <div className="flex flex-col items-center text-center">
           <span className="mb-4 inline-block bg-yellow-400 text-yellow-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">WIP</span>
@@ -33,14 +33,14 @@ export default function Testimonials() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
             viewport={{ once: true }}
-          >Testimonials</motion.h2>
+          >Commendations</motion.h2>
           <motion.p
             className="text-2xl font-semibold text-gray-700 dark:text-gray-200 mb-8 text-center"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
             viewport={{ once: true }}
-          >What People Say</motion.p>
+          >What People Commend</motion.p>
         </div>
 
         <div className="flex flex-col items-center">
@@ -85,12 +85,8 @@ export default function Testimonials() {
                           )}
                         </div>
                         <div className="ml-4 flex flex-col w-full text-left">
-                          <h3 className="text-lg font-medium text-gray-900 dark:text-white text-left w-full mb-4">
-                            <span className="text-gray-700 dark:text-white">{testimonial.name}</span>
-                          </h3>
-                          <p className="text-sm text-gray-500 dark:text-gray-400 text-left w-full mb-4">
-                            <span className="text-gray-600 dark:text-gray-400">{testimonial.role} at {testimonial.company}</span>
-                          </p>
+                          <span className="text-lg font-medium text-gray-900 dark:text-white mb-1">{testimonial.name}</span>
+                          <span className="text-sm text-gray-500 dark:text-gray-400">{testimonial.role} at {testimonial.company}</span>
                         </div>
                       </div>
                       <blockquote className="text-gray-600 dark:text-gray-300 italic text-left w-full mt-4 mb-4">
