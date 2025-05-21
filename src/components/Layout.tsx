@@ -222,8 +222,8 @@ export default function Layout({ children }: LayoutProps) {
 
       <footer className="bg-gray-100 dark:bg-black border-t border-gray-200 dark:border-gray-800">
         <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row gap-8 w-full">
-            <div className="flex-1">
+          <div className="flex flex-col md:flex-row md:items-start md:justify-start md:gap-12 gap-8 w-full">
+            <div className="flex-1 md:flex-none md:w-auto">
               <span className="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400 block mb-2">Contact Information</span>
               <ul className="flex flex-col items-start gap-2">
                 <li>
@@ -238,7 +238,8 @@ export default function Layout({ children }: LayoutProps) {
                 </li>
               </ul>
             </div>
-            <div className="flex-1 md:pl-8">
+            <div className="hidden md:block h-16 border-l border-gray-400 dark:border-gray-700 mx-6" />
+            <div className="flex-1 md:flex-none md:w-auto">
               <span className="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400 block mb-2 md:text-left">Social Media</span>
               <ul className="flex flex-row items-start gap-4">
                 <li>
