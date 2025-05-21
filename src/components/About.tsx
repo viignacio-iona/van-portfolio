@@ -90,8 +90,9 @@ export default function About() {
                   </div>
                   <div className="ml-4 flex-grow">
                     <div className="flex flex-col w-full text-left">
-                      <h4 className="text-lg font-bold text-gray-700 dark:text-white text-left w-full mb-4">{cert.name}</h4>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 text-left w-full mb-4">{cert.issuer}</p>
+                      <h4 className="text-lg font-bold text-gray-700 dark:text-white text-left w-full">{cert.name}</h4>
+                      <div className="h-px bg-gray-300 dark:bg-gray-700 my-2 w-full" />
+                      <p className="text-sm text-gray-600 dark:text-gray-400 text-left w-full">{cert.issuer}</p>
                       <p className="text-sm text-gray-500 dark:text-gray-400 text-left w-full mb-4">{cert.date}</p>
                     </div>
                   </div>
