@@ -2,7 +2,8 @@
 
 import { profile } from '@/data/profile';
 import Image from 'next/image';
-import { ArrowDownTrayIcon, UserIcon } from '@heroicons/react/24/outline';
+import { ArrowDownTrayIcon, UserIcon, SunIcon, MoonIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { MoonIcon as MoonIconSolid, SunIcon as SunIconSolid } from '@heroicons/react/24/solid';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 
@@ -10,8 +11,8 @@ export default function Hero() {
   const [imageError, setImageError] = useState(false);
 
   return (
-    <section id="hero" className="relative bg-gray-100 dark:bg-black overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-0 lg:pt-24 lg:pb-24 flex flex-col lg:flex-row-reverse items-center justify-between gap-12">
+    <section id="hero" className="relative bg-gray-100 dark:bg-black overflow-hidden pt-0 sm:pt-24 lg:pt-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-0 sm:pt-0 lg:pt-0 lg:pb-24 flex flex-col lg:flex-row-reverse items-center justify-between gap-12">
         {/* Profile Image - always centered circle for all breakpoints */}
         <div className="flex-1 flex items-center justify-center lg:mb-0">
           {!imageError ? (

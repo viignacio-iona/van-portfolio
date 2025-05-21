@@ -112,8 +112,8 @@ export default function Layout({ children }: LayoutProps) {
   };
 
   return (
-    <div className="min-h-screen bg-black dark:bg-black transition-colors duration-200">
-      {/* Floating Navbar for Desktop */}
+    <div className="min-h-screen bg-white dark:bg-black transition-colors duration-200">
+      {/* Floating Navbar for Desktop (render only on sm: and up) */}
       <nav className="hidden sm:flex fixed top-6 left-1/2 transform -translate-x-1/2 z-50 max-w-3xl w-[90vw] rounded-2xl bg-gray-50/90 dark:bg-gray-950/90 shadow-2xl border border-gray-200 dark:border-gray-800 items-center justify-between px-8 py-3 backdrop-blur-md">
         <div className="flex items-center">
           <a href="#" className="flex items-center" onClick={handleLogoClick} aria-label="Scroll to top">
@@ -153,7 +153,8 @@ export default function Layout({ children }: LayoutProps) {
           </button>
         </div>
       </nav>
-      {/* Floating Hamburger Button for Mobile */}
+
+      {/* Fixed Hamburger Button for Mobile */}
       <button
         ref={menuButtonRef}
         className="sm:hidden fixed top-6 right-6 z-50 p-3 rounded-full bg-gray-900/80 dark:bg-gray-800/80 shadow-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-accent"
@@ -167,6 +168,7 @@ export default function Layout({ children }: LayoutProps) {
           <Bars3Icon className="h-6 w-6 text-accent" />
         )}
       </button>
+
       {/* Full-Screen Overlay Menu for Mobile */}
       {mobileMenuOpen && (
         <div className="sm:hidden fixed inset-0 z-40 bg-black/90 dark:bg-black/95 backdrop-blur-lg flex flex-col">
