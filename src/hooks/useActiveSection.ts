@@ -6,19 +6,19 @@ export function useActiveSection() {
   useEffect(() => {
     const sections = Array.from(document.querySelectorAll('section[id]')) as HTMLElement[];
 
-    function getNavHeight() {
-      const nav = document.querySelector('nav');
-      return nav ? nav.getBoundingClientRect().height : 0;
+    function getOffset() {
+      // Match the main content's top padding: 128px for desktop, 96px for mobile
+      return window.innerWidth >= 640 ? 128 : 96;
     }
 
     function onScroll() {
-      const navHeight = getNavHeight();
+      const offset = getOffset();
       let closestSection = sections[0];
       let minDistance = Infinity;
 
       sections.forEach(section => {
         const rect = section.getBoundingClientRect();
-        const distance = Math.abs(rect.top - navHeight);
+        const distance = Math.abs(rect.top - offset);
         if (distance < minDistance) {
           minDistance = distance;
           closestSection = section;

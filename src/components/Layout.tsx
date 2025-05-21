@@ -107,36 +107,56 @@ export default function Layout({ children }: LayoutProps) {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
-      <nav className="fixed w-full bg-gray-50 dark:bg-gray-950 shadow-lg z-50">
+    <div className="min-h-screen bg-black dark:bg-black transition-colors duration-200">
+      {/* Floating Navbar for Desktop */}
+      <nav className="hidden sm:flex fixed top-6 left-1/2 transform -translate-x-1/2 z-50 max-w-3xl w-[90vw] rounded-2xl bg-gray-50/90 dark:bg-gray-950/90 shadow-2xl border border-gray-200 dark:border-gray-800 items-center justify-between px-8 py-3 backdrop-blur-md">
+        <div className="flex items-center">
+          <a href="#" className="flex items-center" onClick={handleLogoClick} aria-label="Scroll to top">
+            <Image src="/images/logo.png" alt="Portfolio Logo" width={40} height={40} className="h-8 w-8 sm:h-10 sm:w-10 object-contain" />
+          </a>
+        </div>
+        <div className="flex space-x-2 lg:space-x-8 items-center">
+          {navItems.map((item) => (
+            <Link
+              key={item.path}
+              href={item.path}
+              onClick={e => handleNavClick(e, item.path, item.section)}
+              className={`relative px-3 py-2 rounded-md font-medium transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2
+                ${
+                  isNavItemActive(item)
+                    ? 'text-accent after:absolute after:left-0 after:bottom-0 after:w-full after:h-0.5 after:bg-accent after:rounded-full after:transition-all after:duration-300'
+                    : 'text-gray-500 dark:text-gray-300 hover:text-accent hover:bg-gray-100 dark:hover:bg-gray-800 after:absolute after:left-1/2 after:bottom-0 after:w-0 after:h-0.5 after:bg-accent after:rounded-full after:transition-all after:duration-300 hover:after:left-0 hover:after:w-full'
+                }
+              `}
+              aria-current={isNavItemActive(item) ? 'page' : undefined}
+            >
+              {item.name}
+            </Link>
+          ))}
+        </div>
+        <div className="flex items-center ml-2">
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 bg-transparent hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"
+            aria-label="Toggle dark mode"
+          >
+            {isDarkMode ? (
+              <SunIcon className="h-5 w-5 sm:h-6 sm:w-6 text-yellow-300" />
+            ) : (
+              <MoonIcon className="h-5 w-5 sm:h-6 sm:w-6 text-gray-800" />
+            )}
+          </button>
+        </div>
+      </nav>
+      {/* Full-width nav for mobile only */}
+      <nav className="sm:hidden fixed w-full shadow-lg z-50 bg-transparent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16 sm:h-20 items-center">
+          <div className="flex justify-between h-16 items-center">
             <div className="flex items-center">
               <a href="#" className="flex items-center" onClick={handleLogoClick} aria-label="Scroll to top">
-                <Image src="/images/logo.png" alt="Portfolio Logo" width={40} height={40} className="h-8 w-8 sm:h-10 sm:w-10 object-contain" />
+                <Image src="/images/logo.png" alt="Portfolio Logo" width={40} height={40} className="h-8 w-8 object-contain" />
               </a>
             </div>
-            {/* Desktop Nav */}
-            <div className="hidden sm:flex sm:space-x-2 lg:space-x-8 items-center">
-              {navItems.map((item) => (
-                <Link
-                  key={item.path}
-                  href={item.path}
-                  onClick={e => handleNavClick(e, item.path, item.section)}
-                  className={`relative px-3 py-2 rounded-md font-medium transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2
-                    ${
-                      isNavItemActive(item)
-                        ? 'text-accent after:absolute after:left-0 after:bottom-0 after:w-full after:h-0.5 after:bg-accent after:rounded-full after:transition-all after:duration-300'
-                        : 'text-gray-500 dark:text-gray-300 hover:text-accent hover:bg-gray-100 dark:hover:bg-gray-800 after:absolute after:left-1/2 after:bottom-0 after:w-0 after:h-0.5 after:bg-accent after:rounded-full after:transition-all after:duration-300 hover:after:left-0 hover:after:w-full'
-                    }
-                  `}
-                  aria-current={isNavItemActive(item) ? 'page' : undefined}
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
-            {/* Theme Toggle */}
             <div className="flex items-center ml-2">
               <button
                 onClick={toggleTheme}
@@ -144,23 +164,23 @@ export default function Layout({ children }: LayoutProps) {
                 aria-label="Toggle dark mode"
               >
                 {isDarkMode ? (
-                  <SunIcon className="h-5 w-5 sm:h-6 sm:w-6 text-yellow-300" />
+                  <SunIcon className="h-5 w-5 text-yellow-300" />
                 ) : (
-                  <MoonIcon className="h-5 w-5 sm:h-6 sm:w-6 text-gray-800" />
+                  <MoonIcon className="h-5 w-5 text-gray-800" />
                 )}
               </button>
               {/* Hamburger for mobile */}
               <button
                 ref={menuButtonRef}
-                className="sm:hidden ml-2 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-accent"
+                className="ml-2 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-accent"
                 aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
                 aria-expanded={mobileMenuOpen}
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
                 {mobileMenuOpen ? (
-                  <XMarkIcon className="h-5 w-5 sm:h-6 sm:w-6 text-accent" />
+                  <XMarkIcon className="h-5 w-5 text-accent" />
                 ) : (
-                  <Bars3Icon className="h-5 w-5 sm:h-6 sm:w-6 text-accent" />
+                  <Bars3Icon className="h-5 w-5 text-accent" />
                 )}
               </button>
             </div>
@@ -169,7 +189,7 @@ export default function Layout({ children }: LayoutProps) {
         {/* Mobile Nav */}
         {mobileMenuOpen && (
           <div
-            className="sm:hidden fixed inset-x-0 top-16 bg-white dark:bg-gray-900 shadow-lg border-t border-gray-200 dark:border-gray-800 z-50 animate-slide-down"
+            className="fixed inset-x-0 top-16 bg-white dark:bg-gray-900 shadow-lg border-t border-gray-200 dark:border-gray-800 z-50 animate-slide-down"
             style={{ maxHeight: 'calc(100vh - 4rem)' }}
           >
             <div
@@ -203,7 +223,7 @@ export default function Layout({ children }: LayoutProps) {
         )}
       </nav>
 
-      <main className="pt-16 sm:pt-20">
+      <main className="pt-24 sm:pt-32">
         {children}
       </main>
 
