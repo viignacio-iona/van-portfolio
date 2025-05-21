@@ -28,7 +28,7 @@ export default function Testimonials() {
         <div className="flex flex-col items-center text-center">
           <span className="mb-4 inline-block bg-yellow-400 text-yellow-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">WIP</span>
           <motion.h2
-            className="text-6xl font-extrabold font-heading text-gray-900 dark:text-white mb-8 text-center"
+            className="text-4xl lg:text-6xl font-extrabold font-heading text-gray-900 dark:text-white mb-8 text-center"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
@@ -65,7 +65,7 @@ export default function Testimonials() {
                   className={`w-full ${index === currentIndex ? 'block' : 'hidden'}`}
                   style={{ minHeight: 320 }}
                 >
-                  <div className="bg-white dark:bg-sky-950 rounded-lg shadow-lg p-8 border border-accent h-full flex flex-col justify-between items-start text-left">
+                  <div className="bg-white dark:bg-sky-950 rounded-lg shadow-lg p-4 lg:p-8 border border-accent h-full flex flex-col justify-between items-start text-left">
                     <div>
                       <div className="flex items-center mb-6 text-left">
                         <div className="relative h-12 w-12">

@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { SunIcon, MoonIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import { FiMail, FiPhone } from 'react-icons/fi';
+import { useActiveSection } from '@/hooks/useActiveSection';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -14,8 +15,11 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [menuClosing, setMenuClosing] = useState(false);
   const pathname = usePathname();
   const navRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const [activeSection, setActiveSection] = useActiveSection();
 
   useEffect(() => {
     // Check for user's preferred color scheme
@@ -33,6 +37,29 @@ export default function Layout({ children }: LayoutProps) {
   useEffect(() => {
     if (mobileMenuOpen) {
       navRef.current?.focus();
+      // Trap focus within mobile menu
+      const focusableElements = navRef.current?.querySelectorAll(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusableElements) {
+        const firstElement = focusableElements[0] as HTMLElement;
+        const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+        
+        const handleTabKey = (e: KeyboardEvent) => {
+          if (e.key === 'Tab') {
+            if (e.shiftKey && document.activeElement === firstElement) {
+              e.preventDefault();
+              lastElement.focus();
+            } else if (!e.shiftKey && document.activeElement === lastElement) {
+              e.preventDefault();
+              firstElement.focus();
+            }
+          }
+        };
+
+        navRef.current?.addEventListener('keydown', handleTabKey);
+        return () => navRef.current?.removeEventListener('keydown', handleTabKey);
+      }
     }
   }, [mobileMenuOpen]);
 
@@ -41,41 +68,60 @@ export default function Layout({ children }: LayoutProps) {
   };
 
   const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/#about' },
-    { name: 'Projects', path: '/#projects' },
-    { name: 'Blog (WIP)', path: '/blog' },
-    { name: 'Contact', path: '/#contact' },
+    { name: 'Home', path: '/', section: 'hero' },
+    { name: 'About', path: '/#about', section: 'about' },
+    { name: 'Projects', path: '/#projects', section: 'projects' },
+    { name: 'Contact', path: '/#contact', section: 'contact' },
+    { name: 'Blog (WIP)', path: '/blog', section: '' },
   ];
 
   const handleLogoClick = (e: React.MouseEvent) => {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    setMobileMenuOpen(false);
+    closeMobileMenu();
   };
 
-  const handleNavClick = (e: React.MouseEvent, path: string) => {
+  const handleNavClick = (e: React.MouseEvent, path: string, section?: string) => {
     if (path.startsWith('/#')) {
       e.preventDefault();
       const id = path.replace('/#', '');
       const el = document.getElementById(id);
       if (el) {
+        setActiveSection(id);
         el.scrollIntoView({ behavior: 'smooth' });
-        setMobileMenuOpen(false);
+        closeMobileMenu();
       }
     } else {
-      setMobileMenuOpen(false);
+      closeMobileMenu();
     }
+  };
+
+  const closeMobileMenu = () => {
+    if (mobileMenuOpen) {
+      setMenuClosing(true);
+      setTimeout(() => {
+        setMobileMenuOpen(false);
+        setMenuClosing(false);
+      }, 200); // match slide-up duration
+    }
+  };
+
+  const isNavItemActive = (item: typeof navItems[0]) => {
+    if (item.section) {
+      return activeSection === item.section;
+    }
+    // For non-section routes (like /blog)
+    return pathname === item.path;
   };
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
       <nav className="fixed w-full bg-gray-50 dark:bg-gray-950 shadow-lg z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-20 items-center">
+          <div className="flex justify-between h-16 sm:h-20 items-center">
             <div className="flex items-center">
               <a href="#" className="flex items-center" onClick={handleLogoClick} aria-label="Scroll to top">
-                <Image src="/images/logo.png" alt="Portfolio Logo" width={40} height={40} className="h-10 w-10 object-contain" />
+                <Image src="/images/logo.png" alt="Portfolio Logo" width={40} height={40} className="h-8 w-8 sm:h-10 sm:w-10 object-contain" />
               </a>
             </div>
             {/* Desktop Nav */}
@@ -84,15 +130,15 @@ export default function Layout({ children }: LayoutProps) {
                 <Link
                   key={item.path}
                   href={item.path}
-                  onClick={e => handleNavClick(e, item.path)}
+                  onClick={e => handleNavClick(e, item.path, item.section)}
                   className={`relative px-3 py-2 rounded-md font-medium transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2
                     ${
-                      (pathname === item.path || (item.path.startsWith('/#') && typeof window !== 'undefined' && window.location.hash === item.path.replace('/', '')))
+                      isNavItemActive(item)
                         ? 'text-accent after:absolute after:left-0 after:bottom-0 after:w-full after:h-0.5 after:bg-accent after:rounded-full after:transition-all after:duration-300'
                         : 'text-gray-500 dark:text-gray-300 hover:text-accent hover:bg-gray-100 dark:hover:bg-gray-800 after:absolute after:left-1/2 after:bottom-0 after:w-0 after:h-0.5 after:bg-accent after:rounded-full after:transition-all after:duration-300 hover:after:left-0 hover:after:w-full'
                     }
                   `}
-                  aria-current={pathname === item.path ? 'page' : undefined}
+                  aria-current={isNavItemActive(item) ? 'page' : undefined}
                 >
                   {item.name}
                 </Link>
@@ -106,21 +152,23 @@ export default function Layout({ children }: LayoutProps) {
                 aria-label="Toggle dark mode"
               >
                 {isDarkMode ? (
-                  <SunIcon className="h-6 w-6 text-yellow-300" />
+                  <SunIcon className="h-5 w-5 sm:h-6 sm:w-6 text-yellow-300" />
                 ) : (
-                  <MoonIcon className="h-6 w-6 text-gray-800" />
+                  <MoonIcon className="h-5 w-5 sm:h-6 sm:w-6 text-gray-800" />
                 )}
               </button>
               {/* Hamburger for mobile */}
               <button
+                ref={menuButtonRef}
                 className="sm:hidden ml-2 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-accent"
                 aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={mobileMenuOpen}
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               >
                 {mobileMenuOpen ? (
-                  <XMarkIcon className="h-6 w-6 text-accent" />
+                  <XMarkIcon className="h-5 w-5 sm:h-6 sm:w-6 text-accent" />
                 ) : (
-                  <Bars3Icon className="h-6 w-6 text-accent" />
+                  <Bars3Icon className="h-5 w-5 sm:h-6 sm:w-6 text-accent" />
                 )}
               </button>
             </div>
@@ -129,35 +177,41 @@ export default function Layout({ children }: LayoutProps) {
         {/* Mobile Nav */}
         {mobileMenuOpen && (
           <div
-            ref={navRef}
-            tabIndex={-1}
-            className="sm:hidden absolute top-20 left-0 w-full bg-white dark:bg-gray-900 shadow-lg border-t border-gray-200 dark:border-gray-800 z-50 animate-fade-in"
-            aria-label="Mobile navigation menu"
+            className="sm:hidden fixed inset-x-0 top-16 bg-white dark:bg-gray-900 shadow-lg border-t border-gray-200 dark:border-gray-800 z-50 animate-slide-down"
+            style={{ maxHeight: 'calc(100vh - 4rem)' }}
           >
-            <div className="flex flex-col py-4 space-y-2">
-              {navItems.map((item) => (
-                <Link
-                  key={item.path}
-                  href={item.path}
-                  onClick={e => handleNavClick(e, item.path)}
-                  className={`px-6 py-3 text-lg font-semibold rounded-md transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2
-                    ${
-                      (pathname === item.path || (item.path.startsWith('/#') && typeof window !== 'undefined' && window.location.hash === item.path.replace('/', '')))
-                        ? 'text-accent bg-gray-100 dark:bg-gray-800'
-                        : 'text-gray-700 dark:text-gray-200 hover:text-accent hover:bg-gray-100 dark:hover:bg-gray-800'
-                    }
-                  `}
-                  aria-current={pathname === item.path ? 'page' : undefined}
-                >
-                  {item.name}
-                </Link>
-              ))}
+            <div
+              ref={navRef}
+              tabIndex={-1}
+              className="overflow-y-auto"
+              role="navigation"
+              aria-label="Mobile navigation menu"
+            >
+              <div className="flex flex-col py-4 space-y-3">
+                {navItems.map((item) => (
+                  <a
+                    key={item.path}
+                    href={item.path}
+                    onClick={e => handleNavClick(e, item.path, item.section)}
+                    className={`px-6 py-4 text-lg font-semibold rounded-md transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2
+                      ${
+                        isNavItemActive(item)
+                          ? 'text-accent bg-gray-100 dark:bg-gray-800'
+                          : 'text-gray-700 dark:text-gray-200 hover:text-accent hover:bg-gray-100 dark:hover:bg-gray-800'
+                      }
+                    `}
+                    aria-current={isNavItemActive(item) ? 'page' : undefined}
+                  >
+                    {item.name}
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         )}
       </nav>
 
-      <main className="pt-16">
+      <main className="pt-16 sm:pt-20">
         {children}
       </main>
 

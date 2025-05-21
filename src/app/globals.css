@@ -59,3 +59,20 @@
     @apply font-bold rounded-lg px-6 py-3 transition-all duration-150 bg-white text-accent-secondary border border-accent-secondary hover:bg-accent-secondary hover:text-white focus:ring-2 focus:ring-accent focus:ring-offset-2;
   }
 }
+
+@layer utilities {
+  @keyframes slide-down {
+    from { opacity: 0; transform: translateY(-1rem);}
+    to   { opacity: 1; transform: translateY(0);}
+  }
+  @keyframes slide-up {
+    from { opacity: 1; transform: translateY(0);}
+    to   { opacity: 0; transform: translateY(-1rem);}
+  }
+  .animate-slide-down {
+    animation: slide-down 0.3s cubic-bezier(0.4,0,0.2,1) both;
+  }
+  .animate-slide-up {
+    animation: slide-up 0.2s cubic-bezier(0.4,0,0.2,1) both;
+  }
+}

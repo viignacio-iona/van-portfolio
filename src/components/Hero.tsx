@@ -10,20 +10,40 @@ export default function Hero() {
   const [imageError, setImageError] = useState(false);
 
   return (
-    <section className="relative bg-gray-100 dark:bg-black overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 flex flex-col lg:flex-row items-center justify-between gap-12">
+    <section id="hero" className="relative bg-gray-100 dark:bg-black overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-0 lg:pt-24 lg:pb-24 flex flex-col lg:flex-row-reverse items-center justify-between gap-12">
+        {/* Profile Image - always centered circle for all breakpoints */}
+        <div className="flex-1 flex items-center justify-center lg:mb-0">
+          {!imageError ? (
+            <div className="relative mx-auto w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 rounded-full shadow-2xl border-4 border-white dark:border-gray-800 overflow-hidden">
+              <Image
+                src="/images/profile.jpg"
+                alt="Profile"
+                fill
+                className="object-cover rounded-full"
+                priority
+                onError={() => setImageError(true)}
+                unoptimized
+              />
+            </div>
+          ) : (
+            <div className="flex items-center justify-center w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 bg-gray-100 dark:bg-gray-800 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-full p-8 mx-auto">
+              <UserIcon className="h-32 w-32 text-gray-400 dark:text-gray-600" />
+            </div>
+          )}
+        </div>
         <div className="flex-1 flex flex-col items-start justify-center">
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
             viewport={{ once: true }}
-            className="text-6xl font-extrabold font-heading text-gray-900 dark:text-white mb-8 text-center"
+            className="text-5xl lg:text-7xl font-extrabold font-heading text-gray-900 dark:text-white mb-6 text-left lg:text-center"
           >
             {profile.name}
           </motion.h1>
           <motion.h2
-            className="text-accent mb-4"
+            className="text-xl lg:text-3xl text-accent mb-8"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
@@ -59,25 +79,6 @@ export default function Hero() {
               Contact Me
             </a>
           </div>
-        </div>
-        <div className="flex-1 flex items-center justify-center">
-          {!imageError ? (
-            <div className="relative mx-auto w-48 h-48 sm:w-60 sm:h-60 md:w-72 md:h-72 rounded-full shadow-2xl border-4 border-white dark:border-gray-800 overflow-hidden">
-              <Image
-                src="/images/profile.jpg"
-                alt="Profile"
-                fill
-                className="object-cover rounded-full"
-                priority
-                onError={() => setImageError(true)}
-                unoptimized
-              />
-            </div>
-          ) : (
-            <div className="flex items-center justify-center w-48 h-48 sm:w-60 sm:h-60 md:w-72 md:h-72 bg-gray-100 dark:bg-gray-800 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-full p-8 mx-auto">
-              <UserIcon className="h-32 w-32 text-gray-400 dark:text-gray-600" />
-            </div>
-          )}
         </div>
       </div>
     </section>

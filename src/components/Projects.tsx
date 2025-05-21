@@ -23,7 +23,7 @@ export default function Projects() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
             viewport={{ once: true }}
-            className="text-6xl font-extrabold font-heading text-gray-900 dark:text-white mb-8 text-center"
+            className="text-4xl lg:text-6xl font-extrabold font-heading text-gray-900 dark:text-white mb-8 text-center"
           >Projects</motion.h2>
           <motion.p
             className="text-2xl text-gray-700 dark:text-gray-300 font-semibold"
@@ -48,7 +48,7 @@ export default function Projects() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="bg-white dark:bg-sky-950 rounded-2xl shadow-xl overflow-hidden border border-accent flex flex-col"
+              className="bg-white dark:bg-sky-950 rounded-2xl shadow-xl overflow-hidden border border-accent flex flex-col p-4 lg:p-8"
             >
               <div className="relative h-48">
                 {!imageErrors[project.id] ? (
