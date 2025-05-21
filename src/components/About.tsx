@@ -74,9 +74,9 @@ export default function About() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white dark:bg-sky-950 rounded-2xl shadow-xl border border-accent group flex flex-row items-stretch h-32 pr-8 max-w-3xl w-full mx-auto"
+                className="bg-white dark:bg-sky-950 rounded-2xl shadow-xl border border-accent group flex flex-row items-stretch h-auto pr-8 max-w-3xl w-full mx-auto"
               >
-                <div className="flex-shrink-0 h-full w-32 overflow-hidden rounded-l-2xl">
+                <div className="flex-shrink-0 h-auto w-32 overflow-hidden rounded-l-2xl">
                   {!imageErrors[cert.name] && cert.imageUrl ? (
                     <div className="relative w-full h-full">
                       <Image 
@@ -103,6 +103,17 @@ export default function About() {
                   </div>
                   {cert.verificationUrl && (
                     <a href={cert.verificationUrl} target="_blank" rel="noopener noreferrer" className="ml-auto text-accent hover:text-accent-dark flex items-center self-center" title="View Certificate">
+                      <ArrowTopRightOnSquareIcon className="h-5 w-5" />
+                    </a>
+                  )}
+                  {cert.name.includes('ISTQB') && (
+                    <a
+                      href="http://scr.istqb.org/?name=Van+Ian+Ignacio"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="ml-auto text-accent hover:text-accent-dark flex items-center self-center"
+                      title="View Certificate"
+                    >
                       <ArrowTopRightOnSquareIcon className="h-5 w-5" />
                     </a>
                   )}
