@@ -25,14 +25,14 @@ export default function Projects() {
             viewport={{ once: true }}
           >Projects</motion.h2>
           <motion.p
-            className="mt-2 text-2xl text-gray-300 font-semibold"
+            className="mt-2 text-2xl text-gray-700 dark:text-gray-300 font-semibold"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
             viewport={{ once: true }}
           >Featured Work</motion.p>
           <motion.p
-            className="mt-4 max-w-2xl text-xl text-gray-400 lg:mx-auto"
+            className="mt-4 max-w-2xl text-xl text-gray-600 dark:text-gray-400 lg:mx-auto"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
@@ -60,7 +60,7 @@ export default function Projects() {
               </div>
               <div className="p-8 flex-1 flex flex-col">
                 <h3 className="mb-2 text-accent">{project.title}</h3>
-                <p className="text-gray-300 mb-4 flex-1">{project.description}</p>
+                <p className="text-gray-700 dark:text-gray-300 mb-4 flex-1">{project.description}</p>
                 <div className="mb-4">
                   <h4 className="text-sm font-bold text-white mb-2">Tech Stack:</h4>
                   <div className="flex flex-wrap gap-2">
@@ -73,7 +73,7 @@ export default function Projects() {
                 </div>
                 <div className="mb-4">
                   <h4 className="text-sm font-bold text-white mb-2">Key Challenges:</h4>
-                  <ul className="list-disc list-inside text-sm text-gray-400">
+                  <ul className="list-disc list-inside text-sm text-gray-600 dark:text-gray-400">
                     {project.challenges.map((challenge) => (
                       <li key={challenge}>{challenge}</li>
                     ))}

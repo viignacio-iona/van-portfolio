@@ -97,20 +97,20 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
           viewport={{ once: true }}
-          className="text-6xl font-extrabold text-white mb-8 text-center"
+          className="text-6xl font-extrabold text-gray-900 dark:text-white mb-8 text-center"
         >Contact</motion.h2>
         <div className="bg-white dark:bg-sky-950 rounded-2xl shadow-xl p-12 border border-accent">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div>
               <motion.p
-                className="text-xl text-gray-300 font-semibold"
+                className="text-xl text-gray-700 dark:text-gray-300 font-semibold"
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
                 viewport={{ once: true }}
               >Let&apos;s Connect!</motion.p>
               <motion.p
-                className="mt-4 text-lg text-gray-400"
+                className="mt-4 text-lg text-gray-600 dark:text-gray-400"
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
@@ -161,7 +161,7 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white sm:text-sm h-12 px-3 py-2"
+                    className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 shadow-sm focus:border-accent focus:ring-accent dark:bg-gray-700 dark:text-white sm:text-sm h-12 px-3 py-2"
                   />
                   {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
                 </div>
@@ -181,7 +181,7 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white sm:text-sm h-12 px-3 py-2"
+                    className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 shadow-sm focus:border-accent focus:ring-accent dark:bg-gray-700 dark:text-white sm:text-sm h-12 px-3 py-2"
                   />
                   {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
                 </div>
@@ -202,7 +202,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     maxLength={MESSAGE_MAX_LENGTH}
-                    className="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white sm:text-sm px-3 py-2"
+                    className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 shadow-sm focus:border-accent focus:ring-accent dark:bg-gray-700 dark:text-white sm:text-sm px-3 py-2"
                   />
                   <div className="flex justify-between items-center mt-1">
                     {errors.message && <p className="text-red-500 text-xs">{errors.message}</p>}

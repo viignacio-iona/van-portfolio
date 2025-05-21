@@ -31,7 +31,7 @@ export default function Hero() {
             {profile.title}
           </motion.h2>
           <motion.p
-            className="mb-8 text-xl text-gray-300 max-w-xl"
+            className="mb-8 text-xl text-gray-700 dark:text-gray-300 max-w-xl"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}

@@ -86,15 +86,15 @@ export default function Testimonials() {
                         </div>
                         <div className="ml-4">
                           <h3 className="text-lg font-medium text-gray-900 dark:text-white">
-                            {testimonial.name}
+                            <span className="text-gray-700 dark:text-white">{testimonial.name}</span>
                           </h3>
                           <p className="text-sm text-gray-500 dark:text-gray-400">
-                            {testimonial.role} at {testimonial.company}
+                            <span className="text-gray-600 dark:text-gray-400">{testimonial.role} at {testimonial.company}</span>
                           </p>
                         </div>
                       </div>
                       <blockquote className="text-gray-600 dark:text-gray-300 italic">
-                        &ldquo;{testimonial.content}&rdquo;
+                        <span className="text-gray-700 dark:text-gray-300 italic">&ldquo;{testimonial.content}&rdquo;</span>
                       </blockquote>
                     </div>
                   </div>

@@ -24,14 +24,14 @@ export default function About() {
             viewport={{ once: true }}
           >About Me</motion.h2>
           <motion.p
-            className="mt-2 text-2xl text-gray-300 font-semibold"
+            className="mt-2 text-2xl text-gray-700 dark:text-gray-300 font-semibold"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
             viewport={{ once: true }}
           >{profile.name}</motion.p>
           <motion.p
-            className="mt-4 max-w-2xl text-xl text-gray-400 lg:mx-auto"
+            className="mt-4 max-w-2xl text-xl text-gray-600 dark:text-gray-400 lg:mx-auto"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
@@ -55,7 +55,7 @@ export default function About() {
                   {skillGroup.items.map((skill) => (
                     <li key={skill} className="flex items-center text-gray-300">
                       <svg className="h-5 w-5 text-accent mr-2" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M5 13l4 4L19 7" /></svg>
-                      {skill}
+                      <span className="text-gray-700 dark:text-gray-300">{skill}</span>
                     </li>
                   ))}
                 </ul>
@@ -88,8 +88,11 @@ export default function About() {
                     )}
                   </div>
                   <div className="ml-4 flex-grow">
-                    <h4 className="text-lg font-bold text-white">{cert.name}</h4>
-                    <p className="text-sm text-gray-400">{cert.issuer} • {cert.date}</p>
+                    <div className="flex flex-col w-full text-left">
+                      <h4 className="text-lg font-bold text-gray-700 dark:text-white text-left w-full">{cert.name}</h4>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 text-left w-full">{cert.issuer}</p>
+                      <p className="text-sm text-gray-500 dark:text-gray-400 text-left w-full">{cert.date}</p>
+                    </div>
                   </div>
                   {cert.verificationUrl && (
                     <a href={cert.verificationUrl} target="_blank" rel="noopener noreferrer" className="ml-4 text-accent hover:text-accent-dark" title="Verify Certificate">
