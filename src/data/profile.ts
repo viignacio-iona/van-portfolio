@@ -111,21 +111,21 @@ export const profile: Profile = {
       name: "Introduction to Web Accessibility",
       issuer: "edX",
       date: "2025",
-      imageUrl: "/certifications/edx-web-accessibility.png",
+      imageUrl: "/images/Certificates/edX.png",
       verificationUrl: "https://courses.edx.org/certificates/bf6097073e194d3aa74c987a17a719e0"
     },
     {
       name: "EF SET Certificate (C2 Proficient)",
       issuer: "EF SET",
       date: "2022",
-      imageUrl: "/certifications/efset-c2.png",
+      imageUrl: "/images/Certificates/EFSET.png",
       verificationUrl: "https://cert.efset.org/NG4Sw4"
     },
     {
       name: "ISTQB® -BCS Certified Tester Foundation Level",
       issuer: "BCS, The Chartered Institute for IT",
       date: "2016",
-      imageUrl: "/certifications/istqb-ctfl.png"
+      imageUrl: "/images/Certificates/ISTQB.png"
     }
   ],
   phone: '+639171759697',

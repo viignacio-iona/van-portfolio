@@ -67,37 +67,42 @@ export default function About() {
 
         <div>
           <h3 className="mb-8">Certifications</h3>
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-8">
             {profile.certifications.map((cert, index) => (
               <motion.div
                 key={cert.name}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white dark:bg-sky-950 rounded-2xl shadow-xl p-8 border border-accent"
+                className="bg-white dark:bg-sky-950 rounded-2xl shadow-xl border border-accent group flex flex-row items-stretch h-32 pr-8 max-w-3xl w-full mx-auto"
               >
-                <div className="flex items-center">
-                  <div className="flex-shrink-0">
-                    {!imageErrors[cert.name] && cert.imageUrl ? (
-                      <div className="relative h-12 w-12">
-                        <Image src={cert.imageUrl} alt={cert.name} fill className="rounded-full object-cover" onError={() => handleImageError(cert.name)} unoptimized />
-                      </div>
-                    ) : (
-                      <div className="h-12 w-12 flex items-center justify-center bg-gray-700 rounded-full">
-                        <AcademicCapIcon className="h-6 w-6 text-accent" />
-                      </div>
-                    )}
-                  </div>
-                  <div className="ml-4 flex-grow">
-                    <div className="flex flex-col w-full text-left">
-                      <h4 className="text-lg font-bold text-gray-700 dark:text-white text-left w-full">{cert.name}</h4>
-                      <div className="h-px bg-gray-300 dark:bg-gray-700 my-2 w-full" />
-                      <p className="text-sm text-gray-600 dark:text-gray-400 text-left w-full">{cert.issuer}</p>
-                      <p className="text-sm text-gray-500 dark:text-gray-400 text-left w-full mb-4">{cert.date}</p>
+                <div className="flex-shrink-0 h-full w-32 overflow-hidden rounded-l-2xl">
+                  {!imageErrors[cert.name] && cert.imageUrl ? (
+                    <div className="relative w-full h-full">
+                      <Image 
+                        src={cert.imageUrl} 
+                        alt={cert.name} 
+                        fill 
+                        className="object-cover transition-transform duration-300 group-hover:scale-110" 
+                        onError={() => handleImageError(cert.name)} 
+                        unoptimized 
+                      />
                     </div>
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-gray-700 rounded-l-2xl">
+                      <AcademicCapIcon className="h-10 w-10 text-accent" />
+                    </div>
+                  )}
+                </div>
+                <div className="flex flex-row items-center flex-grow pl-8 text-left h-full py-6">
+                  <div className="flex flex-col flex-grow">
+                    <h4 className="text-lg font-bold text-gray-700 dark:text-white text-left">{cert.name}</h4>
+                    <div className="border-t border-gray-300 dark:border-gray-700 my-2 w-2/3" />
+                    <p className="text-sm text-gray-600 dark:text-gray-400 text-left w-full">{cert.issuer}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 text-left w-full">{cert.date}</p>
                   </div>
                   {cert.verificationUrl && (
-                    <a href={cert.verificationUrl} target="_blank" rel="noopener noreferrer" className="ml-4 text-accent hover:text-accent-dark" title="Verify Certificate">
+                    <a href={cert.verificationUrl} target="_blank" rel="noopener noreferrer" className="ml-auto text-accent hover:text-accent-dark flex items-center self-center" title="View Certificate">
                       <ArrowTopRightOnSquareIcon className="h-5 w-5" />
                     </a>
                   )}
