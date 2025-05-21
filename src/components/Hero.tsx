@@ -18,6 +18,7 @@ export default function Hero() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
             viewport={{ once: true }}
+            className="text-6xl font-extrabold font-heading text-gray-900 dark:text-white mb-8 text-center"
           >
             {profile.name}
           </motion.h1>

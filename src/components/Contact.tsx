@@ -91,26 +91,26 @@ export default function Contact() {
 
   return (
     <section id="contact" className="py-24 bg-gray-100 dark:bg-black border-t border-gray-800 dark:border-gray-900 shadow-[0_-8px_32px_0_rgba(0,0,0,0.10)]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-12 lg:px-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
           viewport={{ once: true }}
-          className="text-6xl font-extrabold text-gray-900 dark:text-white mb-8 text-center"
+          className="text-6xl font-extrabold font-heading text-gray-900 dark:text-white mb-8 text-center"
         >Contact</motion.h2>
-        <div className="bg-white dark:bg-sky-950 rounded-2xl shadow-xl p-12 border border-accent">
+        <div className="bg-white dark:bg-sky-950 rounded-2xl shadow-xl p-8 border border-accent">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div>
               <motion.p
-                className="text-xl text-gray-700 dark:text-gray-300 font-semibold"
+                className="text-xl text-gray-700 dark:text-gray-300 font-semibold mb-4"
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
                 viewport={{ once: true }}
               >Let&apos;s Connect!</motion.p>
               <motion.p
-                className="mt-4 text-lg text-gray-600 dark:text-gray-400"
+                className="mt-4 text-lg text-gray-600 dark:text-gray-400 mb-4"
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}

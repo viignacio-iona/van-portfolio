@@ -16,23 +16,24 @@ export default function Projects() {
   return (
     <section id="projects" className="py-24 bg-gray-100 dark:bg-black border-t border-gray-800 dark:border-gray-900 shadow-[0_-8px_32px_0_rgba(0,0,0,0.10)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center text-center mb-16">
+        <div className="flex flex-col items-center text-center">
           <span className="mb-4 inline-block bg-yellow-400 text-yellow-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">WIP</span>
           <motion.h2
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
             viewport={{ once: true }}
+            className="text-6xl font-extrabold font-heading text-gray-900 dark:text-white mb-8 text-center"
           >Projects</motion.h2>
           <motion.p
-            className="mt-2 text-2xl text-gray-700 dark:text-gray-300 font-semibold"
+            className="text-2xl text-gray-700 dark:text-gray-300 font-semibold"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
             viewport={{ once: true }}
           >Featured Work</motion.p>
           <motion.p
-            className="mt-4 max-w-2xl text-xl text-gray-600 dark:text-gray-400 lg:mx-auto"
+            className="mt-4 mb-8 max-w-2xl text-xl text-gray-600 dark:text-gray-400 lg:mx-auto"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
@@ -59,13 +60,13 @@ export default function Projects() {
                 )}
               </div>
               <div className="p-8 flex-1 flex flex-col">
-                <h3 className="mb-2 text-accent">{project.title}</h3>
+                <h3 className="mb-4 text-accent">{project.title}</h3>
                 <p className="text-gray-700 dark:text-gray-300 mb-4 flex-1">{project.description}</p>
                 <div className="mb-4">
                   <h4 className="text-sm font-bold text-white mb-2">Tech Stack:</h4>
                   <div className="flex flex-wrap gap-2">
                     {project.techStack.map((tech) => (
-                      <span key={tech} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-accent text-white">
+                      <span key={tech} className="inline-flex items-center px-4 py-2 rounded-full text-xs font-bold bg-accent text-white">
                         {tech}
                       </span>
                     ))}

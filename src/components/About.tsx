@@ -22,9 +22,10 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
             viewport={{ once: true }}
+            className="text-6xl font-extrabold font-heading text-gray-900 dark:text-white mb-8 text-center"
           >About Me</motion.h2>
           <motion.p
-            className="mt-2 text-2xl text-gray-700 dark:text-gray-300 font-semibold"
+            className="mt-8 text-2xl text-gray-700 dark:text-gray-300 font-semibold"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
@@ -89,9 +90,9 @@ export default function About() {
                   </div>
                   <div className="ml-4 flex-grow">
                     <div className="flex flex-col w-full text-left">
-                      <h4 className="text-lg font-bold text-gray-700 dark:text-white text-left w-full">{cert.name}</h4>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 text-left w-full">{cert.issuer}</p>
-                      <p className="text-sm text-gray-500 dark:text-gray-400 text-left w-full">{cert.date}</p>
+                      <h4 className="text-lg font-bold text-gray-700 dark:text-white text-left w-full mb-4">{cert.name}</h4>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 text-left w-full mb-4">{cert.issuer}</p>
+                      <p className="text-sm text-gray-500 dark:text-gray-400 text-left w-full mb-4">{cert.date}</p>
                     </div>
                   </div>
                   {cert.verificationUrl && (

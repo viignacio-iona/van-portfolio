@@ -28,14 +28,14 @@ export default function Testimonials() {
         <div className="flex flex-col items-center text-center">
           <span className="mb-4 inline-block bg-yellow-400 text-yellow-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">WIP</span>
           <motion.h2
-            className="text-base text-indigo-600 dark:text-indigo-400 font-semibold tracking-wide uppercase"
+            className="text-6xl font-extrabold font-heading text-gray-900 dark:text-white mb-8 text-center"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
             viewport={{ once: true }}
           >Testimonials</motion.h2>
           <motion.p
-            className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl"
+            className="text-2xl font-semibold text-gray-700 dark:text-gray-200 mb-8 text-center"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
@@ -43,7 +43,7 @@ export default function Testimonials() {
           >What People Say</motion.p>
         </div>
 
-        <div className="mt-16 flex flex-col items-center">
+        <div className="flex flex-col items-center">
           <div className="flex w-full max-w-4xl mx-auto items-center gap-4">
             <button
               onClick={prevTestimonial}
@@ -65,9 +65,9 @@ export default function Testimonials() {
                   className={`w-full ${index === currentIndex ? 'block' : 'hidden'}`}
                   style={{ minHeight: 320 }}
                 >
-                  <div className="bg-white dark:bg-sky-950 rounded-lg shadow-lg p-8 border border-accent h-full flex flex-col justify-between">
+                  <div className="bg-white dark:bg-sky-950 rounded-lg shadow-lg p-8 border border-accent h-full flex flex-col justify-between items-start text-left">
                     <div>
-                      <div className="flex items-center mb-6">
+                      <div className="flex items-center mb-6 text-left">
                         <div className="relative h-12 w-12">
                           {!imageErrors[testimonial.id] ? (
                             <Image
@@ -84,16 +84,16 @@ export default function Testimonials() {
                             </div>
                           )}
                         </div>
-                        <div className="ml-4">
-                          <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+                        <div className="ml-4 flex flex-col w-full text-left">
+                          <h3 className="text-lg font-medium text-gray-900 dark:text-white text-left w-full mb-4">
                             <span className="text-gray-700 dark:text-white">{testimonial.name}</span>
                           </h3>
-                          <p className="text-sm text-gray-500 dark:text-gray-400">
+                          <p className="text-sm text-gray-500 dark:text-gray-400 text-left w-full mb-4">
                             <span className="text-gray-600 dark:text-gray-400">{testimonial.role} at {testimonial.company}</span>
                           </p>
                         </div>
                       </div>
-                      <blockquote className="text-gray-600 dark:text-gray-300 italic">
+                      <blockquote className="text-gray-600 dark:text-gray-300 italic text-left w-full mt-4 mb-4">
                         <span className="text-gray-700 dark:text-gray-300 italic">&ldquo;{testimonial.content}&rdquo;</span>
                       </blockquote>
                     </div>
@@ -114,8 +114,8 @@ export default function Testimonials() {
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`w-4 h-4 rounded-full border-2 border-accent flex items-center justify-center transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-accent-secondary focus:ring-offset-2
-                  ${index === currentIndex ? 'bg-accent-secondary' : 'bg-gray-200 dark:bg-gray-700'}`}
+                className={`w-3 h-3 rounded-full p-0 min-w-0 min-h-0 inline-block transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-accent-secondary focus:ring-offset-2
+                  ${index === currentIndex ? 'bg-accent-secondary' : 'border border-accent bg-white dark:bg-gray-800'}`}
                 aria-label={`Go to testimonial from ${testimonial.name}`}
               />
             ))}
