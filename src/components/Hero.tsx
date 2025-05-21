@@ -61,14 +61,14 @@ export default function Hero() {
           >
             {profile.tagline}
           </motion.p>
-          <div className="flex gap-4">
-            <a href="https://drive.google.com/uc?export=download&id=14Qd4zhkr1Fg6Y4nAIBRhQqHpcrBDE7Yz" className="btn inline-flex items-center" download>
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+            <a href="https://drive.google.com/uc?export=download&id=14Qd4zhkr1Fg6Y4nAIBRhQqHpcrBDE7Yz" className="btn inline-flex items-center w-full sm:w-auto justify-center" download>
               <ArrowDownTrayIcon className="h-5 w-5 mr-2" />
               Download Résumé
             </a>
             <a
               href="#contact"
-              className="btn-outline inline-flex items-center"
+              className="btn-outline inline-flex items-center w-full sm:w-auto justify-center"
               onClick={e => {
                 e.preventDefault();
                 const contactSection = document.getElementById('contact');
