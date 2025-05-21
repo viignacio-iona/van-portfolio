@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { SunIcon, MoonIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { MoonIcon as MoonIconSolid, SunIcon as SunIconSolid } from '@heroicons/react/24/solid';
 import Image from 'next/image';
 import { FiMail, FiPhone } from 'react-icons/fi';
 import { useActiveSection } from '@/hooks/useActiveSection';
@@ -22,8 +23,12 @@ export default function Layout({ children }: LayoutProps) {
   const [activeSection, setActiveSection] = useActiveSection();
 
   useEffect(() => {
-    // Always enable dark mode
-    document.documentElement.classList.add('dark');
+    // Toggle dark mode on <html> element
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
   }, [isDarkMode]);
 
   useEffect(() => {
@@ -143,86 +148,69 @@ export default function Layout({ children }: LayoutProps) {
             {isDarkMode ? (
               <SunIcon className="h-5 w-5 sm:h-6 sm:w-6 text-yellow-300" />
             ) : (
-              <MoonIcon className="h-5 w-5 sm:h-6 sm:w-6 text-gray-800" />
+              <MoonIconSolid className="h-5 w-5 sm:h-6 sm:w-6 text-gray-800 dark:text-white" />
             )}
           </button>
         </div>
       </nav>
-      {/* Full-width nav for mobile only */}
-      <nav className="sm:hidden fixed w-full shadow-lg z-50 bg-transparent">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16 items-center">
-            <div className="flex items-center">
-              <a href="#" className="flex items-center" onClick={handleLogoClick} aria-label="Scroll to top">
-                <Image src="/images/logo.png" alt="Portfolio Logo" width={40} height={40} className="h-8 w-8 object-contain" />
+      {/* Floating Hamburger Button for Mobile */}
+      <button
+        ref={menuButtonRef}
+        className="sm:hidden fixed top-6 right-6 z-50 p-3 rounded-full bg-gray-900/80 dark:bg-gray-800/80 shadow-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-accent"
+        aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+        aria-expanded={mobileMenuOpen}
+        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+      >
+        {mobileMenuOpen ? (
+          <XMarkIcon className="h-6 w-6 text-accent" />
+        ) : (
+          <Bars3Icon className="h-6 w-6 text-accent" />
+        )}
+      </button>
+      {/* Full-Screen Overlay Menu for Mobile */}
+      {mobileMenuOpen && (
+        <div className="sm:hidden fixed inset-0 z-40 bg-black/90 dark:bg-black/95 backdrop-blur-lg flex flex-col">
+          <div className="flex justify-end p-6">
+            <button
+              className="p-3 rounded-full bg-gray-900/80 dark:bg-gray-800/80 shadow-lg border border-gray-700 focus:outline-none focus:ring-2 focus:ring-accent"
+              aria-label="Close menu"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <XMarkIcon className="h-6 w-6 text-accent" />
+            </button>
+          </div>
+          <div className="flex-1 flex flex-col items-center justify-center space-y-8">
+            {navItems.map((item) => (
+              <a
+                key={item.path}
+                href={item.path}
+                onClick={e => handleNavClick(e, item.path, item.section)}
+                className={`text-3xl font-bold transition-colors duration-150
+                  ${isNavItemActive(item)
+                    ? 'text-accent underline underline-offset-8'
+                    : 'text-white hover:text-accent'}
+                `}
+                aria-current={isNavItemActive(item) ? 'page' : undefined}
+              >
+                {item.name}
               </a>
-            </div>
-            <div className="flex items-center ml-2">
-              <button
-                onClick={toggleTheme}
-                className="p-2 rounded-full border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 bg-transparent hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"
-                aria-label="Toggle dark mode"
-              >
-                {isDarkMode ? (
-                  <SunIcon className="h-5 w-5 text-yellow-300" />
-                ) : (
-                  <MoonIcon className="h-5 w-5 text-gray-800" />
-                )}
-              </button>
-              {/* Hamburger for mobile */}
-              <button
-                ref={menuButtonRef}
-                className="ml-2 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-accent"
-                aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
-                aria-expanded={mobileMenuOpen}
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              >
-                {mobileMenuOpen ? (
-                  <XMarkIcon className="h-5 w-5 text-accent" />
-                ) : (
-                  <Bars3Icon className="h-5 w-5 text-accent" />
-                )}
-              </button>
-            </div>
+            ))}
+            {/* Light/Dark Mode Switch */}
+            <button
+              onClick={toggleTheme}
+              className="mt-12 flex items-center gap-2 px-6 py-3 rounded-full border border-gray-700 bg-gray-900/80 dark:bg-gray-700 text-white font-semibold text-lg focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 transition-colors"
+              aria-label="Toggle dark mode"
+            >
+              {isDarkMode ? (
+                <SunIconSolid className="h-7 w-7 text-yellow-300" />
+              ) : (
+                <MoonIconSolid className="h-7 w-7 text-white" />
+              )}
+              {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+            </button>
           </div>
         </div>
-        {/* Mobile Nav */}
-        {mobileMenuOpen && (
-          <div
-            className="fixed inset-x-0 top-16 bg-white dark:bg-gray-900 shadow-lg border-t border-gray-200 dark:border-gray-800 z-50 animate-slide-down"
-            style={{ maxHeight: 'calc(100vh - 4rem)' }}
-          >
-            <div
-              ref={navRef}
-              tabIndex={-1}
-              className="overflow-y-auto"
-              role="navigation"
-              aria-label="Mobile navigation menu"
-            >
-              <div className="flex flex-col py-4 space-y-3">
-                {navItems.map((item) => (
-                  <a
-                    key={item.path}
-                    href={item.path}
-                    onClick={e => handleNavClick(e, item.path, item.section)}
-                    className={`px-6 py-4 text-lg font-semibold rounded-md transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2
-                      ${
-                        isNavItemActive(item)
-                          ? 'text-accent bg-gray-100 dark:bg-gray-800'
-                          : 'text-gray-700 dark:text-gray-200 hover:text-accent hover:bg-gray-100 dark:hover:bg-gray-800'
-                      }
-                    `}
-                    aria-current={isNavItemActive(item) ? 'page' : undefined}
-                  >
-                    {item.name}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
-      </nav>
-
+      )}
       <main className="pt-24 sm:pt-32">
         {children}
       </main>
