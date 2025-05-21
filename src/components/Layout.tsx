@@ -13,7 +13,7 @@ interface LayoutProps {
 }
 
 export default function Layout({ children }: LayoutProps) {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [menuClosing, setMenuClosing] = useState(false);
   const pathname = usePathname();
@@ -22,16 +22,8 @@ export default function Layout({ children }: LayoutProps) {
   const [activeSection, setActiveSection] = useActiveSection();
 
   useEffect(() => {
-    // Check for user's preferred color scheme
-    if (typeof window !== 'undefined') {
-      const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setIsDarkMode(isDark);
-    }
-  }, []);
-
-  useEffect(() => {
-    // Update document class when theme changes
-    document.documentElement.classList.toggle('dark', isDarkMode);
+    // Always enable dark mode
+    document.documentElement.classList.add('dark');
   }, [isDarkMode]);
 
   useEffect(() => {
