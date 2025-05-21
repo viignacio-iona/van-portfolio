@@ -85,8 +85,10 @@ export default function Layout({ children }: LayoutProps) {
       const el = document.getElementById(id);
       if (el) {
         setActiveSection(id);
-        el.scrollIntoView({ behavior: 'smooth' });
         closeMobileMenu();
+        const yOffset = -16;
+        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
       }
     } else {
       closeMobileMenu();
@@ -95,11 +97,8 @@ export default function Layout({ children }: LayoutProps) {
 
   const closeMobileMenu = () => {
     if (mobileMenuOpen) {
-      setMenuClosing(true);
-      setTimeout(() => {
-        setMobileMenuOpen(false);
-        setMenuClosing(false);
-      }, 200); // match slide-up duration
+      setMobileMenuOpen(false);
+      setMenuClosing(false);
     }
   };
 
