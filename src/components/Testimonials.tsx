@@ -65,7 +65,7 @@ export default function Testimonials() {
                   className={`w-full ${index === currentIndex ? 'block' : 'hidden'}`}
                   style={{ minHeight: 320 }}
                 >
-                  <div className="bg-white dark:bg-sky-950 rounded-lg shadow-lg p-4 lg:p-8 border border-accent h-full flex flex-col justify-between items-start text-left">
+                  <div className="bg-white dark:bg-sky-950 rounded-2xl shadow-lg p-4 lg:p-8 border border-accent h-full flex flex-col justify-between items-start text-left">
                     <div>
                       <div className="flex items-center mb-6 text-left">
                         <div className="relative h-12 w-12">
