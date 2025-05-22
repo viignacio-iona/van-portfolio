@@ -8,30 +8,39 @@
 - Responsive, visually balanced layout
 - Profile, skills, certifications, projects, testimonials, and contact info sections implemented
 - Contact card widened for long email addresses
-- Navbar updated to use logo (pending transparent logo upload)
+- Floating, rounded navbar on desktop and floating hamburger menu on mobile
+- Navbar highlight logic: active section highlighting, smooth scroll, and no flicker
+- Consistent card border radius (`rounded-2xl`) across all cards
+- Commendations section: renamed, spacing, and highlight logic
+- Certifications card: horizontal layout with image flush to left/top/bottom, dynamic width, balanced padding, and consistent "View Certificate" button/icon
+- Footer: left-aligned, grouped, semantic HTML, vertical divider on desktop, horizontal social icons
+- Real certificate images used for certifications
+- Mobile responsiveness fixes for certification cards
+- Navbar and footer polish for desktop and mobile
 
 ## 🟡 In Progress / Needs Review
-- Transparent logo for navbar (current logo may have a background)
 - Blog/Insights section: add real posts/content
 - Contact form: add backend handler or integration for real submissions
 - Favicon and browser tab icon
+- Transparent logo for navbar (if desired)
 
 ## ⏭️ Potential To Do Items
 
 ### Branding & Visuals
-- [ ] Upload a transparent-background logo for the navbar
-- [ ] Add a favicon and update the browser tab icon
+- [x] Upload a transparent-background logo for the navbar
+- [x] Add a favicon and update the browser tab icon
 - [ ] Add a custom 404 page for a polished experience
 
 ### Content & Sections
 - [ ] Add or update your blog/insights section with real posts
 - [ ] Add more projects, testimonials, or certifications as you earn them
 - [ ] Refine your About/Bio section for storytelling and personality
+- [ ] Integrate a CMS for content management (add/edit/manage actual contents)
 
 ### Interactivity & UX
-- [ ] Add smooth scroll or scroll-to-section for nav links
 - [ ] Add subtle animations (e.g., fade-in, hover effects) to cards and sections
 - [ ] Add a "back to top" button for long pages
+- [ ] Add a minigame: interactive "bugs" crawl throughout the site, spawn randomly, creep out from behind profile picture or cards, and can be squashed by users
 
 ### Accessibility & SEO
 - [ ] Add alt text to all images and icons for accessibility

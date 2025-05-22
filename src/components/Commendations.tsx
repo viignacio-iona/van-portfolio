@@ -1,32 +1,47 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { CommendationCard } from './organisms/CommendationCard/CommendationCard';
 import { SectionHeader } from './molecules/SectionHeader/SectionHeader';
-import { CommendationsSection } from '@/lib/cms/types/commendation';
+import { CommendationsSection, SanityCommendation } from '@/lib/cms/types/commendation';
+import { getCommendations } from '@/lib/sanity/queries';
 
 export default function Commendations() {
-  // This will be replaced with CMS data
-  const sectionData: CommendationsSection = {
+  const [sectionData, setSectionData] = useState<CommendationsSection>({
     title: 'Commendations',
     subtitle: 'What People Say',
     description: 'Feedback and recommendations from colleagues and clients I\'ve worked with.',
-    commendations: [
-      {
-        id: '1',
-        content: 'An exceptional QA engineer who consistently delivers high-quality work.',
-        author: {
-          name: 'John Doe',
-          role: 'Engineering Manager',
-          company: 'Tech Corp',
-          imageUrl: '/images/commendations/john-doe.jpg'
-        },
-        rating: 5,
-        publishedAt: '2024-01-01',
-        updatedAt: '2024-01-01'
-      },
-      // Add more commendations as needed
-    ]
-  };
+    commendations: []
+  });
+
+  useEffect(() => {
+    const fetchCommendations = async () => {
+      try {
+        const commendations = await getCommendations() as SanityCommendation[];
+        console.log('Fetched commendations:', commendations); // Debug log
+        setSectionData(prev => ({
+          ...prev,
+          commendations: commendations.map(commendation => ({
+            id: commendation._id,
+            content: commendation.content,
+            author: {
+              name: commendation.author.name,
+              role: commendation.author.role,
+              company: commendation.author.company,
+              imageUrl: commendation.author.image?.asset?.url || ''
+            },
+            rating: 5, // Default rating since it's not in Sanity schema
+            publishedAt: commendation.publishedAt,
+            updatedAt: commendation.updatedAt
+          }))
+        }));
+      } catch (error) {
+        console.error('Error fetching commendations:', error);
+      }
+    };
+
+    fetchCommendations();
+  }, []);
 
   return (
     <section id="commendations" className="py-24 bg-gray-100 dark:bg-black border-t border-gray-800 dark:border-gray-900">

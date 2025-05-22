@@ -1,56 +1,18 @@
-export interface Project {
-  id: string;
-  title: string;
-  description: string;
-  techStack: string[];
-  challenges: string[];
-  demoUrl?: string;
-  repoUrl?: string;
-  imageUrl: string;
-  wip?: boolean;
-}
+import { Project } from '@/lib/cms/types/project';
 
 export const projects: Project[] = [
   {
-    id: "e2e-testing-framework",
-    title: "End-to-End Testing Framework",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
-    techStack: ["Cypress", "TypeScript", "GitHub Actions", "Docker"],
-    challenges: [
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "Sed non risus. Suspendisse lectus tortor, dignissim sit amet.",
-      "Adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam."
-    ],
-    repoUrl: "https://github.com/yourusername/e2e-framework",
-    imageUrl: "/projects/e2e-framework.png",
-    wip: true
+    id: '1',
+    title: 'Project 1',
+    description: 'Description of project 1',
+    imageUrl: '/images/project1.jpg',
+    techStack: ['React', 'TypeScript', 'Tailwind'],
+    challenges: ['Challenge 1', 'Challenge 2'],
+    demoUrl: 'https://demo1.com',
+    repoUrl: 'https://github.com/username/project1',
+    slug: 'project-1',
+    publishedAt: '2024-01-01',
+    updatedAt: '2024-01-01'
   },
-  {
-    id: "api-testing-automation",
-    title: "API Testing Automation Suite",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
-    techStack: ["Postman", "Newman", "Jenkins", "Python"],
-    challenges: [
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "Sed non risus. Suspendisse lectus tortor, dignissim sit amet.",
-      "Adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam."
-    ],
-    demoUrl: "https://your-demo-url.com",
-    imageUrl: "/projects/api-testing.png",
-    wip: true
-  },
-  {
-    id: "performance-testing-tool",
-    title: "Custom Performance Testing Tool",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
-    techStack: ["JMeter", "Java", "Grafana", "InfluxDB"],
-    challenges: [
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "Sed non risus. Suspendisse lectus tortor, dignissim sit amet.",
-      "Adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam."
-    ],
-    repoUrl: "https://github.com/yourusername/performance-tool",
-    imageUrl: "/projects/performance-tool.png",
-    wip: true
-  }
+  // Add more projects as needed
 ]; 
