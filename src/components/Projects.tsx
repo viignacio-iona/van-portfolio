@@ -28,6 +28,7 @@ export default function Projects() {
             techStack: project.techStack || [],
             challenges: project.challenges || [],
             demoUrl: project.demoUrl,
+            demoCta: project.demoCta,
             repoUrl: project.repoUrl,
             slug: project.slug?.current || '',
             publishedAt: project.publishedAt,
@@ -49,7 +50,6 @@ export default function Projects() {
           title={sectionData.title}
           subtitle={sectionData.subtitle}
           description={sectionData.description}
-          badge="WIP"
         />
 
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">

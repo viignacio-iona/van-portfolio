@@ -23,7 +23,7 @@ export const CommendationCard = ({ commendation, index }: CommendationCardProps)
 
   return (
     <Card index={index} className="relative">
-      <div className="flex flex-col h-full">
+      <div className="flex flex-col h-full p-8">
         <div className="flex-1">
           <blockquote className="text-lg text-gray-700 dark:text-gray-300 mb-6">
             "{commendation.content}"

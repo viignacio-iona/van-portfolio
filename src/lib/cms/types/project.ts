@@ -6,6 +6,7 @@ export interface Project {
   techStack: string[];
   challenges: string[];
   demoUrl?: string;
+  demoCta?: string;
   repoUrl?: string;
   slug: string;
   publishedAt: string;
@@ -24,6 +25,7 @@ export interface SanityProject {
   techStack?: string[];
   challenges?: string[];
   demoUrl?: string;
+  demoCta?: string;
   repoUrl?: string;
   slug?: {
     current: string;

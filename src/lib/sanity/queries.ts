@@ -5,7 +5,8 @@ export async function getProjects() {
     ...,
     image{
       asset->{url}
-    }
+    },
+    demoCta
   }`);
 }
 
