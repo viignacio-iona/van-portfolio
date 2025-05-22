@@ -1,7 +1,12 @@
 import { sanityClient } from './client';
 
 export async function getProjects() {
-  return sanityClient.fetch(`*[_type == "project"] | order(publishedAt desc)`);
+  return sanityClient.fetch(`*[_type == "project"] | order(publishedAt desc){
+    ...,
+    image{
+      asset->{url}
+    }
+  }`);
 }
 
 export async function getCommendations() {

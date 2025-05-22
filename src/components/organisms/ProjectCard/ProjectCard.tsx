@@ -22,14 +22,14 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
   const [imageError, setImageError] = useState(false);
 
   return (
-    <Card index={index}>
-      <div className="relative h-48">
+    <Card index={index} className="group p-0 flex flex-col h-full overflow-hidden">
+      <div className="relative w-full h-48 overflow-hidden">
         {!imageError ? (
           <Image 
             src={project.imageUrl} 
             alt={project.title} 
             fill 
-            className="object-cover" 
+            className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-110" 
             onError={() => setImageError(true)} 
             unoptimized 
           />

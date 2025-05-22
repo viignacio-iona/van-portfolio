@@ -13,7 +13,7 @@ export const Card = ({ children, className = '', index = 0 }: CardProps) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
-      className={`bg-white dark:bg-sky-950 rounded-2xl shadow-xl overflow-hidden border border-accent flex flex-col p-4 lg:p-8 ${className}`}
+      className={`bg-white dark:bg-sky-950 rounded-2xl shadow-xl overflow-hidden border border-accent flex flex-col ${className}`}
     >
       {children}
     </motion.div>
