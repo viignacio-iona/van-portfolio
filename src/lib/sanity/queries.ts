@@ -19,4 +19,13 @@ export async function getCertifications() {
       asset->{url}
     }
   }`);
+}
+
+export async function getProfile() {
+  return sanityClient.fetch(`*[_type == "profile"][0]{
+    ...,
+    image{
+      asset->{url}
+    }
+  }`);
 } 

@@ -87,7 +87,7 @@ export default function Layout({ children }: LayoutProps) {
       if (el) {
         closeMobileMenu();
         const isMobile = window.innerWidth < 640;
-        const yOffset = isMobile ? 64 : -16;
+        const yOffset = isMobile ? 64 : -58;
         const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
         window.scrollTo({ top: y, behavior: 'smooth' });
       }

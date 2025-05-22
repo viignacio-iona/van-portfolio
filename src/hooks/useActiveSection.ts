@@ -13,19 +13,16 @@ export function useActiveSection() {
 
     function onScroll() {
       const offset = getOffset();
-      let closestSection = sections[0];
-      let minDistance = Infinity;
-
-      sections.forEach(section => {
-        const rect = section.getBoundingClientRect();
-        const distance = Math.abs(rect.top - offset);
-        if (distance < minDistance) {
-          minDistance = distance;
-          closestSection = section;
+      let active = sections[0].id;
+      for (let i = 0; i < sections.length; i++) {
+        const rect = sections[i].getBoundingClientRect();
+        if (rect.top - offset <= 0) {
+          active = sections[i].id;
+        } else {
+          break;
         }
-      });
-
-      setActiveSection(closestSection.id);
+      }
+      setActiveSection(active);
     }
 
     window.addEventListener('scroll', onScroll, { passive: true });

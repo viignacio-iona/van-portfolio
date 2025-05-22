@@ -1,6 +1,6 @@
 'use client';
 
-import { profile } from '@/data/profile';
+// import { profile } from '@/data/profile';
 import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { FaLinkedin, FaGithub, FaFacebook } from 'react-icons/fa';
