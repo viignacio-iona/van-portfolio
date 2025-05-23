@@ -32,7 +32,7 @@ export const CommendationCard = ({ commendation, index }: CommendationCardProps)
         
         <div className="flex items-center">
           <div className="relative h-12 w-12 rounded-full overflow-hidden bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
-            {!imageError ? (
+            {(!imageError && commendation.author.imageUrl) ? (
               <Image
                 src={commendation.author.imageUrl}
                 alt={commendation.author.name}
