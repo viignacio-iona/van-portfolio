@@ -25,6 +25,7 @@
     "@sanity/image-url": "1.1.0",
     "@sanity/vision": "3.89.0",
     "@types/nodemailer": "^6.4.17",
+    "@vercel/speed-insights": "^1.2.0",
     "framer-motion": "^11.0.8",
     "next": "15.3.2",
     "next-sanity": "9.11.1",
