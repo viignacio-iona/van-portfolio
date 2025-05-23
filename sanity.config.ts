@@ -16,7 +16,7 @@ export default defineConfig({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
 
-  plugins: [deskTool({ structure })],
+  plugins: [deskTool()],
 
   schema: {
     types: [project, commendation, skill, certification, profile, navbar, footer],
