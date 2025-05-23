@@ -1,13 +1,13 @@
 import { defineConfig } from 'sanity';
 import { deskTool } from 'sanity/desk';
 import structure from './sanity/structure';
-import project from './sanity/schemas/project';
-import commendation from './sanity/schemas/commendation';
-import skill from './sanity/schemas/skill';
-import certification from './sanity/schemas/certification';
-import profile from './sanity/schemas/profile';
-import navbar from './sanity/schemas/navbar';
-import footer from './sanity/schemas/footer';
+import project from './sanity/schemaTypes/project';
+import commendation from './sanity/schemaTypes/commendation';
+import skill from './sanity/schemaTypes/skill';
+import certification from './sanity/schemaTypes/certification';
+import profile from './sanity/schemaTypes/profile';
+import navbar from './sanity/schemaTypes/navbar';
+import footer from './sanity/schemaTypes/footer';
 
 export default defineConfig({
   name: 'default',
