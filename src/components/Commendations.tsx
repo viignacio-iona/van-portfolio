@@ -10,7 +10,7 @@ export default function Commendations() {
   const [sectionData, setSectionData] = useState<CommendationsSection>({
     title: 'Commendations',
     subtitle: 'What People Say',
-    description: 'Feedback and recommendations from colleagues and clients I\'ve worked with.',
+    description: 'Feedback and commendations from colleagues and clients I\'ve worked with.',
     commendations: []
   });
 

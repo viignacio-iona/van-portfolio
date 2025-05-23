@@ -17,10 +17,15 @@
 - Real certificate images used for certifications
 - Mobile responsiveness fixes for certification cards
 - Navbar and footer polish for desktop and mobile
+- **Deployed to Vercel with Sanity CMS integration**
+- **Fixed build errors related to missing schema files and environment variables**
+- **Updated schema imports to match directory structure**
+- **Resolved custom structure type error by temporarily removing custom structure**
+- **Production environment now uses live CMS content; Sanity content updates reflect quickly in both dev and prod**
 
 ## 🟡 In Progress / Needs Review
 - Blog/Insights section: add real posts/content
-- Contact form: add backend handler or integration for real submissions
+- Contact form: add backend handler or integration for real submissions (**backend handler setup in progress**)
 - Favicon and browser tab icon
 - Transparent logo for navbar (if desired)
 
@@ -57,7 +62,7 @@
 - [ ] Add more social links (Twitter, Instagram, etc.) if relevant
 
 ### Deployment & Analytics
-- [ ] Deploy to Vercel, Netlify, or your preferred host
+- [x] Deploy to Vercel, Netlify, or your preferred host
 - [ ] Set up Google Analytics or Plausible for traffic insights
 - [ ] Set up a custom domain
 
