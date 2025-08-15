@@ -71,10 +71,10 @@ export default function DynamicLayout({ pageData }: DynamicLayoutProps) {
             id="hero" 
             className={`${backgroundClasses} ${spacingClasses}`}
             style={block.backgroundStyle?.type === 'image' && block.backgroundStyle.backgroundImage ? {
-              backgroundImage: `url(${block.backgroundStyle.backgroundImage.asset.url})`
+              backgroundImage: `url(${block.backgroundStyle.backgroundImage.asset.url)}`
             } : {}}
           >
-            <Hero />
+            <Hero data={block.heroSection} />
           </section>
         );
       

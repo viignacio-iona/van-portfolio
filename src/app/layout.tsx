@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import './patterns.css';
 import '@fontsource/inter';
 import '@fontsource/montserrat';
 import { SpeedInsights } from "@vercel/speed-insights/next";

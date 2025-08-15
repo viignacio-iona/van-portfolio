@@ -45,6 +45,13 @@ export async function getHomePage() {
         ...,
         profileImage{
           asset->{url}
+        },
+        social{
+          linkedin,
+          github,
+          facebook,
+          twitter,
+          instagram
         }
       },
       projectsSection{

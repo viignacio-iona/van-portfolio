@@ -1,7 +1,30 @@
+export interface BackgroundStyle {
+  type: 'solid' | 'gradient' | 'image' | 'pattern';
+  solidColor?: string;
+  gradientColors?: {
+    from: string;
+    to: string;
+  };
+  backgroundImage?: {
+    asset: {
+      url: string;
+    };
+  };
+  pattern?: string;
+}
+
+export interface SectionSpacing {
+  paddingY: string;
+  marginTop?: string;
+}
+
 export interface HeroSection {
-  title: string;
-  subtitle?: string;
+  name?: string;
+  title?: string;
+  tagline?: string;
   description?: string;
+  bio?: string;
+  experience?: number;
   profileImage?: {
     asset: {
       url: string;
@@ -9,6 +32,17 @@ export interface HeroSection {
   };
   ctaText?: string;
   ctaLink?: string;
+  email?: string;
+  phone?: string;
+  location?: string;
+  resumeUrl?: string;
+  social?: {
+    linkedin?: string;
+    github?: string;
+    facebook?: string;
+    twitter?: string;
+    instagram?: string;
+  };
   backgroundStyle?: 'default' | 'gradient' | 'pattern';
 }
 
@@ -27,6 +61,15 @@ export interface LayoutBlock {
   blockType: 'hero' | 'about' | 'skills' | 'projects' | 'certifications' | 'commendations' | 'contact';
   order: number;
   isActive: boolean;
+  backgroundStyle?: BackgroundStyle;
+  spacing?: SectionSpacing;
+  heroSection?: HeroSection;
+  aboutSection?: any; // Will define this later
+  skillsSection?: any; // Will define this later
+  projectsSection?: ProjectsSection;
+  certificationsSection?: any; // Will define this later
+  commendationsSection?: any; // Will define this later
+  contactSection?: any; // Will define this later
 }
 
 export interface Page {

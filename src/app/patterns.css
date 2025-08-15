@@ -1,0 +1,47 @@
+/* Background Patterns */
+.bg-pattern-dots {
+  background-image: radial-gradient(circle, #e5e7eb 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.bg-pattern-lines {
+  background-image: linear-gradient(90deg, #f3f4f6 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.bg-pattern-grid {
+  background-image: 
+    linear-gradient(#f3f4f6 1px, transparent 1px),
+    linear-gradient(90deg, #f3f4f6 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.bg-pattern-hexagons {
+  background-image: 
+    radial-gradient(circle at 50% 50%, #f3f4f6 2px, transparent 2px),
+    radial-gradient(circle at 25% 25%, #f3f4f6 2px, transparent 2px),
+    radial-gradient(circle at 75% 75%, #f3f4f6 2px, transparent 2px);
+  background-size: 40px 40px;
+}
+
+/* Dark mode patterns */
+.dark .bg-pattern-dots {
+  background-image: radial-gradient(circle, #374151 1px, transparent 1px);
+}
+
+.dark .bg-pattern-lines {
+  background-image: linear-gradient(90deg, #374151 1px, transparent 1px);
+}
+
+.dark .bg-pattern-grid {
+  background-image: 
+    linear-gradient(#374151 1px, transparent 1px),
+    linear-gradient(90deg, #374151 1px, transparent 1px);
+}
+
+.dark .bg-pattern-hexagons {
+  background-image: 
+    radial-gradient(circle at 50% 50%, #374151 2px, transparent 2px),
+    radial-gradient(circle at 25% 25%, #374151 2px, transparent 2px),
+    radial-gradient(circle at 75% 75%, #374151 2px, transparent 2px);
+}

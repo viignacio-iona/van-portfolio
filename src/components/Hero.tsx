@@ -1,59 +1,47 @@
 'use client';
 
-// import { profile } from '@/data/profile';
 import Image from 'next/image';
-import { ArrowDownTrayIcon, UserIcon, SunIcon, MoonIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { MoonIcon as MoonIconSolid, SunIcon as SunIconSolid } from '@heroicons/react/24/solid';
-import { useState, useEffect } from 'react';
+import { ArrowDownTrayIcon, UserIcon } from '@heroicons/react/24/outline';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { getProfile } from '@/lib/sanity/queries';
-import { SanityProfile, Profile as LocalProfile } from '@/lib/cms/types/profile';
-import { profile as localProfile } from '@/data/profile';
+import { HeroSection } from '@/lib/cms/types/layoutBlock';
 
-function isSanityProfile(profile: any): profile is SanityProfile {
-  return profile && typeof profile === 'object' && 'image' in profile;
+interface HeroProps {
+  data?: HeroSection;
 }
 
-export default function Hero() {
+export default function Hero({ data }: HeroProps) {
   const [imageError, setImageError] = useState(false);
-  const [profile, setProfile] = useState<SanityProfile | null>(null);
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const data = await getProfile();
-        setProfile(data);
-      } catch {
-        setProfile(null);
-      }
-    };
-    fetchProfile();
-  }, []);
-
-  const displayProfile: SanityProfile | LocalProfile = profile || localProfile;
+  // Use provided data or fallback to empty values
+  const heroData = data || {};
+  const {
+    name = 'Your Name',
+    title = 'Professional Title',
+    tagline = 'Your tagline here',
+    description = 'Your description here',
+    bio = 'Your bio here',
+    experience,
+    profileImage,
+    ctaText = 'Get in Touch',
+    ctaLink = '#contact',
+    email,
+    phone,
+    location,
+    resumeUrl,
+    social
+  } = heroData;
 
   return (
     <section id="hero" className="relative bg-gray-100 dark:bg-black overflow-hidden pt-0 sm:pt-24 pb-24 lg:pt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-0 sm:pt-0 lg:pt-0 lg:pb-24 flex flex-col lg:flex-row-reverse items-center justify-between gap-12">
         {/* Profile Image - always centered circle for all breakpoints */}
         <div className="flex-1 flex items-center justify-center lg:mb-0">
-          {!imageError && isSanityProfile(displayProfile) && displayProfile.image?.asset?.url ? (
+          {!imageError && profileImage?.asset?.url ? (
             <div className="relative mx-auto w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 rounded-full shadow-2xl border-4 border-white dark:border-gray-800 overflow-hidden">
               <Image
-                src={displayProfile.image.asset.url}
-                alt="Profile"
-                fill
-                className="object-cover rounded-full"
-                priority
-                onError={() => setImageError(true)}
-                unoptimized
-              />
-            </div>
-          ) : !imageError && !isSanityProfile(displayProfile) && displayProfile.imageUrl ? (
-            <div className="relative mx-auto w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 rounded-full shadow-2xl border-4 border-white dark:border-gray-800 overflow-hidden">
-              <Image
-                src={displayProfile.imageUrl}
-                alt="Profile"
+                src={profileImage.asset.url}
+                alt={name || 'Profile'}
                 fill
                 className="object-cover rounded-full"
                 priority
@@ -75,7 +63,7 @@ export default function Hero() {
             viewport={{ once: true }}
             className="text-5xl lg:text-7xl font-extrabold font-heading text-gray-900 dark:text-white mb-6 text-left lg:text-center"
           >
-            {displayProfile.name}
+            {name}
           </motion.h1>
           <motion.h2
             className="text-xl lg:text-3xl text-accent mb-8"
@@ -84,7 +72,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
             viewport={{ once: true }}
           >
-            {displayProfile.title}
+            {title}
           </motion.h2>
           <motion.p
             className="mb-8 text-xl text-gray-700 dark:text-gray-300 max-w-xl"
@@ -93,25 +81,17 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
             viewport={{ once: true }}
           >
-            {displayProfile.tagline}
+            {tagline}
           </motion.p>
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-            <a href={displayProfile.resumeUrl} className="btn inline-flex items-center w-full sm:w-auto justify-center" download>
-              <ArrowDownTrayIcon className="h-5 w-5 mr-2" />
-              Download Résumé
-            </a>
-            <a
-              href="#contact"
-              className="btn-outline inline-flex items-center w-full sm:w-auto justify-center"
-              onClick={e => {
-                e.preventDefault();
-                const contactSection = document.getElementById('contact');
-                if (contactSection) {
-                  contactSection.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
-            >
-              Contact Me
+            {resumeUrl && (
+              <a href={resumeUrl} className="btn inline-flex items-center w-full sm:w-auto justify-center" download>
+                <ArrowDownTrayIcon className="h-5 w-5 mr-2" />
+                Download Resume
+              </a>
+            )}
+            <a href={ctaLink} className="btn btn-outline inline-flex items-center w-full sm:w-auto justify-center">
+              {ctaText}
             </a>
           </div>
         </div>
