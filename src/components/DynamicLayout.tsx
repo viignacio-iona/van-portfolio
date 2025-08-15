@@ -19,6 +19,7 @@ export default function DynamicLayout({ pageData }: DynamicLayoutProps) {
     if (pageData?.layoutBlocks) {
       // Sort blocks by order
       const sortedBlocks = [...pageData.layoutBlocks].sort((a, b) => a.order - b.order);
+      console.log('Setting blocks:', sortedBlocks);
       setBlocks(sortedBlocks);
     }
   }, [pageData]);
@@ -177,9 +178,26 @@ export default function DynamicLayout({ pageData }: DynamicLayoutProps) {
 
   return (
     <div className="min-h-screen">
-      {blocks
-        .filter(block => block.isActive)
-        .map((block) => renderBlock(block))}
+      {(() => {
+        const activeBlocks = blocks.filter(block => block.isActive);
+        console.log('Active blocks:', activeBlocks);
+        
+        return activeBlocks.map((block, index) => {
+          const renderedBlock = renderBlock(block);
+          // Only render if we have a valid block
+          if (!renderedBlock) return null;
+          
+          // Use block._id if available, otherwise fallback to index
+          const key = block._id || `block-${index}`;
+          console.log('Rendering block with key:', key, block);
+          
+          return (
+            <div key={key}>
+              {renderedBlock}
+            </div>
+          );
+        });
+      })()}
     </div>
   );
 }
