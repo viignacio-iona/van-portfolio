@@ -26,54 +26,133 @@ export default function DynamicLayout({ pageData }: DynamicLayoutProps) {
   const renderBlock = (block: LayoutBlock) => {
     if (!block.isActive) return null;
 
+    // Generate background classes based on CMS data
+    const getBackgroundClasses = () => {
+      if (!block.backgroundStyle) return 'bg-white dark:bg-black';
+      
+      const { type, solidColor, gradientColors, pattern } = block.backgroundStyle;
+      
+      switch (type) {
+        case 'solid':
+          return solidColor || 'bg-white dark:bg-black';
+        case 'gradient':
+          if (gradientColors?.from && gradientColors?.to) {
+            return `${gradientColors.from} ${gradientColors.to} bg-gradient-to-b`;
+          }
+          return 'bg-white dark:bg-black';
+        case 'image':
+          return 'bg-cover bg-center bg-no-repeat';
+        case 'pattern':
+          if (pattern) {
+            return `bg-pattern-${pattern}`;
+          }
+          return 'bg-white dark:bg-black';
+        default:
+          return 'bg-white dark:bg-black';
+      }
+    };
+
+    // Generate spacing classes
+    const getSpacingClasses = () => {
+      if (!block.spacing) return 'py-24';
+      
+      const { paddingY, marginTop } = block.spacing;
+      return `${paddingY} ${marginTop || ''}`.trim();
+    };
+
+    const backgroundClasses = getBackgroundClasses();
+    const spacingClasses = getSpacingClasses();
+
     switch (block.blockType) {
       case 'hero':
         return (
-          <Hero
-            key={block._id}
-          />
+          <section 
+            id="hero" 
+            className={`${backgroundClasses} ${spacingClasses}`}
+            style={block.backgroundStyle?.type === 'image' && block.backgroundStyle.backgroundImage ? {
+              backgroundImage: `url(${block.backgroundStyle.backgroundImage.asset.url})`
+            } : {}}
+          >
+            <Hero />
+          </section>
         );
       
       case 'about':
         return (
-          <About
-            key={block._id}
-          />
+          <section 
+            id="about" 
+            className={`${backgroundClasses} ${spacingClasses}`}
+            style={block.backgroundStyle?.type === 'image' && block.backgroundStyle.backgroundImage ? {
+              backgroundImage: `url(${block.backgroundStyle.backgroundImage.asset.url})`
+            } : {}}
+          >
+            <About />
+          </section>
         );
       
       case 'skills':
         return (
-          <About
-            key={block._id}
-          />
+          <section 
+            id="skills" 
+            className={`${backgroundClasses} ${spacingClasses}`}
+            style={block.backgroundStyle?.type === 'image' && block.backgroundStyle.backgroundImage ? {
+              backgroundImage: `url(${block.backgroundStyle.backgroundImage.asset.url})`
+            } : {}}
+          >
+            <About />
+          </section>
         );
       
       case 'projects':
         return (
-          <Projects
-            key={block._id}
-          />
+          <section 
+            id="projects" 
+            className={`${backgroundClasses} ${spacingClasses}`}
+            style={block.backgroundStyle?.type === 'image' && block.backgroundStyle.backgroundImage ? {
+              backgroundImage: `url(${block.backgroundStyle.backgroundImage.asset.url})`
+            } : {}}
+          >
+            <Projects />
+          </section>
         );
       
       case 'certifications':
         return (
-          <About
-            key={block._id}
-          />
+          <section 
+            id="certifications" 
+            className={`${backgroundClasses} ${spacingClasses}`}
+            style={block.backgroundStyle?.type === 'image' && block.backgroundStyle.backgroundImage ? {
+              backgroundImage: `url(${block.backgroundStyle.backgroundImage.asset.url})`
+            } : {}}
+          >
+            <About />
+          </section>
         );
       
       case 'commendations':
         return (
-          <Commendations
-            key={block._id}
-          />
+          <section 
+            id="commendations" 
+            className={`${backgroundClasses} ${spacingClasses}`}
+            style={block.backgroundStyle?.type === 'image' && block.backgroundStyle.backgroundImage ? {
+              backgroundImage: `url(${block.backgroundStyle.backgroundImage.asset.url})`
+            } : {}}
+          >
+            <Commendations />
+          </section>
         );
       
       case 'contact':
         return (
-          <Contact
-            key={block._id}
-          />
+          <section 
+            id="contact" 
+            className={`${backgroundClasses} ${spacingClasses}`}
+            style={block.backgroundStyle?.type === 'image' && block.backgroundStyle.backgroundImage ? {
+              backgroundImage: `url(${block.backgroundStyle.backgroundImage.asset.url})`
+            } : {}}
+          >
+            <Contact />
+          </section>
         );
       
       default:
@@ -98,7 +177,9 @@ export default function DynamicLayout({ pageData }: DynamicLayoutProps) {
 
   return (
     <div className="min-h-screen">
-      {blocks.map(renderBlock)}
+      {blocks
+        .filter(block => block.isActive)
+        .map((block) => renderBlock(block))}
     </div>
   );
 }
