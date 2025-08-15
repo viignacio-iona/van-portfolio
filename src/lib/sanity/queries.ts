@@ -34,4 +34,28 @@ export async function getProfile() {
       asset->{url}
     }
   }`);
+}
+
+export async function getHomePage() {
+  return sanityClient.fetch(`*[_type == "page" && isHomePage == true][0]{
+    ...,
+    layoutBlocks[]{
+      ...,
+      heroSection{
+        ...,
+        profileImage{
+          asset->{url}
+        }
+      },
+      projectsSection{
+        ...,
+        projects[]->{
+          ...,
+          image{
+            asset->{url}
+          }
+        }
+      }
+    }
+  }`);
 } 

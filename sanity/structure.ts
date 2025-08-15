@@ -1,43 +1,99 @@
-import { StructureBuilder } from 'sanity/structure';
+import { StructureBuilder } from 'sanity/desk';
 
 export default (S: StructureBuilder) =>
   S.list()
     .title('Content')
     .items([
-      // Navbar group
+      // Pages
       S.listItem()
-        .title('Navbar')
+        .title('Pages')
         .child(
           S.list()
-            .title('Navbar')
+            .title('Pages')
             .items([
-              S.documentTypeListItem('navbar')
+              S.listItem()
+                .title('Home Page')
+                .child(
+                  S.document()
+                    .schemaType('page')
+                    .documentId('home-page')
+                ),
+              S.listItem()
+                .title('All Pages')
+                .child(
+                  S.documentList()
+                    .title('All Pages')
+                    .filter('_type == "page"')
+                )
             ])
         ),
-      S.divider(),
-      // Main group
+
+      // Content Types
       S.listItem()
-        .title('Main')
+        .title('Content Types')
         .child(
           S.list()
-            .title('Main Content')
+            .title('Content Types')
             .items([
-              S.documentTypeListItem('profile'),
-              S.documentTypeListItem('skill'),
-              S.documentTypeListItem('certification'),
-              S.documentTypeListItem('project'),
-              S.documentTypeListItem('commendation'),
+              S.listItem()
+                .title('Projects')
+                .child(
+                  S.documentList()
+                    .title('Projects')
+                    .filter('_type == "project"')
+                ),
+              S.listItem()
+                .title('Skills')
+                .child(
+                  S.documentList()
+                    .title('Skills')
+                    .filter('_type == "skill"')
+                ),
+              S.listItem()
+                .title('Certifications')
+                .child(
+                  S.documentList()
+                    .title('Certifications')
+                    .filter('_type == "certification"')
+                ),
+              S.listItem()
+                .title('Commendations')
+                .child(
+                  S.documentList()
+                    .title('Commendations')
+                    .filter('_type == "commendation"')
+                ),
+              S.listItem()
+                .title('Profile')
+                .child(
+                  S.documentList()
+                    .title('Profile')
+                    .filter('_type == "profile"')
+                )
             ])
         ),
-      S.divider(),
-      // Footer group
+
+      // Settings
       S.listItem()
-        .title('Footer')
+        .title('Settings')
         .child(
           S.list()
-            .title('Footer')
+            .title('Settings')
             .items([
-              S.documentTypeListItem('footer')
+              S.listItem()
+                .title('Navigation')
+                .child(
+                  S.documentList()
+                    .title('Navigation')
+                    .filter('_type == "navbar"')
+                ),
+              S.listItem()
+                .title('Footer')
+                .child(
+                  S.documentList()
+                    .title('Footer')
+                    .filter('_type == "footer"')
+                )
             ])
-        ),
+        )
     ]); 

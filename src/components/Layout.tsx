@@ -114,7 +114,10 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <div className="min-h-screen bg-white dark:bg-black transition-colors duration-200">
       {/* Floating Navbar for Desktop (render only on sm: and up) */}
-      <nav className="hidden sm:flex fixed top-6 left-1/2 transform -translate-x-1/2 z-50 max-w-7xl w-[99vw] rounded-2xl bg-gray-50/90 dark:bg-gray-950/90 shadow-2xl border border-gray-200 dark:border-gray-800 items-center px-8 py-3 backdrop-blur-md">
+      <nav
+        className="hidden sm:flex fixed top-6 left-1/2 transform -translate-x-1/2 z-50 rounded-2xl bg-gray-50/90 dark:bg-gray-950/90 shadow-2xl border border-gray-200 dark:border-gray-800 items-center px-4 sm:px-6 lg:px-8 py-3 backdrop-blur-md"
+        style={{ width: 'calc(100% - 64px)' }}
+      >
         <div className="flex-1 flex justify-center">
           <div className="flex space-x-2 lg:space-x-8 items-center">
             {navItems.map((item) => (
