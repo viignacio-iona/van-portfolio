@@ -34,8 +34,7 @@ export default {
         layout: 'grid',
         sortable: true,
         reorderable: true
-      },
-      validation: (Rule: any) => Rule.required().min(1)
+      }
     },
     {
       name: 'seo',

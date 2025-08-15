@@ -17,14 +17,13 @@ export default {
           { title: 'Commendations Section', value: 'commendations' },
           { title: 'Contact Section', value: 'contact' }
         ]
-      },
-      validation: (Rule: any) => Rule.required()
+      }
     },
     {
       name: 'order',
       title: 'Display Order',
       type: 'number',
-      validation: (Rule: any) => Rule.required().min(1)
+      initialValue: 1
     },
     {
       name: 'isActive',

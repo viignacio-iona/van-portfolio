@@ -6,8 +6,7 @@ export default {
     {
       name: 'title',
       title: 'Section Title',
-      type: 'string',
-      validation: (Rule: any) => Rule.required()
+      type: 'string'
     },
     {
       name: 'subtitle',

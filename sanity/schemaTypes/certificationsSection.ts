@@ -6,8 +6,7 @@ export default {
     {
       name: 'title',
       title: 'Section Title',
-      type: 'string',
-      validation: (Rule: any) => Rule.required()
+      type: 'string'
     },
     {
       name: 'subtitle',
@@ -24,8 +23,7 @@ export default {
       name: 'certifications',
       title: 'Certifications',
       type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'certification' }] }],
-      validation: (Rule: any) => Rule.required().min(1)
+      of: [{ type: 'reference', to: [{ type: 'certification' }] }]
     },
     {
       name: 'layout',
