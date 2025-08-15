@@ -30,6 +30,11 @@ export default {
       title: 'Layout Blocks',
       type: 'array',
       of: [{ type: 'layoutBlock' }],
+      options: {
+        layout: 'grid',
+        sortable: true,
+        reorderable: true
+      },
       validation: (Rule: any) => Rule.required().min(1)
     },
     {
@@ -64,12 +69,13 @@ export default {
   preview: {
     select: {
       title: 'title',
-      isHomePage: 'isHomePage'
+      isHomePage: 'isHomePage',
+      blockCount: 'layoutBlocks.length'
     },
-    prepare({ title, isHomePage }: any) {
+    prepare({ title, isHomePage, blockCount }: any) {
       return {
         title: title,
-        subtitle: isHomePage ? 'Home Page' : 'Page'
+        subtitle: `${isHomePage ? 'Home Page' : 'Page'} • ${blockCount || 0} sections`
       };
     }
   }

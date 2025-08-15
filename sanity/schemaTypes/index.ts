@@ -7,7 +7,12 @@ import navbar from './navbar';
 import footer from './footer';
 import layoutBlock from './layoutBlock';
 import heroSection from './heroSection';
+import aboutSection from './aboutSection';
+import skillsSection from './skillsSection';
 import projectsSection from './projectsSection';
+import certificationsSection from './certificationsSection';
+import commendationsSection from './commendationsSection';
+import contactSection from './contactSection';
 import page from './page';
 
 export const schemaTypes = [
@@ -20,6 +25,11 @@ export const schemaTypes = [
   footer, 
   layoutBlock,
   heroSection,
+  aboutSection,
+  skillsSection,
   projectsSection,
+  certificationsSection,
+  commendationsSection,
+  contactSection,
   page
 ];
