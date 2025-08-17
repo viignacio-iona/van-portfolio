@@ -1,3 +1,5 @@
+import { AboutSection } from './aboutSection';
+
 export interface BackgroundStyle {
   type: 'solid' | 'gradient' | 'image' | 'pattern';
   solidColor?: string;
@@ -19,31 +21,24 @@ export interface SectionSpacing {
 }
 
 export interface HeroSection {
-  name?: string;
-  title?: string;
+  fullName: string;
+  professionalTitle: string;
   tagline?: string;
-  description?: string;
-  bio?: string;
-  experience?: number;
   profileImage?: {
     asset: {
       url: string;
     };
   };
-  ctaText?: string;
-  ctaLink?: string;
-  email?: string;
-  phone?: string;
-  location?: string;
-  resumeUrl?: string;
-  social?: {
-    linkedin?: string;
-    github?: string;
-    facebook?: string;
-    twitter?: string;
-    instagram?: string;
+  cta1?: {
+    text: string;
+    url: string;
+    isExternal: boolean;
   };
-  backgroundStyle?: 'default' | 'gradient' | 'pattern';
+  cta2?: {
+    text: string;
+    url: string;
+    isExternal: boolean;
+  };
 }
 
 export interface ProjectsSection {
@@ -59,12 +54,11 @@ export interface ProjectsSection {
 export interface LayoutBlock {
   _id: string;
   blockType: 'hero' | 'about' | 'skills' | 'projects' | 'certifications' | 'commendations' | 'contact';
-  order: number;
   isActive: boolean;
   backgroundStyle?: BackgroundStyle;
   spacing?: SectionSpacing;
   heroSection?: HeroSection;
-  aboutSection?: any; // Will define this later
+  aboutSection?: AboutSection;
   skillsSection?: any; // Will define this later
   projectsSection?: ProjectsSection;
   certificationsSection?: any; // Will define this later

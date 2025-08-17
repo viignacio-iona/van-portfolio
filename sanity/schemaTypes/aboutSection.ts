@@ -9,35 +9,23 @@ export default {
       type: 'string'
     },
     {
-      name: 'subtitle',
-      title: 'Section Subtitle',
-      type: 'string'
-    },
-    {
-      name: 'description',
-      title: 'Section Description',
+      name: 'professionalSummary',
+      title: 'Professional Summary',
       type: 'text',
       rows: 3
     },
     {
-      name: 'profileImage',
-      title: 'Profile Image',
-      type: 'image',
-      options: {
-        hotspot: true
-      }
+      name: 'careerTimeline',
+      title: 'Career Timeline',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'careerEntry' }] }]
     },
     {
-      name: 'showSkills',
-      title: 'Show Skills Section',
-      type: 'boolean',
-      initialValue: true
-    },
-    {
-      name: 'showCertifications',
-      title: 'Show Certifications Section',
-      type: 'boolean',
-      initialValue: true
+      name: 'technologyStack',
+      title: 'Technology Stack',
+      type: 'reference',
+      to: [{ type: 'technologyStack' }],
+      description: 'Reference to a technology stack document to display below the career timeline'
     }
   ]
 };

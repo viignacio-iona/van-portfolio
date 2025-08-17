@@ -14,6 +14,8 @@ import certificationsSection from './certificationsSection';
 import commendationsSection from './commendationsSection';
 import contactSection from './contactSection';
 import page from './page';
+import careerEntry from './careerEntry';
+import technologyStack from './technologyStack';
 
 export const schemaTypes = [
   project, 
@@ -31,5 +33,7 @@ export const schemaTypes = [
   certificationsSection,
   commendationsSection,
   contactSection,
-  page
+  page,
+  careerEntry,
+  technologyStack
 ];

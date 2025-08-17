@@ -20,12 +20,6 @@ export default {
       }
     },
     {
-      name: 'order',
-      title: 'Display Order',
-      type: 'number',
-      initialValue: 1
-    },
-    {
       name: 'isActive',
       title: 'Active',
       type: 'boolean',
@@ -76,13 +70,11 @@ export default {
   ],
   preview: {
     select: {
-      title: 'blockType',
-      subtitle: 'order'
+      title: 'blockType'
     },
-    prepare({ title, subtitle }: any) {
+    prepare({ title }: any) {
       return {
-        title: `${title.charAt(0).toUpperCase() + title.slice(1)} Section`,
-        subtitle: `Order: ${subtitle}`
+        title: `${title.charAt(0).toUpperCase() + title.slice(1)} Section`
       };
     }
   }

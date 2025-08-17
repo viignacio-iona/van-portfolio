@@ -73,6 +73,29 @@ export async function getHomePage() {
             asset->{url}
           }
         }
+      },
+      aboutSection{
+        ...,
+        careerTimeline[]->{
+          _id,
+          _type,
+          company,
+          position,
+          startDate,
+          endDate,
+          isCurrent
+        },
+        technologyStack->{
+          _id,
+          _type,
+          title,
+          technologies[]{
+            _key,
+            name,
+            category,
+            proficiency
+          }
+        }
       }
     }
   }`;

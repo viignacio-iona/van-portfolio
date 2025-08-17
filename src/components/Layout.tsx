@@ -111,16 +111,38 @@ export default function Layout({ children, navbarData, footerData }: LayoutProps
                   <ul className="flex items-center space-x-8">
                     {navbarData.links.map((link, index) => (
                       <li key={index}>
-                        <Link
-                          href={link.href}
-                          className="text-text-primary hover:text-accent transition-colors duration-200 font-medium text-lg relative group drop-shadow-sm"
-                          target={link.isExternal ? '_blank' : undefined}
-                          rel={link.isExternal ? 'noopener noreferrer' : undefined}
-                        >
-                          {link.label}
-                          {/* Hover underline effect */}
-                          <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-200 group-hover:w-full"></span>
-                        </Link>
+                        {link.isExternal ? (
+                          <Link
+                            href={link.href}
+                            className="text-text-primary hover:text-accent transition-colors duration-200 font-medium text-lg relative group drop-shadow-sm"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {link.label}
+                            {/* Hover underline effect */}
+                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-200 group-hover:w-full"></span>
+                          </Link>
+                        ) : (
+                          <a
+                            href={link.href}
+                            className="text-text-primary hover:text-accent transition-colors duration-200 font-medium text-lg relative group drop-shadow-sm cursor-pointer"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              const targetId = link.href.replace('#', '');
+                              const targetElement = document.getElementById(targetId);
+                              if (targetElement) {
+                                targetElement.scrollIntoView({ 
+                                  behavior: 'smooth',
+                                  block: 'start'
+                                });
+                              }
+                            }}
+                          >
+                            {link.label}
+                            {/* Hover underline effect */}
+                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-200 group-hover:w-full"></span>
+                          </a>
+                        )}
                       </li>
                     ))}
                   </ul>
@@ -140,7 +162,7 @@ export default function Layout({ children, navbarData, footerData }: LayoutProps
       {/* Footer */}
       {showFooter && (
         <footer className="bg-base text-white py-12">
-          <div className="max-w-7xl mx-auto px-8">
+          <div className="w-4/5 mx-auto px-8">
             <div className="grid md:grid-cols-2 gap-16">
               {/* Contact Information Section */}
               <div>
@@ -193,11 +215,11 @@ export default function Layout({ children, navbarData, footerData }: LayoutProps
 
               {/* Social Media Section */}
               <div>
-                <h3 className="text-xl font-semibold font-heading text-white mb-2">
+                <h3 className="text-xl font-semibold font-heading text-white mb-2 ml-8">
                   Follow Me
                 </h3>
                 
-                <ul className="flex flex-col space-y-2" role="list">
+                <ul className="flex flex-col space-y-2 ml-8" role="list">
                   {footerData.socialMedia?.linkedin && (
                     <li>
                       <a 
@@ -285,7 +307,7 @@ export default function Layout({ children, navbarData, footerData }: LayoutProps
             <div className="border-t border-ui-border/30 my-12"></div>
 
             {/* Copyright Section */}
-            <div className="text-left">
+            <div className="text-center">
               {footerData.copyright && (
                 <p className="text-sm text-text-muted">{footerData.copyright}</p>
               )}

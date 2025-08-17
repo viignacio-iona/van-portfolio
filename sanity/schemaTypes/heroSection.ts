@@ -7,15 +7,13 @@ export default {
       name: 'fullName',
       title: 'Full Name',
       description: 'The person\'s full name (e.g., "Van Ian Ignacio")',
-      type: 'string',
-      validation: (Rule: any) => Rule.required()
+      type: 'string'
     },
     {
       name: 'professionalTitle',
       title: 'Professional Title',
       description: 'Job title or role (e.g., "QA Consultant", "Software Engineer")',
-      type: 'string',
-      validation: (Rule: any) => Rule.required()
+      type: 'string'
     },
     {
       name: 'tagline',

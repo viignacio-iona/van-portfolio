@@ -9,6 +9,16 @@
 
   html {
     scroll-behavior: smooth;
+    /* Optimize scroll performance */
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Optimize scroll performance */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Hardware acceleration for smooth scrolling */
+    backface-visibility: hidden;
   }
 
   body {
@@ -61,5 +71,11 @@
   
   .animate-on-scroll.animate {
     @apply opacity-100 translate-y-0;
+  }
+  
+  /* Scroll performance utilities */
+  .will-change-scroll {
+    will-change: scroll-position;
+    backface-visibility: hidden;
   }
 }

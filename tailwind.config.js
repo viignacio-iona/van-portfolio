@@ -96,12 +96,12 @@ module.exports = {
           transition: 'all 150ms',
         },
         '.btn-primary': {
-          backgroundColor: '#0ea5e9',
+          backgroundColor: '#0369a1', // Darker blue for better contrast
           color: '#ffffff',
-          boxShadow: '0 8px 24px rgba(14,165,233,0.25)',
+          boxShadow: '0 8px 24px rgba(3,105,161,0.25)',
         },
         '.btn-primary:hover': {
-          backgroundColor: '#38bdf8',
+          backgroundColor: '#0ea5e9', // Original accent color on hover
           transform: 'translateY(-1px)',
         },
         '.btn-primary:active': {
@@ -111,11 +111,14 @@ module.exports = {
         '.btn-outline': {
           border: '1px solid #1f2937',
           color: '#d1d5db',
-          backgroundColor: 'transparent',
+          backgroundColor: 'rgba(17, 17, 17, 0.8)', // Semi-transparent dark background
+          backdropFilter: 'blur(8px)',
+          WebkitBackdropFilter: 'blur(8px)', // Safari support
         },
         '.btn-outline:hover': {
           borderColor: '#38bdf8',
           color: '#ffffff',
+          backgroundColor: 'rgba(17, 17, 17, 0.9)', // Slightly more opaque on hover
         },
         '.card': {
           backgroundColor: '#111111',

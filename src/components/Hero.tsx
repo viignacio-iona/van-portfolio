@@ -34,10 +34,10 @@ export default function Hero({ data }: HeroProps) {
   const { fullName, professionalTitle, tagline, profileImage, cta1, cta2 } = data;
 
   return (
-    <div className="w-full max-w-6xl mx-auto px-8 text-center">
+    <div className="w-full text-left">
       {/* Profile Image */}
       {profileImage?.asset?.url && (
-        <div className="mb-8 flex justify-center">
+        <div className="mb-8 flex justify-start">
           <div className="relative">
             <img
               src={profileImage.asset.url}
@@ -50,14 +50,14 @@ export default function Hero({ data }: HeroProps) {
         </div>
       )}
 
-      {/* Main Content with Backdrop */}
-      <div className="backdrop-blur-sm bg-white/5 rounded-3xl p-8 shadow-2xl border border-white/10">
+      {/* Main Content without Backdrop */}
+      <div className="p-8 -mt-32">
         {/* Name */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl md:text-6xl font-bold text-text-primary mb-4 drop-shadow-lg"
+          className="text-4xl md:text-8xl font-bold text-text-primary mb-4 drop-shadow-4xl"
         >
           {fullName || 'Your Name'}
         </motion.h1>
@@ -67,7 +67,7 @@ export default function Hero({ data }: HeroProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-xl md:text-3xl font-semibold text-accent mb-6 drop-shadow-lg"
+          className="text-xl md:text-4xl font-semibold text-accent mb-6 drop-shadow-4xl"
         >
           {professionalTitle || 'Professional Title'}
         </motion.h2>
@@ -78,7 +78,7 @@ export default function Hero({ data }: HeroProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-lg md:text-xl text-text-secondary mb-8 max-w-3xl mx-auto leading-relaxed drop-shadow-md"
+            className="text-lg md:text-xl text-text-secondary mb-8 max-w-3xl leading-relaxed drop-shadow-4xl"
           >
             {tagline}
           </motion.p>
@@ -89,7 +89,7 @@ export default function Hero({ data }: HeroProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center"
+          className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-start"
         >
           {cta1?.url && (
             <a 
@@ -99,8 +99,8 @@ export default function Hero({ data }: HeroProps) {
               rel={cta1.isExternal ? 'noopener noreferrer' : undefined}
               download={!cta1.isExternal}
             >
-              <ArrowDownTrayIcon className="h-5 w-5 mr-2" />
-              {cta1.text || 'Download Resume'}
+              <ArrowDownTrayIcon className="h-5 w-5 mr-2" aria-hidden="true" />
+              {cta1.text}
             </a>
           )}
           {cta2?.url && (
@@ -110,7 +110,7 @@ export default function Hero({ data }: HeroProps) {
               target={cta2.isExternal ? '_blank' : undefined}
               rel={cta2.isExternal ? 'noopener noreferrer' : undefined}
             >
-              {cta2.text || 'Get in Touch'}
+              {cta2.text}
             </a>
           )}
         </motion.div>

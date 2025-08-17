@@ -39,6 +39,8 @@ export default defineConfig({
             S.documentTypeListItem('commendation').title('Commendation'),
             S.documentTypeListItem('skill').title('Skills'),
             S.documentTypeListItem('certification').title('Certifications'),
+            S.documentTypeListItem('careerEntry').title('Career History'),
+            S.documentTypeListItem('technologyStack').title('Technology Stack'),
 
             // IMPORTANT: no S.documentTypeListItems() here
           ]),

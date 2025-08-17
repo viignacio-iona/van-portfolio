@@ -249,23 +249,23 @@ function hexToRgb(hex: string): [number, number, number] {
 }
 
 export default function FaultyTerminal({
-  scale = 2,
+  scale = 3,
   gridMul = [2, 1],
   digitSize = 1.2,
   timeScale = 1,
   pause = false,
-  scanlineIntensity = 1,
-  glitchAmount = 1,
-  flickerAmount = 1,
+  scanlineIntensity = 0,
+  glitchAmount = 0,
+  flickerAmount = 0,
   noiseAmp = 1,
   chromaticAberration = 0,
   dither = 0,
   curvature = 0.07,
   tint = "#0ea5e9",
   mouseReact = true,
-  mouseStrength = 0.25,
+  mouseStrength = 1,
   dpr = typeof window !== 'undefined' ? Math.min(window.devicePixelRatio || 1, 2) : 1,
-  pageLoadAnimation = true,
+  pageLoadAnimation = false,
   brightness = 1,
   className,
   style,
@@ -290,6 +290,10 @@ export default function FaultyTerminal({
     [dither]
   );
 
+  // Optimization: Prevent unnecessary re-renders
+  const lastRenderTime = useRef<number>(0);
+  const renderThrottle = 33; // ~30fps for better scroll performance
+
   const handleMouseMove = useCallback((e: MouseEvent) => {
     const ctn = containerRef.current;
     if (!ctn) return;
@@ -309,7 +313,11 @@ export default function FaultyTerminal({
     const renderer = new Renderer({ dpr });
     rendererRef.current = renderer;
     const gl = renderer.gl;
+    
+    // WebGL context optimizations
     gl.clearColor(0, 0, 0, 1);
+    gl.enable(gl.DEPTH_TEST);
+    gl.depthFunc(gl.LEQUAL);
 
     const geometry = new Triangle(gl);
 
@@ -407,17 +415,24 @@ export default function FaultyTerminal({
         }
       }
 
-      renderer.render({ scene: mesh });
+      // Only render if not paused and throttled for performance
+      if (!pause && (t - lastRenderTime.current) >= renderThrottle) {
+        renderer.render({ scene: mesh });
+        lastRenderTime.current = t;
+      }
     };
     rafRef.current = requestAnimationFrame(update);
     ctn.appendChild(gl.canvas);
 
-    if (mouseReact) ctn.addEventListener("mousemove", handleMouseMove);
+    // Track mouse at document level for better coverage
+    if (mouseReact) {
+      document.addEventListener("mousemove", handleMouseMove);
+    }
 
     return () => {
       cancelAnimationFrame(rafRef.current);
       resizeObserver.disconnect();
-      if (mouseReact) ctn.removeEventListener("mousemove", handleMouseMove);
+      if (mouseReact) document.removeEventListener("mousemove", handleMouseMove);
       if (gl.canvas.parentElement === ctn) ctn.removeChild(gl.canvas);
       gl.getExtension("WEBGL_lose_context")?.loseContext();
       loadAnimationStartValue.current = 0;
@@ -484,6 +499,8 @@ export default function FaultyTerminal({
     pageLoadAnimation,
     brightness,
   ]);
+
+
 
   return (
     <div

@@ -44,7 +44,6 @@ async function setupInitialData() {
     const heroLayoutBlock = await client.create({
       _type: 'layoutBlock',
       blockType: 'hero',
-      order: 1,
       isActive: true,
       backgroundStyle: {
         type: 'solid',
