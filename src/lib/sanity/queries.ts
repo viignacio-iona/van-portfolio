@@ -37,21 +37,32 @@ export async function getProfile() {
 }
 
 export async function getHomePage() {
-  return sanityClient.fetch(`*[_type == "page" && isHomePage == true][0]{
+
+  const query = `*[_type == "page" && isHomePage == true][0]{
     ...,
+    navbar->{
+      title,
+      logo{
+        asset->{url}
+      },
+      links[]{
+        label,
+        href,
+        isExternal
+      }
+    },
+    footer->{
+      title,
+      contactInfo,
+      socialMedia,
+      copyright
+    },
     layoutBlocks[]{
       ...,
       heroSection{
         ...,
         profileImage{
           asset->{url}
-        },
-        social{
-          linkedin,
-          github,
-          facebook,
-          twitter,
-          instagram
         }
       },
       projectsSection{
@@ -64,5 +75,13 @@ export async function getHomePage() {
         }
       }
     }
-  }`);
+  }`;
+  
+  try {
+    const result = await sanityClient.fetch(query);
+    return result;
+  } catch (error) {
+    console.error('Error fetching homepage data:', error);
+    return null;
+  }
 } 

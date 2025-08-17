@@ -1,101 +1,120 @@
 'use client';
 
+import React from 'react';
 import Image from 'next/image';
-import { ArrowDownTrayIcon, UserIcon } from '@heroicons/react/24/outline';
-import { useState } from 'react';
+import { ArrowDownTrayIcon } from '@heroicons/react/24/outline';
 import { motion } from 'framer-motion';
-import { HeroSection } from '@/lib/cms/types/layoutBlock';
 
 interface HeroProps {
-  data?: HeroSection;
+  data?: {
+    fullName?: string;
+    professionalTitle?: string;
+    tagline?: string;
+    profileImage?: {
+      asset?: {
+        url?: string;
+      };
+    };
+    cta1?: {
+      text?: string;
+      url?: string;
+      isExternal?: boolean;
+    };
+    cta2?: {
+      text?: string;
+      url?: string;
+      isExternal?: boolean;
+    };
+  };
 }
 
 export default function Hero({ data }: HeroProps) {
-  const [imageError, setImageError] = useState(false);
+  if (!data) return null;
 
-  // Use provided data or fallback to empty values
-  const heroData = data || {};
-  const {
-    name = 'Your Name',
-    title = 'Professional Title',
-    tagline = 'Your tagline here',
-    description = 'Your description here',
-    bio = 'Your bio here',
-    experience,
-    profileImage,
-    ctaText = 'Get in Touch',
-    ctaLink = '#contact',
-    email,
-    phone,
-    location,
-    resumeUrl,
-    social
-  } = heroData;
+  const { fullName, professionalTitle, tagline, profileImage, cta1, cta2 } = data;
 
   return (
-    <section id="hero" className="relative bg-gray-100 dark:bg-black overflow-hidden pt-0 sm:pt-24 pb-24 lg:pt-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-0 sm:pt-0 lg:pt-0 lg:pb-24 flex flex-col lg:flex-row-reverse items-center justify-between gap-12">
-        {/* Profile Image - always centered circle for all breakpoints */}
-        <div className="flex-1 flex items-center justify-center lg:mb-0">
-          {!imageError && profileImage?.asset?.url ? (
-            <div className="relative mx-auto w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 rounded-full shadow-2xl border-4 border-white dark:border-gray-800 overflow-hidden">
-              <Image
-                src={profileImage.asset.url}
-                alt={name || 'Profile'}
-                fill
-                className="object-cover rounded-full"
-                priority
-                onError={() => setImageError(true)}
-                unoptimized
-              />
-            </div>
-          ) : (
-            <div className="flex items-center justify-center w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 bg-gray-100 dark:bg-gray-800 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-full p-8 mx-auto">
-              <UserIcon className="h-32 w-32 text-gray-400 dark:text-gray-600" />
-            </div>
-          )}
+    <div className="w-full max-w-6xl mx-auto px-8 text-center">
+      {/* Profile Image */}
+      {profileImage?.asset?.url && (
+        <div className="mb-8 flex justify-center">
+          <div className="relative">
+            <img
+              src={profileImage.asset.url}
+              alt={fullName || 'Profile'}
+              className="w-32 h-32 rounded-full object-cover border-4 border-text-muted shadow-2xl"
+            />
+            {/* Subtle glow effect */}
+            <div className="absolute inset-0 rounded-full bg-accent/20 blur-xl scale-110"></div>
+          </div>
         </div>
-        <div className="flex-1 flex flex-col items-start justify-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-            viewport={{ once: true }}
-            className="text-5xl lg:text-7xl font-extrabold font-heading text-gray-900 dark:text-white mb-6 text-left lg:text-center"
-          >
-            {name}
-          </motion.h1>
-          <motion.h2
-            className="text-xl lg:text-3xl text-accent mb-8"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
-            viewport={{ once: true }}
-          >
-            {title}
-          </motion.h2>
+      )}
+
+      {/* Main Content with Backdrop */}
+      <div className="backdrop-blur-sm bg-white/5 rounded-3xl p-8 shadow-2xl border border-white/10">
+        {/* Name */}
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl md:text-6xl font-bold text-text-primary mb-4 drop-shadow-lg"
+        >
+          {fullName || 'Your Name'}
+        </motion.h1>
+
+        {/* Professional Title */}
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-xl md:text-3xl font-semibold text-accent mb-6 drop-shadow-lg"
+        >
+          {professionalTitle || 'Professional Title'}
+        </motion.h2>
+
+        {/* Tagline */}
+        {tagline && (
           <motion.p
-            className="mb-8 text-xl text-gray-700 dark:text-gray-300 max-w-xl"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-lg md:text-xl text-text-secondary mb-8 max-w-3xl mx-auto leading-relaxed drop-shadow-md"
           >
             {tagline}
           </motion.p>
-          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-            {resumeUrl && (
-              <a href={resumeUrl} className="btn inline-flex items-center w-full sm:w-auto justify-center" download>
-                <ArrowDownTrayIcon className="h-5 w-5 mr-2" />
-                Download Resume
-              </a>
-            )}
-            <a href={ctaLink} className="btn btn-outline inline-flex items-center w-full sm:w-auto justify-center">
-              {ctaText}
+        )}
+
+        {/* CTA Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center"
+        >
+          {cta1?.url && (
+            <a 
+              href={cta1.url} 
+              className="btn btn-primary inline-flex items-center w-full sm:w-auto justify-center focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base shadow-lg"
+              target={cta1.isExternal ? '_blank' : undefined}
+              rel={cta1.isExternal ? 'noopener noreferrer' : undefined}
+              download={!cta1.isExternal}
+            >
+              <ArrowDownTrayIcon className="h-5 w-5 mr-2" />
+              {cta1.text || 'Download Resume'}
             </a>
-          </div>
-        </div>
+          )}
+          {cta2?.url && (
+            <a 
+              href={cta2.url} 
+              className="btn btn-outline inline-flex items-center w-full sm:w-auto justify-center focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base shadow-lg"
+              target={cta2.isExternal ? '_blank' : undefined}
+              rel={cta2.isExternal ? 'noopener noreferrer' : undefined}
+            >
+              {cta2.text || 'Get in Touch'}
+            </a>
+          )}
+        </motion.div>
       </div>
-    </section>
+    </div>
   );
-} 
+}

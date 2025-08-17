@@ -26,12 +26,24 @@ export default {
       initialValue: false
     },
     {
+      name: 'navbar',
+      title: 'Navigation Bar',
+      type: 'reference',
+      to: [{ type: 'navbar' }]
+    },
+    {
+      name: 'footer',
+      title: 'Footer',
+      type: 'reference',
+      to: [{ type: 'footer' }]
+    },
+    {
       name: 'layoutBlocks',
       title: 'Layout Blocks',
       type: 'array',
       of: [{ type: 'layoutBlock' }],
       options: {
-        layout: 'grid',
+        layout: 'list',
         sortable: true,
         reorderable: true
       }

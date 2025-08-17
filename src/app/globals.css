@@ -4,75 +4,62 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    font-family: 'Inter', 'Poppins', 'Montserrat', ui-sans-serif, system-ui, sans-serif;
-    font-weight: 500;
+    font-family: 'Inter', 'Roboto', ui-sans-serif, system-ui, sans-serif;
   }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 0 0% 100%;
+  html {
+    scroll-behavior: smooth;
   }
 
   body {
-    @apply bg-gray-900 text-white font-sans font-medium antialiased;
+    @apply font-body text-text-primary bg-base antialiased;
+    line-height: 1.7;
   }
 
+  /* Typography hierarchy */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading font-extrabold tracking-tight text-center text-gray-900;
+    @apply font-heading font-bold text-text-primary;
   }
 
-  .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
-    @apply text-white;
+  /* Focus management */
+  *:focus-visible {
+    @apply focus-ring;
   }
 
-  h1 {
-    @apply text-6xl mb-8;
-  }
-  h2 {
-    @apply text-6xl mb-8;
-  }
-  h3 {
-    @apply text-4xl mb-4;
-  }
-  h4 {
-    @apply text-2xl mb-2;
-  }
-
-  a {
-    @apply text-accent hover:text-accent-secondary transition-colors underline-offset-2;
-  }
-
-  /* Base button styles */
-  button, .btn {
-    @apply font-bold rounded-lg px-6 py-3 transition-all duration-150;
-  }
-
-  /* Solid accent button */
-  .btn {
-    @apply font-bold rounded-lg px-6 py-3 transition-all duration-150 bg-accent text-white hover:bg-accent-dark hover:text-white focus:ring-2 focus:ring-accent-secondary focus:ring-offset-2;
-  }
-
-  /* Outlined/secondary button */
-  .btn-outline {
-    @apply font-bold rounded-lg px-6 py-3 transition-all duration-150 bg-white text-accent-secondary border border-accent-secondary hover:bg-accent-secondary hover:text-white focus:ring-2 focus:ring-accent focus:ring-offset-2;
+  /* Selection styling */
+  ::selection {
+    @apply bg-accent text-accent-fg;
   }
 }
 
 @layer utilities {
-  @keyframes slide-down {
-    from { opacity: 0; transform: translateY(-1rem);}
-    to   { opacity: 1; transform: translateY(0);}
+  /* Custom spacing utilities */
+  .section-padding {
+    @apply py-20 lg:py-24;
   }
-  @keyframes slide-up {
-    from { opacity: 1; transform: translateY(0);}
-    to   { opacity: 0; transform: translateY(-1rem);}
+  
+  .container-padding {
+    @apply px-4 sm:px-6 lg:px-8;
   }
-  .animate-slide-down {
-    animation: slide-down 0.3s cubic-bezier(0.4,0,0.2,1) both;
+  
+  /* Full viewport height utility */
+  .h-screen-dynamic {
+    height: 100vh;
+    height: 100dvh; /* Dynamic viewport height for mobile browsers */
+    min-height: 100vh; /* Fallback for older browsers */
   }
-  .animate-slide-up {
-    animation: slide-up 0.2s cubic-bezier(0.4,0,0.2,1) both;
+  
+  /* Grid utilities */
+  .grid-12 {
+    @apply grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6;
+  }
+  
+  /* Animation utilities */
+  .animate-on-scroll {
+    @apply opacity-0 translate-y-4 transition-all duration-700 ease-out;
+  }
+  
+  .animate-on-scroll.animate {
+    @apply opacity-100 translate-y-0;
   }
 }

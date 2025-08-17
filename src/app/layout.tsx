@@ -1,15 +1,6 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-import './patterns.css';
-import '@fontsource/inter';
-import '@fontsource/montserrat';
 import { SpeedInsights } from "@vercel/speed-insights/next";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
 
 export const metadata: Metadata = {
   title: "Van Ian Ignacio | QA Portfolio",
@@ -25,8 +16,12 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <head>
         <link rel="icon" href="/favicon-vip.ico" sizes="any" />
+        {/* Google Fonts */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet" />
       </head>
-      <body className={`${inter.variable} font-sans antialiased bg-white dark:bg-black`}>
+      <body className="bg-base text-text-primary">
         {children}
         <SpeedInsights />
       </body>

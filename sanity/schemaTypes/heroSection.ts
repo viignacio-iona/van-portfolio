@@ -4,101 +4,123 @@ export default {
   type: 'object',
   fields: [
     {
-      name: 'name',
+      name: 'fullName',
       title: 'Full Name',
-      type: 'string'
+      description: 'The person\'s full name (e.g., "Van Ian Ignacio")',
+      type: 'string',
+      validation: (Rule: any) => Rule.required()
     },
     {
-      name: 'title',
+      name: 'professionalTitle',
       title: 'Professional Title',
-      type: 'string'
+      description: 'Job title or role (e.g., "QA Consultant", "Software Engineer")',
+      type: 'string',
+      validation: (Rule: any) => Rule.required()
     },
     {
       name: 'tagline',
       title: 'Tagline',
+      description: 'Optional catchy phrase or description',
       type: 'string'
     },
     {
-      name: 'description',
-      title: 'Description',
-      type: 'text',
-      rows: 3
+      name: 'cta1',
+      title: 'CTA 1 - Download Resume',
+      description: 'Optional download resume button',
+      type: 'object',
+      fields: [
+        {
+          name: 'text',
+          title: 'Button Text',
+          type: 'string',
+          initialValue: 'Download Resume'
+        },
+        {
+          name: 'url',
+          title: 'Resume URL',
+          description: 'External link to resume (Google Drive, etc.)',
+          type: 'url'
+        },
+        {
+          name: 'isExternal',
+          title: 'External Link',
+          description: 'Check if this opens in a new tab',
+          type: 'boolean',
+          initialValue: true
+        }
+      ],
+      preview: {
+        select: {
+          title: 'text',
+          url: 'url'
+        },
+        prepare({ title, url }: any) {
+          return {
+            title: title || 'Download Resume',
+            subtitle: url || 'No URL set'
+          };
+        }
+      }
     },
     {
-      name: 'bio',
-      title: 'Bio',
-      type: 'text',
-      rows: 4
-    },
-    {
-      name: 'experience',
-      title: 'Years of Experience',
-      type: 'number'
+      name: 'cta2',
+      title: 'CTA 2 - Contact',
+      description: 'Optional contact button',
+      type: 'object',
+      fields: [
+        {
+          name: 'text',
+          title: 'Button Text',
+          type: 'string',
+          initialValue: 'Get in Touch'
+        },
+        {
+          name: 'url',
+          title: 'Contact Link',
+          description: 'Internal section link (e.g., #contact) or external URL',
+          type: 'string'
+        },
+        {
+          name: 'isExternal',
+          title: 'External Link',
+          description: 'Check if this opens in a new tab',
+          type: 'boolean',
+          initialValue: false
+        }
+      ],
+      preview: {
+        select: {
+          title: 'text',
+          url: 'url'
+        },
+        prepare({ title, url }: any) {
+          return {
+            title: title || 'Contact',
+            subtitle: url || 'No link set'
+          };
+        }
+      }
     },
     {
       name: 'profileImage',
       title: 'Profile Image',
+      description: 'Optional profile picture',
       type: 'image',
       options: {
         hotspot: true
       }
-    },
-    {
-      name: 'ctaText',
-      title: 'Call to Action Text',
-      type: 'string',
-      initialValue: 'Get in Touch'
-    },
-    {
-      name: 'ctaLink',
-      title: 'Call to Action Link',
-      type: 'string',
-      initialValue: '#contact'
-    },
-    {
-      name: 'email',
-      title: 'Email',
-      type: 'string'
-    },
-    {
-      name: 'phone',
-      title: 'Phone',
-      type: 'string'
-    },
-    {
-      name: 'location',
-      title: 'Location',
-      type: 'string'
-    },
-    {
-      name: 'resumeUrl',
-      title: 'Resume URL',
-      type: 'url'
-    },
-    {
-      name: 'social',
-      title: 'Social Media Links',
-      type: 'object',
-      fields: [
-        { name: 'linkedin', title: 'LinkedIn', type: 'url' },
-        { name: 'github', title: 'GitHub', type: 'url' },
-        { name: 'facebook', title: 'Facebook', type: 'url' },
-        { name: 'twitter', title: 'Twitter', type: 'url' },
-        { name: 'instagram', title: 'Instagram', type: 'url' }
-      ]
-    },
-    {
-      name: 'backgroundStyle',
-      title: 'Background Style',
-      type: 'string',
-      options: {
-        list: [
-          { title: 'Default', value: 'default' },
-          { title: 'Gradient', value: 'gradient' },
-          { title: 'Pattern', value: 'pattern' }
-        ]
-      },
-      initialValue: 'default'
     }
-  ]
+  ],
+  preview: {
+    select: {
+      fullName: 'fullName',
+      professionalTitle: 'professionalTitle'
+    },
+    prepare({ fullName, professionalTitle }: any) {
+      return {
+        title: fullName || 'No name',
+        subtitle: professionalTitle || 'No title'
+      };
+    }
+  }
 };
