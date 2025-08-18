@@ -5,6 +5,7 @@ import Layout from '@/components/Layout';
 import LayoutBlock from '@/components/LayoutBlock';
 import Hero from '@/components/Hero';
 import AboutSection from '@/components/AboutSection';
+import ProjectsSection from '@/components/ProjectsSection';
 import { getHomePage } from '@/lib/sanity/queries';
 import { FaultyTerminal } from '@/components/Backgrounds';
 
@@ -86,6 +87,11 @@ export default function Home() {
           {/* About Section - render regardless of blockType since it's in the same block */}
           {layoutBlock.aboutSection && (
             <AboutSection data={layoutBlock.aboutSection} />
+          )}
+          
+          {/* Projects Section - render regardless of blockType since it's in the same block */}
+          {layoutBlock.projectsSection && (
+            <ProjectsSection data={layoutBlock.projectsSection} />
           )}
         </LayoutBlock>
       ))}

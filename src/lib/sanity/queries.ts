@@ -66,12 +66,24 @@ export async function getHomePage() {
         }
       },
       projectsSection{
-        ...,
+        headline,
+        ctaButton,
         projects[]->{
-          ...,
+          _id,
+          _type,
+          title,
+          slug,
+          description,
           image{
             asset->{url}
-          }
+          },
+          techStack,
+          challenges,
+          demoUrl,
+          demoCta,
+          repoUrl,
+          publishedAt,
+          updatedAt
         }
       },
       aboutSection{

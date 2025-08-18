@@ -1,4 +1,5 @@
 import { AboutSection } from './aboutSection';
+import { ProjectsSection } from './projectsSection';
 
 export interface BackgroundStyle {
   type: 'solid' | 'gradient' | 'image' | 'pattern';
@@ -39,16 +40,6 @@ export interface HeroSection {
     url: string;
     isExternal: boolean;
   };
-}
-
-export interface ProjectsSection {
-  title: string;
-  subtitle?: string;
-  description?: string;
-  projects: any[]; // Will reference Project type
-  layout: 'grid-3' | 'grid-2' | 'carousel' | 'masonry';
-  showFilters: boolean;
-  maxProjects: number;
 }
 
 export interface LayoutBlock {
