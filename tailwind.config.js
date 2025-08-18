@@ -16,7 +16,7 @@ module.exports = {
           DEFAULT: "#0a0a0a", // near-black background
           950: "#0a0a0a",
           900: "#0e0e0e",
-          800: "#111111",
+          800: "#1a1a1a",
         },
         // Accent
         accent: {

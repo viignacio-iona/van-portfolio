@@ -61,40 +61,42 @@ export default function Home() {
         backfaceVisibility: 'hidden'
       }}>
       {/* Render all layout blocks */}
-      {pageData.layoutBlocks?.map((layoutBlock: any, index: number) => (
-                  <LayoutBlock 
-          key={layoutBlock._id || `layout-block-${index}`}
-          id={generateSectionId(layoutBlock.blockType)}
-          className={`${index === 0 ? 'h-screen-dynamic bg-base relative overflow-hidden' : 'bg-base'}`}
-        >
-          {/* Hero Section */}
-          {index === 0 && layoutBlock.heroSection && (
-            <>
-              {/* Background that only runs when at top of page */}
-              {BackgroundComponent}
-              
-              {/* Subtle gradient overlay for navbar readability */}
-              <div className="absolute inset-0 bg-gradient-to-b from-base/40 via-transparent to-transparent pointer-events-none z-10"></div>
-              
-              <div className="h-full flex items-center justify-start relative z-20 pointer-events-none">
-                                  <div className="pointer-events-auto relative z-20 w-4/5 mx-auto p-8">
+      {pageData.layoutBlocks?.map((layoutBlock: any, index: number) => {
+        return (
+          <LayoutBlock 
+            key={layoutBlock._id || `layout-block-${index}`}
+            id={generateSectionId(layoutBlock.blockType)}
+            className={`${index === 0 ? 'h-screen-dynamic bg-base relative overflow-hidden' : 'bg-base'}`}
+          >
+            {/* Hero Section */}
+            {index === 0 && layoutBlock.heroSection && (
+              <>
+                {/* Background that only runs when at top of page */}
+                {BackgroundComponent}
+                
+                {/* Subtle gradient overlay for navbar readability */}
+                <div className="absolute inset-0 bg-gradient-to-b from-base/40 via-transparent to-transparent pointer-events-none z-10"></div>
+                
+                <div className="h-full flex items-center justify-start relative z-20 pointer-events-none">
+                  <div className="pointer-events-auto relative z-20 w-4/5 mx-auto p-8">
                     <Hero data={layoutBlock.heroSection} />
                   </div>
-              </div>
-            </>
-          )}
-          
-          {/* About Section - render regardless of blockType since it's in the same block */}
-          {layoutBlock.aboutSection && (
-            <AboutSection data={layoutBlock.aboutSection} />
-          )}
-          
-          {/* Projects Section - render regardless of blockType since it's in the same block */}
-          {layoutBlock.projectsSection && (
-            <ProjectsSection data={layoutBlock.projectsSection} />
-          )}
-        </LayoutBlock>
-      ))}
+                </div>
+              </>
+            )}
+            
+            {/* About Section - render regardless of blockType since it's in the same block */}
+            {layoutBlock.aboutSection && (
+              <AboutSection data={layoutBlock.aboutSection} />
+            )}
+            
+            {/* Projects Section - render regardless of blockType since it's in the same block */}
+            {layoutBlock.projectsSection && (
+              <ProjectsSection data={layoutBlock.projectsSection} />
+            )}
+          </LayoutBlock>
+        );
+      })}
       </div>
     </Layout>
   );

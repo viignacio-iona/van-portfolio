@@ -343,6 +343,226 @@ export default function StyleGuide() {
                 </div>
               </div>
             </div>
+
+            {/* Carousel Component */}
+            <div>
+              <h3 className="text-xl font-semibold mb-4 text-text-secondary">Carousel Component</h3>
+              <div className="space-y-6">
+                <div className="text-sm text-text-muted mb-4">
+                  Interactive carousel with navigation arrows, dots, and smooth transitions
+                </div>
+                
+                {/* Carousel Container */}
+                <div className="relative overflow-hidden rounded-2xl bg-base-800 border border-base-700">
+                  <div className="relative">
+                    {/* Carousel Slides */}
+                    <div className="flex transition-transform duration-500 ease-out">
+                      {/* Slide 1 */}
+                      <div className="w-full flex-shrink-0">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center p-8">
+                          {/* Image Placeholder */}
+                          <div className="relative">
+                            <div className="w-full h-80 bg-gradient-to-br from-accent/20 to-base-700 rounded-xl flex items-center justify-center">
+                              <div className="text-center text-text-secondary">
+                                <div className="text-4xl mb-2">🖼️</div>
+                                <div className="text-sm">Project Image</div>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          {/* Content */}
+                          <div className="space-y-6">
+                            <h4 className="text-3xl font-bold text-text-primary">Project One</h4>
+                            <p className="text-lg text-text-secondary leading-relaxed">
+                              This is a sample project description that demonstrates the carousel component's content layout.
+                            </p>
+                            
+                            {/* Tech Stack */}
+                            <div>
+                              <h5 className="text-lg font-semibold text-text-primary mb-3">Tech Stack</h5>
+                              <div className="flex flex-wrap gap-3">
+                                <span className="px-3 py-2 bg-ui-card text-sm text-accent font-medium rounded-lg border border-base-700">
+                                  React
+                                </span>
+                                <span className="px-3 py-2 bg-ui-card text-sm text-accent font-medium rounded-lg border border-base-700">
+                                  TypeScript
+                                </span>
+                                <span className="px-3 py-2 bg-ui-card text-sm text-accent font-medium rounded-lg border border-base-700">
+                                  Tailwind
+                                </span>
+                              </div>
+                            </div>
+                            
+                            {/* Actions */}
+                            <div className="flex gap-4 pt-4">
+                              <button className="flex items-center gap-2 px-6 py-3 bg-accent text-accent-fg rounded-xl hover:bg-accent/90 transition-colors text-base font-semibold">
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                                Live Demo
+                              </button>
+                              <button className="flex items-center gap-2 px-6 py-3 bg-ui-card text-text-primary rounded-xl hover:bg-ui-card/80 transition-colors text-base font-semibold border border-base-700">
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                                </svg>
+                                View Code
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Slide 2 */}
+                      <div className="w-full flex-shrink-0">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center p-8">
+                          {/* Image Placeholder */}
+                          <div className="relative">
+                            <div className="w-full h-80 bg-gradient-to-br from-base-700 to-accent/20 rounded-xl flex items-center justify-center">
+                              <div className="text-center text-text-secondary">
+                                <div className="text-4xl mb-2">🚀</div>
+                                <div className="text-sm">Project Image</div>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          {/* Content */}
+                          <div className="space-y-6">
+                            <h4 className="text-3xl font-bold text-text-primary">Project Two</h4>
+                            <p className="text-lg text-text-secondary leading-relaxed">
+                              Another sample project showcasing different content and styling variations in the carousel.
+                            </p>
+                            
+                            {/* Tech Stack */}
+                            <div>
+                              <h5 className="text-lg font-semibold text-text-primary mb-3">Tech Stack</h5>
+                              <div className="flex flex-wrap gap-3">
+                                <span className="px-3 py-2 bg-ui-card text-sm text-accent font-medium rounded-lg border border-base-700">
+                                  Next.js
+                                </span>
+                                <span className="px-3 py-2 bg-ui-card text-sm text-accent font-medium rounded-lg border border-base-700">
+                                  Framer Motion
+                                </span>
+                                <span className="px-3 py-2 bg-ui-card text-sm text-accent font-medium rounded-lg border border-base-700">
+                                  Sanity CMS
+                                </span>
+                              </div>
+                            </div>
+                            
+                            {/* Actions */}
+                            <div className="flex gap-4 pt-4">
+                              <button className="flex items-center gap-2 px-6 py-3 bg-accent text-accent-fg rounded-xl hover:bg-accent/90 transition-colors text-base font-semibold">
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                                Live Demo
+                              </button>
+                              <button className="flex items-center gap-2 px-6 py-3 bg-ui-card text-text-primary rounded-xl hover:bg-ui-card/80 transition-colors text-base font-semibold border border-base-700">
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                                </svg>
+                                View Code
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Slide 3 */}
+                      <div className="w-full flex-shrink-0">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center p-8">
+                          {/* Image Placeholder */}
+                          <div className="relative">
+                            <div className="w-full h-80 bg-gradient-to-br from-accent/30 to-base-600 rounded-xl flex items-center justify-center">
+                              <div className="text-center text-text-secondary">
+                                <div className="text-4xl mb-2">💡</div>
+                                <div className="text-sm">Project Image</div>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          {/* Content */}
+                          <div className="space-y-6">
+                            <h4 className="text-3xl font-bold text-text-primary">Project Three</h4>
+                            <p className="text-lg text-text-secondary leading-relaxed">
+                              Final example demonstrating the carousel's ability to handle different content lengths and styles.
+                            </p>
+                            
+                            {/* Tech Stack */}
+                            <div>
+                              <h5 className="text-lg font-semibold text-text-primary mb-3">Tech Stack</h5>
+                              <div className="flex flex-wrap gap-3">
+                                <span className="px-3 py-2 bg-ui-card text-sm text-accent font-medium rounded-lg border border-base-700">
+                                  Vue.js
+                                </span>
+                                <span className="px-3 py-2 bg-ui-card text-sm text-accent font-medium rounded-lg border border-base-700">
+                                  Node.js
+                                </span>
+                                <span className="px-3 py-2 bg-ui-card text-sm text-accent font-medium rounded-lg border border-base-700">
+                                  MongoDB
+                                </span>
+                              </div>
+                            </div>
+                            
+                            {/* Actions */}
+                            <div className="flex gap-4 pt-4">
+                              <button className="flex items-center gap-2 px-6 py-3 bg-accent text-accent-fg rounded-xl hover:bg-accent/90 transition-colors text-base font-semibold">
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                                Live Demo
+                              </button>
+                              <button className="flex items-center gap-2 px-6 py-3 bg-ui-card text-text-primary rounded-xl hover:bg-ui-card/80 transition-colors text-base font-semibold border border-base-700">
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                                </svg>
+                                View Code
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Navigation Arrows */}
+                  <button className="absolute left-4 top-1/2 -translate-y-1/2 bg-base-900/80 hover:bg-base-900 text-text-primary p-3 rounded-full border border-base-700 hover:border-accent transition-all duration-300 z-10">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                  
+                  <button className="absolute right-4 top-1/2 -translate-y-1/2 bg-base-900/80 hover:bg-base-900 text-text-primary p-3 rounded-full border border-base-700 hover:border-accent transition-all duration-300 z-10">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                  
+                  {/* Dots Navigation */}
+                  <div className="flex justify-center mt-8 pb-6">
+                    <div className="flex space-x-3">
+                      <button className="w-3 h-3 rounded-full bg-accent w-8 transition-all duration-300"></button>
+                      <button className="w-3 h-3 rounded-full bg-base-700 hover:bg-base-600 transition-all duration-300"></button>
+                      <button className="w-3 h-3 rounded-full bg-base-700 hover:bg-base-600 transition-all duration-300"></button>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Carousel Code Example */}
+                <div className="bg-base-800 p-6 rounded-lg border border-base-700">
+                  <h5 className="text-lg font-semibold mb-3 text-text-secondary">Implementation Details</h5>
+                  <div className="space-y-3 text-sm text-text-secondary">
+                    <div><span className="text-accent">Container:</span> <code className="bg-base-700 px-2 py-1 rounded">relative overflow-hidden rounded-2xl</code></div>
+                    <div><span className="text-accent">Slides:</span> <code className="bg-base-700 px-2 py-1 rounded">flex transition-transform duration-500 ease-out</code></div>
+                    <div><span className="text-accent">Navigation:</span> <code className="bg-base-700 px-2 py-1 rounded">absolute left-4 top-1/2 -translate-y-1/2</code></div>
+                    <div><span className="text-accent">Dots:</span> <code className="bg-base-700 px-2 py-1 rounded">flex justify-center mt-8 pb-6</code></div>
+                    <div><span className="text-accent">Responsive:</span> <code className="bg-base-700 px-2 py-1 rounded">grid-cols-1 lg:grid-cols-2 gap-12</code></div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 

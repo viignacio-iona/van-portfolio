@@ -178,7 +178,7 @@ export default function AboutSection({ data }: AboutSectionProps) {
   };
 
   return (
-    <section className="py-20">
+    <section id="about-section-debug" className="py-20">
       <div className="w-4/5 mx-auto relative z-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           
@@ -219,7 +219,7 @@ export default function AboutSection({ data }: AboutSectionProps) {
                 </h3>
                 
                 {/* Technologies Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div className="flex flex-wrap gap-3">
                   {technologyStack.technologies.map((tech, index) => (
                     <motion.div
                       key={tech._key}
@@ -230,16 +230,14 @@ export default function AboutSection({ data }: AboutSectionProps) {
                       className="group"
                     >
                         {/* Tech Pill Component */}
-                        <div className="bg-base-800 border border-base-700 rounded-full px-0.5 py-0.5 flex items-center gap-2 hover:border-accent hover:shadow-soft transition-all duration-300 cursor-pointer group-hover:scale-105">
+                        <div className="bg-ui-card text-text-primary px-3 py-2 rounded-full border border-base-700 text-sm font-medium hover:bg-ui-card/80 transition-all duration-300 cursor-pointer group-hover:scale-105 flex items-center gap-2">
                           {/* Technology Icon */}
-                          <div className="w-10 h-10 bg-white/100 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-accent transition-colors duration-300">
-                            <span className="text-accent">
-                              {getTechnologyIcon(tech.name)}
-                            </span>
-                          </div>
-
+                          <span className="text-accent">
+                            {getTechnologyIcon(tech.name)}
+                          </span>
+                          
                           {/* Technology Name */}
-                          <span className="text-sm font-medium text-text-primary group-hover:text-accent transition-colors whitespace-nowrap">
+                          <span>
                             {tech.name.split(' ').map(word =>
                               word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
                             ).join(' ')}
