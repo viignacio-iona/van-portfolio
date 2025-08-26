@@ -29,10 +29,13 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        console.log('Fetching homepage data...');
         const data = await getHomePage();
+        console.log('Homepage data received:', data);
         setPageData(data);
       } catch (error) {
         console.error('Error fetching page data:', error);
+        setPageData(null);
       } finally {
         setLoading(false);
       }
