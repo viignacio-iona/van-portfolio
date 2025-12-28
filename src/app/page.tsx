@@ -6,6 +6,7 @@ import LayoutBlock from '@/components/LayoutBlock';
 import Hero from '@/components/Hero';
 import AboutSection from '@/components/AboutSection';
 import ProjectsSection from '@/components/ProjectsSection';
+import CertificationsSection from '@/components/CertificationsSection';
 import { getHomePage } from '@/lib/sanity/queries';
 import { FaultyTerminal } from '@/components/Backgrounds';
 
@@ -13,12 +14,25 @@ export default function Home() {
   const [pageData, setPageData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  // Detect if we're on desktop
+  useEffect(() => {
+    const checkDesktop = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+    checkDesktop();
+    window.addEventListener('resize', checkDesktop);
+    return () => window.removeEventListener('resize', checkDesktop);
+  }, []);
+
   // Simple background component
   const BackgroundComponent = useMemo(() => (
     <FaultyTerminal 
-      className="opacity-30 z-0" 
+      className="opacity-30 z-0"
+      mouseReact={isDesktop}
     />
-  ), []);
+  ), [isDesktop]);
 
   // Helper function to generate readable section IDs
   const generateSectionId = (blockType: string) => {
@@ -96,6 +110,14 @@ export default function Home() {
             {/* Projects Section - render regardless of blockType since it's in the same block */}
             {layoutBlock.projectsSection && (
               <ProjectsSection data={layoutBlock.projectsSection} />
+            )}
+            
+            {/* Certifications Section - render regardless of blockType since it's in the same block */}
+            {layoutBlock.certificationsSection && (
+              <CertificationsSection 
+                data={layoutBlock.certificationsSection} 
+                id={layoutBlock.blockType === 'certifications' ? generateSectionId(layoutBlock.blockType) : undefined}
+              />
             )}
           </LayoutBlock>
         );

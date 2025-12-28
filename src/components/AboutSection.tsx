@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { CalendarIcon, BuildingOfficeIcon } from '@heroicons/react/24/outline';
 import { 
@@ -152,6 +152,17 @@ export default function AboutSection({ data }: AboutSectionProps) {
   if (!data) return null;
 
   const { title, professionalSummary, careerTimeline, technologyStack } = data;
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  // Detect if we're on desktop
+  useEffect(() => {
+    const checkDesktop = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+    checkDesktop();
+    window.addEventListener('resize', checkDesktop);
+    return () => window.removeEventListener('resize', checkDesktop);
+  }, []);
 
   // Helper function to format date
   const formatDate = (date: { month: string; year: number }) => {
@@ -229,7 +240,7 @@ export default function AboutSection({ data }: AboutSectionProps) {
                       className="group"
                     >
                         {/* Tech Pill Component */}
-                        <div className="bg-ui-card text-text-primary px-3 py-2 rounded-full border border-base-700 text-sm font-medium hover:bg-ui-card/80 transition-all duration-300 cursor-pointer group-hover:scale-105 flex items-center gap-2">
+                        <div className="bg-ui-card text-text-primary px-3 py-2 rounded-full border border-base-700 text-sm font-medium lg:hover:bg-ui-card/80 transition-all duration-300 cursor-pointer lg:group-hover:scale-105 flex items-center gap-2">
                           {/* Technology Icon */}
                           <span className="text-accent">
                             {getTechnologyIcon(tech.name)}
@@ -286,15 +297,15 @@ export default function AboutSection({ data }: AboutSectionProps) {
                           
                           {/* Content Card with Glow Effect */}
                           <div 
-                            className="card ml-16 hover:shadow-soft transition-all duration-300 group relative overflow-visible"
-                            onMouseMove={handleMouseMove}
-                            onMouseEnter={handleMouseEnter}
-                            onMouseLeave={handleMouseLeave}
+                            className="card ml-16 lg:hover:shadow-soft transition-all duration-300 group relative overflow-visible"
+                            onMouseMove={isDesktop ? handleMouseMove : undefined}
+                            onMouseEnter={isDesktop ? handleMouseEnter : undefined}
+                            onMouseLeave={isDesktop ? handleMouseLeave : undefined}
                           >
-                            {/* Glow Effect Overlay */}
+                            {/* Glow Effect Overlay - Desktop only */}
                             {isHovering && (
                               <div
-                                className="absolute inset-0 pointer-events-none transition-opacity duration-300"
+                                className="absolute inset-0 pointer-events-none transition-opacity duration-300 hidden lg:block"
                                 style={{
                                   background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(14, 165, 233, 0.15), transparent 40%)`,
                                   opacity: isHovering ? 1 : 0
@@ -311,7 +322,7 @@ export default function AboutSection({ data }: AboutSectionProps) {
                             
                             {/* Company & Position */}
                             <div className="mb-4 relative z-10">
-                              <h4 className="text-xl font-bold text-text-primary mb-2 group-hover:text-accent transition-colors">
+                              <h4 className="text-xl font-bold text-text-primary mb-2 lg:group-hover:text-accent transition-colors">
                                 {entry.position}
                               </h4>
                               <div className="flex items-center gap-2 text-text-secondary">

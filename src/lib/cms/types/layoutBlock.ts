@@ -1,5 +1,6 @@
 import { AboutSection } from './aboutSection';
 import { ProjectsSection } from './projectsSection';
+import { CertificationsSection } from './certificationsSection';
 
 export interface BackgroundStyle {
   type: 'solid' | 'gradient' | 'image' | 'pattern';
@@ -52,7 +53,7 @@ export interface LayoutBlock {
   aboutSection?: AboutSection;
   skillsSection?: any; // Will define this later
   projectsSection?: ProjectsSection;
-  certificationsSection?: any; // Will define this later
+  certificationsSection?: CertificationsSection;
   commendationsSection?: any; // Will define this later
   contactSection?: any; // Will define this later
 }

@@ -105,8 +105,8 @@ module.exports = {
           transform: 'translateY(-1px)',
         },
         '.btn-primary:active': {
-          transform: 'translateY(0)',
-          filter: 'saturate(1.1)',
+          transform: 'scale(0.95)',
+          opacity: '0.9',
         },
         '.btn-outline': {
           border: '1px solid #1f2937',
@@ -119,6 +119,10 @@ module.exports = {
           borderColor: '#38bdf8',
           color: '#ffffff',
           backgroundColor: 'rgba(17, 17, 17, 0.9)', // Slightly more opaque on hover
+        },
+        '.btn-outline:active': {
+          transform: 'scale(0.95)',
+          opacity: '0.8',
         },
         '.card': {
           backgroundColor: '#111111',

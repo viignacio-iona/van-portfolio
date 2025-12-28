@@ -108,6 +108,27 @@ export async function getHomePage() {
             proficiency
           }
         }
+      },
+      certificationsSection{
+        title,
+        subtitle,
+        description,
+        layout,
+        showDates,
+        certifications[]->{
+          _id,
+          _type,
+          title,
+          issuer,
+          issueDate,
+          expirationDate,
+          credentialId,
+          credentialUrl,
+          description,
+          image{
+            asset->{url}
+          }
+        }
       }
     }
   }`;
