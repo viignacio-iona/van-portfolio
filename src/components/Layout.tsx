@@ -60,41 +60,6 @@ export default function Layout({ children, navbarData, footerData }: LayoutProps
     setIsMobileMenuOpen(false);
   };
 
-  // Function to get country flag emoji based on location
-  const getCountryFlag = (location: string) => {
-    const countryMap: { [key: string]: string } = {
-      'Philippines': '🇵🇭',
-      'USA': '🇺🇸',
-      'United States': '🇺🇸',
-      'UK': '🇬🇧',
-      'United Kingdom': '🇬🇧',
-      'Canada': '🇨🇦',
-      'Australia': '🇦🇺',
-      'Germany': '🇩🇪',
-      'France': '🇫🇷',
-      'Japan': '🇯🇵',
-      'Singapore': '🇸🇬',
-      'India': '🇮🇳',
-      'China': '🇨🇳',
-      'Remote': '🌍',
-      'Worldwide': '🌍'
-    };
-    
-    // Try to find exact match first
-    if (countryMap[location]) {
-      return countryMap[location];
-    }
-    
-    // Try to find partial match
-    for (const [country, flag] of Object.entries(countryMap)) {
-      if (location.toLowerCase().includes(country.toLowerCase())) {
-        return flag;
-      }
-    }
-    
-    // Default to globe if no match found
-    return '🌍';
-  };
 
   // Don't render navbar if no data
   const showNavbar = navbarData;
@@ -270,8 +235,8 @@ export default function Layout({ children, navbarData, footerData }: LayoutProps
 
       {/* Footer */}
       {showFooter && (
-        <footer className="bg-base text-white py-12">
-          <div className="w-4/5 mx-auto px-8">
+        <footer className="bg-base-800 text-white py-12">
+          <div className="px-4 lg:w-4/5 lg:mx-auto">
             <div className="grid md:grid-cols-2 gap-16">
               {/* Contact Information Section */}
               <div>
@@ -311,9 +276,9 @@ export default function Layout({ children, navbarData, footerData }: LayoutProps
                   
                   {footerData.contactInfo?.location && (
                     <li className="flex items-center space-x-3">
-                      <span className="text-2xl" aria-hidden="true">
-                        {getCountryFlag(footerData.contactInfo.location)}
-                      </span>
+                      <svg className="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                      </svg>
                       <span className="text-text-secondary">
                         {footerData.contactInfo.location}
                       </span>
@@ -324,11 +289,11 @@ export default function Layout({ children, navbarData, footerData }: LayoutProps
 
               {/* Social Media Section */}
               <div>
-                <h3 className="text-xl font-semibold font-heading text-white mb-2 ml-8">
+                <h3 className="text-xl font-semibold font-heading text-white mb-2 lg:ml-8">
                   Follow Me
                 </h3>
                 
-                <ul className="flex flex-col space-y-2 ml-8" role="list">
+                <ul className="flex flex-col space-y-2 lg:ml-8" role="list">
                   {footerData.socialMedia?.linkedin && (
                     <li>
                       <a 
@@ -416,7 +381,7 @@ export default function Layout({ children, navbarData, footerData }: LayoutProps
             <div className="border-t border-ui-border/30 my-12"></div>
 
             {/* Copyright Section */}
-            <div className="text-center">
+            <div className="text-left lg:text-center">
               {footerData.copyright && (
                 <p className="text-sm text-text-muted">{footerData.copyright}</p>
               )}
