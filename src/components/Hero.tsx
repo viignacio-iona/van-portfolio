@@ -24,6 +24,7 @@ interface HeroProps {
       text?: string;
       url?: string;
       isExternal?: boolean;
+      email?: string;
     };
   };
 }
@@ -103,12 +104,10 @@ export default function Hero({ data }: HeroProps) {
               {cta1.text}
             </a>
           )}
-          {cta2?.url && (
+          {cta2?.text && cta2?.email && (
             <a 
-              href={cta2.url} 
+              href={`mailto:${cta2.email}`}
               className="btn btn-outline inline-flex items-center w-full sm:w-auto justify-center focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base shadow-lg"
-              target={cta2.isExternal ? '_blank' : undefined}
-              rel={cta2.isExternal ? 'noopener noreferrer' : undefined}
             >
               {cta2.text}
             </a>

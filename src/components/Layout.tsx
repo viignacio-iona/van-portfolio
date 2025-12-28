@@ -60,12 +60,33 @@ export default function Layout({ children, navbarData, footerData }: LayoutProps
     setIsMobileMenuOpen(false);
   };
 
+  // Scroll to section with navbar offset
+  const scrollToSection = (targetId: string) => {
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      // Calculate navbar offset (mt-6 = 24px + h-20 = 80px + small padding = ~100px)
+      const navbarOffset = 32;
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navbarOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
 
   // Don't render navbar if no data
   const showNavbar = navbarData;
   
   // Don't render footer if no data
   const showFooter = footerData;
+
+  // Filter out Style Guide link from navbar
+  const filteredNavLinks = navbarData?.links?.filter(
+    (link) => !link.href.includes('style-guide') && link.label !== 'Style Guide'
+  ) || [];
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -93,10 +114,10 @@ export default function Layout({ children, navbarData, footerData }: LayoutProps
               </div>
 
               {/* Desktop Navigation Links - Hidden on mobile */}
-              {navbarData.links && navbarData.links.length > 0 && (
+              {filteredNavLinks.length > 0 && (
                 <nav className="hidden lg:block" aria-label="Main navigation">
                   <ul className="flex items-center space-x-8">
-                    {navbarData.links.map((link, index) => (
+                    {filteredNavLinks.map((link, index) => (
                       <li key={index}>
                         {link.isExternal ? (
                           <Link
@@ -116,13 +137,7 @@ export default function Layout({ children, navbarData, footerData }: LayoutProps
                             onClick={(e) => {
                               e.preventDefault();
                               const targetId = link.href.replace('#', '');
-                              const targetElement = document.getElementById(targetId);
-                              if (targetElement) {
-                                targetElement.scrollIntoView({ 
-                                  behavior: 'smooth',
-                                  block: 'start'
-                                });
-                              }
+                              scrollToSection(targetId);
                             }}
                           >
                             {link.label}
@@ -142,7 +157,7 @@ export default function Layout({ children, navbarData, footerData }: LayoutProps
       )}
 
       {/* Mobile Floating Hamburger Button - Circular, Top Right */}
-      {showNavbar && navbarData.links && navbarData.links.length > 0 && (
+      {showNavbar && filteredNavLinks.length > 0 && (
         <button
           onClick={() => setIsMobileMenuOpen(true)}
           className="fixed top-6 right-6 z-50 lg:hidden w-14 h-14 rounded-full bg-base/10 backdrop-blur-2xl border border-text-muted/30 shadow-2xl flex items-center justify-center text-text-primary hover:text-accent hover:bg-base/20 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base"
@@ -154,7 +169,7 @@ export default function Layout({ children, navbarData, footerData }: LayoutProps
       )}
 
       {/* Mobile Menu Drawer - Full Screen Overlay */}
-      {showNavbar && navbarData.links && navbarData.links.length > 0 && (
+      {showNavbar && filteredNavLinks.length > 0 && (
         <>
           {/* Backdrop */}
           <div
@@ -187,7 +202,7 @@ export default function Layout({ children, navbarData, footerData }: LayoutProps
               {/* Navigation Links */}
               <nav className="flex-1 overflow-y-auto px-6 pt-16 pb-8 flex justify-center" aria-label="Mobile navigation">
                 <ul className="space-y-4 text-center">
-                  {navbarData.links.map((link, index) => (
+                  {filteredNavLinks.map((link, index) => (
                     <li key={index}>
                       {link.isExternal ? (
                         <Link
@@ -206,13 +221,7 @@ export default function Layout({ children, navbarData, footerData }: LayoutProps
                             e.preventDefault();
                             handleLinkClick();
                             const targetId = link.href.replace('#', '');
-                            const targetElement = document.getElementById(targetId);
-                            if (targetElement) {
-                              targetElement.scrollIntoView({ 
-                                behavior: 'smooth',
-                                block: 'start'
-                              });
-                            }
+                            scrollToSection(targetId);
                           }}
                           className="block py-4 text-text-primary hover:text-accent transition-colors duration-200 font-medium text-xl focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base rounded-lg px-2 cursor-pointer"
                         >

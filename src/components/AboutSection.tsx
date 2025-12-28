@@ -178,7 +178,7 @@ export default function AboutSection({ data }: AboutSectionProps) {
 
   return (
     <section id="about-section-debug" className="py-20">
-      <div className="px-4 lg:w-4/5 lg:mx-auto relative z-20">
+      <div className="px-4 lg:w-4/5 lg:mx-auto relative z-20 lg:p-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           
           {/* Left Container: About Me & Tech Stack (Stacked) */}

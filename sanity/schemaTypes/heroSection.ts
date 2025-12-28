@@ -63,7 +63,7 @@ export default {
     {
       name: 'cta2',
       title: 'CTA 2 - Contact',
-      description: 'Optional contact button',
+      description: 'Optional contact button that opens default email app',
       type: 'object',
       fields: [
         {
@@ -73,28 +73,22 @@ export default {
           initialValue: 'Get in Touch'
         },
         {
-          name: 'url',
-          title: 'Contact Link',
-          description: 'Internal section link (e.g., #contact) or external URL',
-          type: 'string'
-        },
-        {
-          name: 'isExternal',
-          title: 'External Link',
-          description: 'Check if this opens in a new tab',
-          type: 'boolean',
-          initialValue: false
+          name: 'email',
+          title: 'Contact Email',
+          description: 'Email address for the contact button (opens default email app)',
+          type: 'string',
+          validation: (Rule: any) => Rule.email('Please enter a valid email address')
         }
       ],
       preview: {
         select: {
           title: 'text',
-          url: 'url'
+          email: 'email'
         },
-        prepare({ title, url }: any) {
+        prepare({ title, email }: any) {
           return {
             title: title || 'Contact',
-            subtitle: url || 'No link set'
+            subtitle: email || 'No email set'
           };
         }
       }
