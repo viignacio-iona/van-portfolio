@@ -1,8 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -38,6 +39,27 @@ interface LayoutProps {
 }
 
 export default function Layout({ children, navbarData, footerData }: LayoutProps) {
+  // Mobile menu state
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
+
+  // Close mobile menu when clicking on a link
+  const handleLinkClick = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   // Function to get country flag emoji based on location
   const getCountryFlag = (location: string) => {
     const countryMap: { [key: string]: string } = {
@@ -82,9 +104,9 @@ export default function Layout({ children, navbarData, footerData }: LayoutProps
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Desktop Navbar - Floating above all content */}
+      {/* Desktop Navbar - Floating above all content - Hidden on mobile */}
       {showNavbar && (
-        <nav className="fixed top-0 left-0 right-0 z-50 pointer-events-none">
+        <nav className="hidden lg:block fixed top-0 left-0 right-0 z-50 pointer-events-none">
           {/* Navbar content - truly floating */}
           <div className="w-4/5 mx-auto mt-6 pointer-events-auto">
             <div className="bg-base/10 backdrop-blur-2xl border border-text-muted/30 rounded-2xl shadow-2xl">
@@ -105,7 +127,7 @@ export default function Layout({ children, navbarData, footerData }: LayoutProps
                 )}
               </div>
 
-              {/* Navigation Links */}
+              {/* Desktop Navigation Links - Hidden on mobile */}
               {navbarData.links && navbarData.links.length > 0 && (
                 <nav className="hidden lg:block" aria-label="Main navigation">
                   <ul className="flex items-center space-x-8">
@@ -152,6 +174,93 @@ export default function Layout({ children, navbarData, footerData }: LayoutProps
             </div>
           </div>
         </nav>
+      )}
+
+      {/* Mobile Floating Hamburger Button - Circular, Top Right */}
+      {showNavbar && navbarData.links && navbarData.links.length > 0 && (
+        <button
+          onClick={() => setIsMobileMenuOpen(true)}
+          className="fixed top-6 right-6 z-50 lg:hidden w-14 h-14 rounded-full bg-base/10 backdrop-blur-2xl border border-text-muted/30 shadow-2xl flex items-center justify-center text-text-primary hover:text-accent hover:bg-base/20 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base"
+          aria-label="Open mobile menu"
+          aria-expanded={isMobileMenuOpen}
+        >
+          <Bars3Icon className="w-6 h-6" />
+        </button>
+      )}
+
+      {/* Mobile Menu Drawer - Full Screen Overlay */}
+      {showNavbar && navbarData.links && navbarData.links.length > 0 && (
+        <>
+          {/* Backdrop */}
+          <div
+            className={`fixed inset-0 bg-base z-[60] transition-opacity duration-300 lg:hidden ${
+              isMobileMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+            }`}
+            onClick={() => setIsMobileMenuOpen(false)}
+            aria-hidden={!isMobileMenuOpen}
+          />
+
+          {/* Drawer */}
+          <div
+            className={`fixed inset-0 z-[70] lg:hidden transition-transform duration-300 ease-out ${
+              isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+            }`}
+            aria-hidden={!isMobileMenuOpen}
+          >
+            <div className="h-full w-full bg-base flex flex-col">
+              {/* Header with Close Button */}
+              <div className="flex items-center justify-end p-6">
+                <button
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="p-2 text-text-primary hover:text-accent transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base rounded-lg"
+                  aria-label="Close mobile menu"
+                >
+                  <XMarkIcon className="w-6 h-6" />
+                </button>
+              </div>
+
+              {/* Navigation Links */}
+              <nav className="flex-1 overflow-y-auto px-6 pt-16 pb-8 flex justify-center" aria-label="Mobile navigation">
+                <ul className="space-y-4 text-center">
+                  {navbarData.links.map((link, index) => (
+                    <li key={index}>
+                      {link.isExternal ? (
+                        <Link
+                          href={link.href}
+                          onClick={handleLinkClick}
+                          className="block py-4 text-text-primary hover:text-accent transition-colors duration-200 font-medium text-xl focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base rounded-lg px-2"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {link.label}
+                        </Link>
+                      ) : (
+                        <a
+                          href={link.href}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handleLinkClick();
+                            const targetId = link.href.replace('#', '');
+                            const targetElement = document.getElementById(targetId);
+                            if (targetElement) {
+                              targetElement.scrollIntoView({ 
+                                behavior: 'smooth',
+                                block: 'start'
+                              });
+                            }
+                          }}
+                          className="block py-4 text-text-primary hover:text-accent transition-colors duration-200 font-medium text-xl focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-base rounded-lg px-2 cursor-pointer"
+                        >
+                          {link.label}
+                        </a>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </>
       )}
 
       {/* Main Content - Starts from very top */}

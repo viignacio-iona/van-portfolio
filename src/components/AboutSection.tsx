@@ -179,7 +179,7 @@ export default function AboutSection({ data }: AboutSectionProps) {
 
   return (
     <section id="about-section-debug" className="py-20">
-      <div className="w-4/5 mx-auto relative z-20">
+      <div className="px-4 lg:w-4/5 lg:mx-auto relative z-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           
           {/* Left Container: About Me & Tech Stack (Stacked) */}
@@ -193,7 +193,7 @@ export default function AboutSection({ data }: AboutSectionProps) {
               className="space-y-8"
             >
               {/* Section Header */}
-              <div className="space-y-6 p-8">
+              <div className="space-y-6">
                 <h2 className="text-4xl md:text-5xl font-bold text-text-primary leading-tight">
                   {title || 'About Me'}
                 </h2>
@@ -212,7 +212,7 @@ export default function AboutSection({ data }: AboutSectionProps) {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="space-y-6 p-8"
+                className="space-y-6"
               >
                 <h3 className="text-2xl font-semibold text-text-primary mb-6">
                   {technologyStack.title || 'Technology Stack'}
@@ -256,7 +256,7 @@ export default function AboutSection({ data }: AboutSectionProps) {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-8 p-8 pr-8"
+            className="space-y-8"
           >
             {careerTimeline && careerTimeline.length > 0 && (
               <>
