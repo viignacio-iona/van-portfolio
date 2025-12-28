@@ -165,14 +165,13 @@ export default function AboutSection({ data }: AboutSectionProps) {
 
   // Helper function to get duration
   const getDuration = (start: { month: string; year: number }, end?: { month: string; year: number }) => {
-    if (!end) return 'Present';
-    
     const startDate = new Date(start.year, parseInt(start.month) - 1);
-    const endDate = new Date(end.year, parseInt(end.month) - 1);
+    const endDate = end ? new Date(end.year, parseInt(end.month) - 1) : new Date();
     
     const diffTime = Math.abs(endDate.getTime() - startDate.getTime());
-    const diffYears = Math.ceil(diffTime / (1000 * 60 * 60 * 24 * 365));
+    const diffYears = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 365));
     
+    if (diffYears === 0) return '< 1 year';
     if (diffYears === 1) return '1 year';
     return `${diffYears} years`;
   };
@@ -316,20 +315,22 @@ export default function AboutSection({ data }: AboutSectionProps) {
                                 {entry.position}
                               </h4>
                               <div className="flex items-center gap-2 text-text-secondary">
-                                <BuildingOfficeIcon className="w-5 h-5" />
+                                <BuildingOfficeIcon className="w-4 h-4 lg:w-5 lg:h-5 flex-shrink-0" />
                                 <span className="font-medium">{entry.company}</span>
                               </div>
                             </div>
                             
                             {/* Dates & Duration */}
-                            <div className="flex items-center justify-between text-sm text-text-muted relative z-10">
-                              <div className="flex items-center gap-2">
-                                <CalendarIcon className="w-4 h-4" />
-                                <span>
-                                  {formatDate(entry.startDate)} - {entry.endDate ? formatDate(entry.endDate) : 'Present'}
-                                </span>
+                            <div className="flex items-center justify-between gap-2 text-sm text-text-muted relative z-10">
+                              <div className="flex items-center gap-2 flex-1">
+                                <CalendarIcon className="w-4 h-4 lg:w-5 lg:h-5 flex-shrink-0" />
+                                <div className="flex flex-col lg:flex-row lg:items-center gap-1 lg:gap-2 flex-1">
+                                  <span>{formatDate(entry.startDate)}</span>
+                                  <span className="hidden lg:inline"> - </span>
+                                  <span className="lg:mx-1">{entry.endDate ? formatDate(entry.endDate) : 'Present'}</span>
+                                </div>
                               </div>
-                              <span className="bg-ui-card px-2 py-1 rounded-md text-accent font-medium">
+                              <span className="bg-ui-card px-2 py-1 rounded-md text-accent font-medium flex-shrink-0">
                                 {getDuration(entry.startDate, entry.endDate)}
                               </span>
                             </div>
