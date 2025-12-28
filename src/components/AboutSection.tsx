@@ -7,12 +7,78 @@ import {
   SiReact, SiVuedotjs, SiAngular, SiNextdotjs, SiTypescript, SiJavascript, 
   SiHtml5, SiCss3, SiTailwindcss, SiSass, SiNodedotjs, SiPython, SiPhp, 
   SiExpress, SiDjango, SiSpring, SiDotnet, SiLaravel, SiMongodb, SiPostgresql, 
-  SiMysql, SiRedis, SiFirebase, SiDocker, SiGit, SiGithub, SiAmazon, 
+  SiMysql, SiRedis, SiFirebase, SiDocker, SiGit, 
   SiJenkins, SiKubernetes, SiJest, SiCypress, SiSelenium, SiRobotframework, 
   SiCucumber, SiGraphql, SiWebpack, SiVite, SiNpm, SiYarn, SiJira, SiConfluence,
-  SiSlack, SiFigma, SiAdobexd, SiPostman, SiInsomnia, SiVsco, SiIntellijidea
+  SiSlack, SiFigma, SiAdobexd, SiPostman, SiInsomnia, SiVsco, SiIntellijidea,
+  SiSanity, SiVercel, SiShopify, SiSnowflake, SiGoogletagmanager, SiApachejmeter, SiWebflow
 } from 'react-icons/si';
-import { JavaIcon, CSharpIcon, AzureIcon, PlaywrightIcon, PythonIcon, TypeScriptIcon, CypressIcon, RobotFrameworkIcon } from './icons/technologies';
+import { JavaIcon, CSharpIcon, AzureIcon, PlaywrightIcon, PythonIcon, TypeScriptIcon, CypressIcon, RobotFrameworkIcon, LighthouseIcon, WaveIcon, AxeDevToolsIcon, CommerceToolsIcon, AwsIcon, GitHubIcon } from './icons/technologies';
+
+// Map technology values to their proper display names
+const getTechnologyDisplayName = (value: string): string => {
+  const displayNames: Record<string, string> = {
+    'react': 'React',
+    'vue': 'Vue.js',
+    'angular': 'Angular',
+    'nextjs': 'Next.js',
+    'typescript': 'TypeScript',
+    'javascript': 'JavaScript',
+    'html5': 'HTML5',
+    'css3': 'CSS3',
+    'tailwind': 'Tailwind CSS',
+    'sass': 'Sass/SCSS',
+    'nodejs': 'Node.js',
+    'python': 'Python',
+    'java': 'Java',
+    'csharp': 'C#',
+    'php': 'PHP',
+    'express': 'Express.js',
+    'django': 'Django',
+    'spring': 'Spring',
+    'dotnet': '.NET',
+    'laravel': 'Laravel',
+    'mongodb': 'MongoDB',
+    'postgresql': 'PostgreSQL',
+    'mysql': 'MySQL',
+    'redis': 'Redis',
+    'firebase': 'Firebase',
+    'snowflake': 'Snowflake',
+    'sql': 'SQL',
+    'docker': 'Docker',
+    'git': 'Git',
+    'github': 'GitHub',
+    'aws': 'AWS',
+    'azure': 'Azure',
+    'jenkins': 'Jenkins',
+    'kubernetes': 'Kubernetes',
+    'vercel': 'Vercel',
+    'commercetools': 'commercetools',
+    'shopify': 'Shopify',
+    'sanity': 'Sanity',
+    'googletagmanager': 'Google Tag Manager',
+    'figma': 'Figma',
+    'webflow': 'WebFlow',
+    'jest': 'Jest',
+    'cypress': 'Cypress',
+    'selenium': 'Selenium',
+    'playwright': 'Playwright',
+    'robotframework': 'RobotFramework',
+    'cucumber': 'Cucumber',
+    'jmeter': 'JMeter',
+    'lighthouse': 'Google Lighthouse',
+    'wave': 'WAVE',
+    'axedevtools': 'Axe DevTools',
+    'graphql': 'GraphQL',
+    'rest': 'REST API',
+    'webpack': 'Webpack',
+    'vite': 'Vite',
+    'npm': 'NPM',
+    'yarn': 'Yarn',
+  };
+  
+  return displayNames[value.toLowerCase()] || value;
+};
 
 // Icon mapping for technologies using available React Icons and fallbacks
 const getTechnologyIcon = (techName: string) => {
@@ -31,7 +97,7 @@ const getTechnologyIcon = (techName: string) => {
   if (name.includes('sass') || name.includes('scss')) return <SiSass className="w-8 h-8 text-[#CC6699]" />;
   
   // Backend - Using React Icons with official brand colors
-  if (name.includes('nodejs') || name.includes('node.js')) return <SiNodedotjs className="w-8 h-8 text-[#339933]" />;
+  if (name.includes('nodejs') || name.includes('node.js')) return <div className="flex items-center justify-center" style={{transform: 'scale(0.875)'}}><SiNodedotjs className="w-8 h-8 text-[#339933]" /></div>;
   if (name.includes('python')) return <PythonIcon className="w-8 h-8" />;
   if (name.includes('java')) return <JavaIcon className="w-8 h-8" />;
   if (name.includes('c#') || name.includes('csharp')) return <CSharpIcon className="w-8 h-8" />;
@@ -48,15 +114,18 @@ const getTechnologyIcon = (techName: string) => {
   if (name.includes('mysql')) return <SiMysql className="w-8 h-8 text-[#4479A1]" />;
   if (name.includes('redis')) return <SiRedis className="w-8 h-8 text-[#DC382D]" />;
   if (name.includes('firebase')) return <SiFirebase className="w-8 h-8 text-[#FFCA28]" />;
+  if (name.includes('snowflake')) return <div className="flex items-center justify-center" style={{transform: 'scale(0.875)'}}><SiSnowflake className="w-8 h-8 text-[#29B5E8]" /></div>;
+  if (name.includes('sql')) return <SiMysql className="w-8 h-8 text-[#4479A1]" />;
   
   // DevOps & Tools - Using React Icons with official brand colors
   if (name.includes('docker')) return <SiDocker className="w-8 h-8 text-[#2496ED]" />;
-  if (name.includes('git')) return <SiGit className="w-8 h-8 text-[#F05032]" />;
-  if (name.includes('github')) return <SiGithub className="w-8 h-8 text-[#181717]" />;
-  if (name.includes('aws')) return <SiAmazon className="w-8 h-8 text-[#FF9900]" />;
+  if (name.includes('github')) return <GitHubIcon className="w-8 h-8" />;
+  if (name.includes('git')) return <div className="flex items-center justify-center" style={{transform: 'scale(0.875)'}}><SiGit className="w-8 h-8 text-[#F05032]" /></div>;
+  if (name.includes('aws')) return <AwsIcon className="w-8 h-8" />;
   if (name.includes('azure')) return <AzureIcon className="w-8 h-8" />;
   if (name.includes('jenkins')) return <SiJenkins className="w-8 h-8 text-[#D24939]" />;
   if (name.includes('kubernetes')) return <SiKubernetes className="w-8 h-8 text-[#326CE5]" />;
+  if (name.includes('vercel')) return <div className="flex items-center justify-center" style={{transform: 'scale(0.875)'}}><SiVercel className="w-8 h-8 text-white" /></div>;
   
   // Testing - Using React Icons with official brand colors
   if (name.includes('jest')) return <SiJest className="w-8 h-8 text-[#C21325]" />;
@@ -64,7 +133,11 @@ const getTechnologyIcon = (techName: string) => {
   if (name.includes('selenium')) return <SiSelenium className="w-8 h-8 text-[#43B02A]" />;
   if (name.includes('playwright')) return <PlaywrightIcon className="w-8 h-8" />;
   if (name.includes('robotframework')) return <RobotFrameworkIcon className="w-8 h-8" />;
-  if (name.includes('cucumber')) return <SiCucumber className="w-8 h-8 text-[#23D96C]" />;
+  if (name.includes('cucumber')) return <div className="flex items-center justify-center" style={{transform: 'scale(0.875)'}}><SiCucumber className="w-8 h-8 text-[#23D96C]" /></div>;
+  if (name.includes('jmeter')) return <SiApachejmeter className="w-8 h-8 text-[#D22128]" />;
+  if (name.includes('lighthouse') || name.includes('google lighthouse')) return <LighthouseIcon className="w-8 h-8" />;
+  if (name.includes('wave')) return <WaveIcon className="w-8 h-8" />;
+  if (name.includes('axedevtools') || name.includes('axe devtools') || name.includes('axe')) return <AxeDevToolsIcon className="w-8 h-8" />;
   
   // Other - Using React Icons with official brand colors
   if (name.includes('graphql')) return <SiGraphql className="w-8 h-8 text-[#E10098]" />;
@@ -77,12 +150,17 @@ const getTechnologyIcon = (techName: string) => {
   if (name.includes('jira')) return <SiJira className="w-8 h-8 text-[#0052CC]" />;
   if (name.includes('confluence')) return <SiConfluence className="w-8 h-8 text-[#172B4D]" />;
   if (name.includes('slack')) return <SiSlack className="w-8 h-8 text-[#4A154B]" />;
-  if (name.includes('figma')) return <SiFigma className="w-8 h-8 text-[#F24E1E]" />;
+  if (name.includes('figma')) return <div className="flex items-center justify-center" style={{transform: 'scale(0.875)'}}><SiFigma className="w-8 h-8 text-[#F24E1E]" /></div>;
   if (name.includes('adobe') || name.includes('xd')) return <SiAdobexd className="w-8 h-8 text-[#FF61F6]" />;
   if (name.includes('postman')) return <SiPostman className="w-8 h-8 text-[#FF6C37]" />;
   if (name.includes('insomnia')) return <SiInsomnia className="w-8 h-8 text-[#4000BF]" />;
   if (name.includes('vscode') || name.includes('visual studio code')) return <SiVsco className="w-8 h-8 text-[#007ACC]" />;
   if (name.includes('intellij') || name.includes('idea')) return <SiIntellijidea className="w-8 h-8 text-[#000000]" />;
+  if (name.includes('commercetools')) return <CommerceToolsIcon className="w-8 h-8" />;
+  if (name.includes('shopify')) return <div className="flex items-center justify-center" style={{transform: 'scale(0.875)'}}><SiShopify className="w-8 h-8 text-[#96BF48]" /></div>;
+  if (name.includes('sanity')) return <div className="flex items-center justify-center" style={{transform: 'scale(0.875)'}}><SiSanity className="w-8 h-8 text-[#F03E2F]" /></div>;
+  if (name.includes('googletagmanager') || name.includes('google tag manager') || name.includes('gtm')) return <div className="flex items-center justify-center" style={{transform: 'scale(0.875)'}}><SiGoogletagmanager className="w-8 h-8 text-[#4285F4]" /></div>;
+  if (name.includes('webflow')) return <div className="flex items-center justify-center" style={{transform: 'scale(0.875)'}}><SiWebflow className="w-8 h-8 text-[#4353FF]" /></div>;
   
   // Fallback for technologies not in React Icons - will be replaced with official SVGs
   return <SiJavascript className="w-8 h-8 text-[#F7DF1E]" />;
@@ -248,9 +326,7 @@ export default function AboutSection({ data }: AboutSectionProps) {
                           
                           {/* Technology Name */}
                           <span>
-                            {tech.name.split(' ').map(word =>
-                              word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-                            ).join(' ')}
+                            {getTechnologyDisplayName(tech.name)}
                           </span>
                         </div>
                     </motion.div>

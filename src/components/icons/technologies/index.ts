@@ -6,4 +6,10 @@ export { PythonIcon } from './PythonIcon';
 export { TypeScriptIcon } from './TypeScriptIcon';
 export { CypressIcon } from './CypressIcon';
 export { RobotFrameworkIcon } from './RobotFrameworkIcon';
+export { LighthouseIcon } from './LighthouseIcon';
+export { WaveIcon } from './WaveIcon';
+export { AxeDevToolsIcon } from './AxeDevToolsIcon';
+export { CommerceToolsIcon } from './CommerceToolsIcon';
+export { AwsIcon } from './AwsIcon';
+export { GitHubIcon } from './GitHubIcon';
 // Add more custom technology icons here as we create them

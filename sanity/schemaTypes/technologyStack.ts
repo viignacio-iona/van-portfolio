@@ -58,6 +58,8 @@ export default defineType({
                   { title: 'MySQL', value: 'mysql' },
                   { title: 'Redis', value: 'redis' },
                   { title: 'Firebase', value: 'firebase' },
+                  { title: 'Snowflake', value: 'snowflake' },
+                  { title: 'SQL', value: 'sql' },
                   
                   // DevOps & Tools
                   { title: 'Docker', value: 'docker' },
@@ -67,6 +69,13 @@ export default defineType({
                   { title: 'Azure', value: 'azure' },
                   { title: 'Jenkins', value: 'jenkins' },
                   { title: 'Kubernetes', value: 'kubernetes' },
+                  { title: 'Vercel', value: 'vercel' },
+                  { title: 'commercetools', value: 'commercetools' },
+                  { title: 'Shopify', value: 'shopify' },
+                  { title: 'Sanity', value: 'sanity' },
+                  { title: 'Google Tag Manager', value: 'googletagmanager' },
+                  { title: 'Figma', value: 'figma' },
+                  { title: 'WebFlow', value: 'webflow' },
                   
                   // Testing
                   { title: 'Jest', value: 'jest' },
@@ -75,6 +84,10 @@ export default defineType({
                   { title: 'Playwright', value: 'playwright' },
                   { title: 'RobotFramework', value: 'robotframework' },
                   { title: 'Cucumber', value: 'cucumber' },
+                  { title: 'JMeter', value: 'jmeter' },
+                  { title: 'Google Lighthouse', value: 'lighthouse' },
+                  { title: 'WAVE', value: 'wave' },
+                  { title: 'Axe DevTools', value: 'axedevtools' },
                   
                   // Other
                   { title: 'GraphQL', value: 'graphql' },
