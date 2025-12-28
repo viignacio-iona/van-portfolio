@@ -364,7 +364,41 @@ export default function FaultyTerminal({
 
     function resize() {
       if (!ctn || !renderer) return;
-      renderer.setSize(ctn.offsetWidth, ctn.offsetHeight);
+      
+      const containerWidth = ctn.offsetWidth;
+      const containerHeight = ctn.offsetHeight;
+      
+      // Check if mobile (viewport width < 1024px, which is Tailwind's lg breakpoint)
+      const isMobile = typeof window !== 'undefined' && window.innerWidth < 1024;
+      
+      if (isMobile) {
+        // Mobile: Use center crop - maintain aspect ratio and crop sides
+        // Use a reasonable aspect ratio that preserves terminal squares (slightly wider than square)
+        const targetAspect = 1.2;
+        
+        // Fit to container height, calculate width to maintain aspect ratio
+        const canvasHeight = containerHeight;
+        const canvasWidth = canvasHeight * targetAspect;
+        
+        // Render at the calculated size (wider than container = center crop effect)
+        renderer.setSize(canvasWidth, canvasHeight);
+        
+        // Position canvas to fill height and center horizontally (sides will be cropped)
+        gl.canvas.style.width = `${canvasWidth}px`;
+        gl.canvas.style.height = `${canvasHeight}px`;
+        gl.canvas.style.position = 'absolute';
+        gl.canvas.style.left = `${(containerWidth - canvasWidth) / 2}px`;
+        gl.canvas.style.top = '0px';
+      } else {
+        // Desktop: Fill/stretch to container (original behavior)
+        renderer.setSize(containerWidth, containerHeight);
+        gl.canvas.style.width = '100%';
+        gl.canvas.style.height = '100%';
+        gl.canvas.style.position = 'absolute';
+        gl.canvas.style.left = '0px';
+        gl.canvas.style.top = '0px';
+      }
+      
       program.uniforms.iResolution.value = new Color(
         gl.canvas.width,
         gl.canvas.height,
